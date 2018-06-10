@@ -1,3 +1,5 @@
+CREATE DATABASE `db_watch` /*!40100 DEFAULT CHARACTER SET utf8mb4 */
+
 create table t_user (
     id int(11) AUTO_INCREMENT PRIMARY KEY COMMENT '用户id',
     username varchar(64) not null COMMENT '用户姓名',
