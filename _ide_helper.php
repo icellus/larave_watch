@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.2.45 on 2018-06-10 12:56:09.
+ * Generated for Laravel 5.2.45 on 2018-06-10 15:44:58.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -10520,6 +10520,117 @@ namespace Mews\Captcha\Facades {
  
 }
 
+namespace Yansongda\LaravelPay\Facades { 
+
+    class Pay {
+        
+        /**
+         * Pay an order.
+         *
+         * @author yansongda <me@yansongda.cn>
+         * @param string $gateway
+         * @param array $params
+         * @return \Response|\Yansongda\Pay\Gateways\Collection 
+         * @static 
+         */ 
+        public static function pay($gateway, $params = array())
+        {
+            return \Yansongda\Pay\Gateways\Alipay::pay($gateway, $params);
+        }
+        
+        /**
+         * Verfiy sign.
+         *
+         * @author yansongda <me@yansongda.cn>
+         * @return \Yansongda\Pay\Gateways\Collection 
+         * @static 
+         */ 
+        public static function verify()
+        {
+            return \Yansongda\Pay\Gateways\Alipay::verify();
+        }
+        
+        /**
+         * Query an order.
+         *
+         * @author yansongda <me@yansongda.cn>
+         * @param string|array $order
+         * @return \Yansongda\Pay\Gateways\Collection 
+         * @static 
+         */ 
+        public static function find($order)
+        {
+            return \Yansongda\Pay\Gateways\Alipay::find($order);
+        }
+        
+        /**
+         * Refund an order.
+         *
+         * @author yansongda <me@yansongda.cn>
+         * @param array $order
+         * @return \Yansongda\Pay\Gateways\Collection 
+         * @static 
+         */ 
+        public static function refund($order)
+        {
+            return \Yansongda\Pay\Gateways\Alipay::refund($order);
+        }
+        
+        /**
+         * Cancel an order.
+         *
+         * @author yansongda <me@yansongda.cn>
+         * @param string|array $order
+         * @return \Yansongda\Pay\Gateways\Collection 
+         * @static 
+         */ 
+        public static function cancel($order)
+        {
+            return \Yansongda\Pay\Gateways\Alipay::cancel($order);
+        }
+        
+        /**
+         * Close an order.
+         *
+         * @author yansongda <me@yansongda.cn>
+         * @param string|array $order
+         * @return \Yansongda\Pay\Gateways\Collection 
+         * @static 
+         */ 
+        public static function close($order)
+        {
+            return \Yansongda\Pay\Gateways\Alipay::close($order);
+        }
+        
+        /**
+         * Download bill.
+         *
+         * @author yansongda <me@yansongda.cn>
+         * @param string|array $bill
+         * @return string 
+         * @static 
+         */ 
+        public static function download($bill)
+        {
+            return \Yansongda\Pay\Gateways\Alipay::download($bill);
+        }
+        
+        /**
+         * Reply success to alipay.
+         *
+         * @author yansongda <me@yansongda.cn>
+         * @return \Response 
+         * @static 
+         */ 
+        public static function success()
+        {
+            return \Yansongda\Pay\Gateways\Alipay::success();
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -12429,6 +12540,8 @@ namespace  {
     class View extends \Illuminate\Support\Facades\View {}
 
     class Captcha extends \Mews\Captcha\Facades\Captcha {}
+
+    class Pay extends \Yansongda\LaravelPay\Facades\Pay {}
  
 }
 

@@ -159,6 +159,9 @@ return [
 		// 验证码
 		Mews\Captcha\CaptchaServiceProvider::class,
 
+		// 支付
+		Yansongda\LaravelPay\PayServiceProvider::class,
+
     ],
 
     /*
@@ -206,7 +209,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
 		'Captcha' => Mews\Captcha\Facades\Captcha::class,
-
+		'Pay' => Yansongda\LaravelPay\Facades\Pay::class,
     ],
 
 ];
