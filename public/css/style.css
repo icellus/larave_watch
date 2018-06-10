@@ -1,0 +1,318 @@
+/*-------------腕表维修---------------*/
+/*极速预约*/
+.watch-Rapid-booking input{
+	padding:5px;
+	width: 100%;
+	font-size: 16px;
+}
+.watch-Rapid-booking-btn{
+	background: #1bb71f;
+	color: #FFF;
+	font-size: 16px;
+	text-align: center;
+}
+.watch-Rapid-booking-btn a{
+	padding:5px;
+	display: block;
+	color: #FFF;
+}
+.watch-Rapid-bookings{
+	padding-top: 30px;
+}
+.padding-top8{
+	padding-top: 8px;
+}
+/*服务项目*/
+.watch-Services{
+
+}
+/*维修流程*/
+.watch-btn a{
+	color: #FFF;
+	background: #1bb71f;
+	padding:10px 20px;
+	display: inline-block;
+	font-size: 16px;
+}
+.watch-btn{
+	padding-top: 50px;
+}
+/*-----------------手表情况-------------------*/
+.watch-case{
+	padding:10px;
+}
+.wacth-active{
+	background: #1bb71f !important;
+	color: #FFF !important;
+}
+.watch-case-list span{
+	background: #ededed;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	display: inline-block;
+	padding: 2px 4px;
+}
+.watch-case-list span a{
+	color: #8a8a8a;
+}
+.wacth-active a{
+	color: #FFF !important;
+}
+.wacth-weight input{
+	width: 100px;
+	margin-right: 10px;
+	padding: 5px;
+}
+.wacth-up-photo>div{
+	padding-left: 15px;
+}
+.wacth-up-text{
+	padding-left: 35px;
+}
+.wacth-remarks input{
+	width: 292px;
+	padding: 5px;
+}
+.watch-btn-next a{
+	color: #FFF;
+    background: #1bb71f;
+    padding: 10px 40px;
+    display: inline-block;
+    font-size: 16px;
+}
+/*---------------故障描述-------------------*/
+.watch-case-list label{
+	margin-right: 20px;
+}
+.ErrorDescription-res{
+	width: 80%;
+	padding: 5px;
+}
+/*------------------联系方式------------------*/
+.watch-contact-information label{
+	width: 100px;
+}
+.watch-contact-information input{
+	padding: 10px;
+	margin: 10px;
+}
+.watch-contact-information select{
+	padding: 8px;
+	margin: 10px 2px;
+}
+.contacinfo-last{
+	width: 49%;
+}
+.watch-btn-code a{
+	display: inline-block;
+	padding: 10px 30px;
+	background: #eaeaea;
+    font-size: 16px;
+    color: #777;
+}
+/*-------------工单详情-------------------*/
+.WorkOrderDetails-list a{
+	display: block;
+	padding: 15px 0;
+	font-size: 16px;
+	border-bottom: 1px solid #fff;
+	color: #333;
+}
+.watch-border-black2{
+	width: 100%;
+    height: 2px;
+    background: #eee;
+}
+.WorkOrderDetails-active a{
+	color: #ff0000;
+	border-bottom: 1px solid #ff0000 !important;
+	position: relative;
+}
+.padding-left15{
+	padding-left: 15px;
+}
+.padding-right15{
+	padding-right: 15px;
+}
+.WorkOrderDetails-first-left{
+	float: left;
+	padding-left: 15px;
+}
+.WorkOrderDetails-first-right{
+	float: right;
+	padding-right: 50px;
+}
+.watch-frot-text>div>div{
+	padding-left: 30px;
+	padding-top: 6px;
+}
+.WorkOrderDetails-first-right a{
+	color: #FF0000;
+}
+.WorkOrderDetails-active a div{
+	width: 5px;
+	height: 5px;
+	background: #ff0000;
+	border-radius: 50%;
+	position: absolute;
+	left: 70%;
+	top: 20%;
+}
+/*待确认*/
+.order-Cancel-determine span a{
+	padding: 5px 20px;
+	margin: 0 5px;
+	display: inline-block;
+	border:1px solid #666;
+	color: #ddd
+}
+.order-active{
+	border:1px solid #FF0000 !important;
+	color: #FF0000 !important;
+}
+/*-----------------收费标准---------------------*/
+.watch-RepairStandards{
+	padding-top: 20px;
+}
+.RepairStandards-table{
+	padding:20px;
+}
+.RepairStandards-table th{
+	background: #BEC0BF;
+	color: #000
+}
+.RepairStandards-table tr:hover{
+	background: transparent !important;
+}
+.process-reset-width20{
+	width: 20%;
+}
+/*响应式*/
+@media (max-width: 768px){
+	/*头部浮动*/
+	.watch-case{
+		position: fixed;
+		width: 100%;
+		height: 50px;
+		background: #FFF;
+		top: 0;
+		z-index: 10;
+		border-bottom: 5px solid #EFEFEF
+	}
+	.sanjiliandong{
+		display: block;
+	}
+	.WorkOrderDetails-list>div>div{
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	.watch-process-border{
+		border-radius: 5px;
+		border:1px solid #EEE;
+		padding: 20px 8px;
+	}
+	.media-left, .media>.pull-left{
+		padding-right: 5px;
+	}
+	.watch-process{
+
+	}
+	.WorkOrderDetails-list a{
+		display: block;
+		padding: 15px 0;
+		font-size: 1rem;
+		border-bottom: 1px solid #fff;
+	}
+	.WorkOrderDetails-active div{
+		left: 95% !important;
+		top: 20% !important;
+	}
+	.watch-Rapid-booking>div>div>form>div{
+		padding-top: 10px;
+	}
+	.watch-Services>div>div>div{
+		padding-top: 10px;
+	}
+	.watch-process>div>div>div>div{
+		text-align: center;
+		padding-top: 5px;
+		padding-right: 2.5px;
+		padding-left: 5px;
+		font-size: 1rem;
+	}
+	.watch-process{
+		margin: 10px;
+	}
+	.watch-BuyerReading{
+		margin: 5px;
+	}
+	.watch-BuyerReading>div:first-child{
+		text-align: center;
+	}
+	.wacth-up-photo{
+		text-align: center;
+	}
+	.wacth-up-text{
+		padding-left: 0;
+	}
+	.watch-case>div>div{
+		font-size: 14px;
+	}
+	.watch-case img,.watch-contactus img{
+		width: 15px;
+	}
+	.watch-case-cont div:nth-child(2){
+		font-size: 14px;
+	}
+	.watch-contact-information label {
+		padding-right: 0;
+	}
+	.watch-contact-information input{
+		margin: 0;
+	}
+	.margin-left100{
+		margin-left: 104px !important;
+		margin-top: 5px !important;
+	}
+	/*.watch-btn-next{
+		text-align: left;
+	}*/
+	.contacinfo-last{
+		width: 59%;
+	}
+	.WorkOrderDetails-first-left{
+		padding-left: 0;
+	}
+	.WorkOrderDetails-first-right{
+		padding-right: 0;
+	}
+	.WorkOrderDetails-order{
+		padding: 0;
+	}
+}
+@media (min-width: 768px){
+	.watch-contact-information select{
+		padding: 10px;
+		margin: 10px;
+	}
+	.watch-BuyerReading{
+		text-align: center;
+	}
+	.watch-contactus .media-body{
+		padding-left: 50px;
+	}
+	.watch-process-border{
+		padding:30px;
+		border-radius: 5px;
+		border:1px solid #EEE;
+		text-align: center;
+	}
+}
+@media (max-width: 992px){
+	.watch-Rapid-booking input{
+		font-size: 12px;
+	}
+	.watch-Rapid-booking-s12{
+		font-size: 12px;
+	}
+}

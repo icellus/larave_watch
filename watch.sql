@@ -1,7 +1,7 @@
 create table t_user (
     id int(11) AUTO_INCREMENT PRIMARY KEY COMMENT '用户id',
     username varchar(64) not null COMMENT '用户姓名',
-    phone int(11) not NULL UNIQUE KEY comment '用户手机号',
+    phone VARCHAR(32) not NULL UNIQUE KEY comment '用户手机号',
     `created_at` timestamp NOT NULL  COMMENT '创建时间',
     `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间，有修改自动更新'
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
@@ -9,8 +9,9 @@ create table t_user (
 
 
 create table t_reserve (
-  id int(11) AUTO_INCREMENT PRIMARY KEY  COMMENT '用户id',
-  phone int(11) not null comment '预约手机号',
+  id int(11) AUTO_INCREMENT PRIMARY KEY comment 'id',
+  user_id int(11)  not null   COMMENT '用户id',
+  phone VARCHAR(32) not null comment '预约手机号',
   `created_at` timestamp NOT NULL  COMMENT '创建时间',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间，有修改自动更新'
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='预约记录表';
