@@ -63,7 +63,7 @@
     <div class="watch-case">
         <div class="media">
             <div class="media-left media-middle">
-                <a href="WatchCase.html">
+                <a href="/goods">
                     <img class="media-object" src="images/left.png" alt="...">
                 </a>
             </div>

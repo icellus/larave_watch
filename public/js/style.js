@@ -47,42 +47,23 @@ $(function(){
 		$('#img-captcha').attr('src',"http://watch.com/captcha/default?OTF0v3P2" + Math.random())
     })
 
-	// 预约表单验证
-    $(".bookingform").Validform({
+    // 预约表单验证
+    var v = $(".bookingform").Validform({
         btnSubmit:".bookingSubmit",
+		ajaxPost:true,
+		postonce:true,
+		callback:function (data) {
+            // 刷新验证码
+            $('#img-captcha').attr('src',"http://watch.com/captcha/default?OTF0v3P2" + Math.random())
+		}
     });
+
+
+
+
     $('html').click(function(){
         if ($('#Validform_msg').css('display')=='block') {
             $('#Validform_msg').css('display','none');
         }
     })
-
-	$('#button-reserve').click(function () {
-		var name=$("[name='name']").val();
-		var phone=$("[name='phone']").val();
-		var captcha=$("[name='captcha']").val();
-
-		 $.ajax({
-			 type: 'POST',
-			 url: '/reserve',
-			 dataType: 'json',
-			 data: {
-				 name: name,  // 7-邀请码下载
-				 phone: phone,  //传入id
-				 captcha: captcha
-			 },
-			 success: function (data) {
-			 	if (data.code == 0) {
-			 		alert('预约成功!');
-				}
-			 },
-			 error: function () {
-			 }
-
-		 });
-         // 刷新验证码
-		 $('#img-captcha').attr('src',"http://watch.com/captcha/default?OTF0v3P2" + Math.random())
-		 return false;
-	})
-
 })

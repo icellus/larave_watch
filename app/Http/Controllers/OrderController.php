@@ -16,7 +16,7 @@ class OrderController extends Controller
 	public function index ($status = 0)
 	{
 		$user   = session('user_Id');
-		$orders = DB::table('t_order')->where('user_id', $user)->where('status', $status)->get();
+		$orders = DB::table('t_orders')->where('user_id', $user)->where('status', $status)->get();
 
 		foreach ($orders as $order) {
 			$info        = DB::table('t_watch')->where('order_id', $order->id)->first();

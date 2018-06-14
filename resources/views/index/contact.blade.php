@@ -63,7 +63,7 @@
     <div class="watch-case">
         <div class="media">
             <div class="media-left media-middle">
-                <a href="ErrorDescription.html">
+                <a href="/error">
                     <img class="media-object" src="images/left.png" alt="...">
                 </a>
             </div>
@@ -116,7 +116,7 @@
                         <input class="contacinfo-last" type="text" name="address" placeholder="详细地址" datatype="*" nullmsg="请填写地址" errormsg="请填写正确的地址">
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 watch-btn-next text-center padding-top30 padding-bot45">
-                        <a href="WorkOrderDetails.html" class=" ContactInfoSubmit">提交维修工单</a>
+                        <a href="/goods" class=" ContactInfoSubmit">提交维修工单</a>
                     </div>
                 </form>
             </div>

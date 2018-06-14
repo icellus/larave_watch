@@ -14,7 +14,13 @@ class ChargeController extends Controller
 		return view('index.charge');
 	}
 
-	// 预约
+	/**
+	 * todo 添加手机短信验证码验证
+	 *
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
 	public function reserve (Request $request)
 	{
 		// 验证验证码
@@ -33,6 +39,9 @@ class ChargeController extends Controller
 				'username'   => '',
 				'created_at' => date('Y-m-d H:i:s'),
 			]);
+
+			// 存一下cookie
+			session('user_id',$userId);
 		}
 
 		$insert = DB::table('t_reserve')->insert([
@@ -43,6 +52,8 @@ class ChargeController extends Controller
 
 		return $this->response();
 	}
+
+
 
 	public function verify (Request $request)
 	{

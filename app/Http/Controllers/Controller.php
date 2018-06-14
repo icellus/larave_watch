@@ -21,13 +21,13 @@ class Controller extends BaseController
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function response ($code = 0, $msg = 'request success',$data = '')
+	public function response ($code = 0, $msg = 'request success',$data = '',$info = '提交成功')
 	{
-
 		return response()->json([
 			'code' => $code,
 			'msg'  => $msg,
 			'data' => $data,
+			'info' => $info,
 		]);
 	}
 }
