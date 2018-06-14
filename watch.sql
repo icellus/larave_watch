@@ -69,3 +69,16 @@ create table t_courier (
   `created_at` timestamp NOT NULL  COMMENT '创建时间',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间，有修改自动更新'
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='快递记录表';
+
+
+  CREATE TABLE `t_verify_codes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `phone` varchar(64) DEFAULT NULL COMMENT '手机号',
+  `code` varchar(64) DEFAULT NULL COMMENT '验证码',
+  `used` int(1) NOT NULL DEFAULT '0' COMMENT '是否验证使用过 0-否 1-是',
+  `expire_at` DATETIME NULL DEFAULT NULL COMMENT '过期时间',
+  `created_at` timestamp NOT NULL  COMMENT '创建时间',
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间，有修改自动更新',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=162794 DEFAULT CHARSET=utf8mb4 COMMENT='短信验证码'
+;
