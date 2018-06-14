@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>联系方式</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <!-- 通用 -->
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+      @media (max-width: 768px){
+        body{
+          font-family:PingFangSC-Light,helvetica neue,hiragino sans gb,arial,microsoft yahei ui,microsoft yahei,simsun,sans-serif;
+          font-size: 14px;
+          padding-bottom: 80px;
+          padding-top: 50px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- banner -->
+    <div class="watch-banner hidden-xs">
+      <img src="images/banner.png">
+      <div class="watch-banner-spirit">工匠精神 极致服务</div>
+      <div class="watch-banner-repair">腕表维修 品质配件 直营保障 一年质保</div>
+    </div>
+    <!-- 专业团队 -->
+    <div class="watch-team padding-mdLR0 hidden-xs">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
+            <img src="images/icon.png" alt="..." class="img-responsive">
+            <div class="font-s16 color-three">专业团队</div>
+            <div class="color-ash">原厂品质高级维修</div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
+            <img src="images/qc.png" alt="..." class="img-responsive">
+            <div class="font-s16 color-three">质检标准</div>
+            <div class="color-ash">杜绝任何遗漏故障</div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
+            <img src="images/character.png" alt="..." class="img-responsive">
+              <div class="font-s16 color-three">品质配件</div>
+              <div class="color-ash">高品质配件严格检验</div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
+            <img src="images/quality.png" alt="..." class="img-responsive">
+              <div class="font-s16 color-three">一年质保</div>
+              <div class="color-ash">原故障免费360天</div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
+            <img src="images/priceTransparency.png" alt="..." class="img-responsive">
+              <div class="font-s16 color-three">价格透明</div>
+              <div class="color-ash">维修费用公示</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 线条 -->
+    <div class="watch-border hidden-xs"></div>
+    <!-- 手表情况头部 -->
+    <div class="watch-case">
+      <div class="media">
+        <div class="media-left media-middle">
+          <a href="ErrorDescription.html">
+            <img class="media-object" src="images/left.png" alt="...">
+          </a>
+        </div>
+        <div class="media-body media-middle text-center font-s24">
+          <span class="color-three">1步手表情况 </span>
+          <span>-</span>
+          <span class="color-three">2步故障描述</span>
+          <span>-</span>
+          <span class="color-red">3步联系方式</span>
+        </div>
+      </div>
+    </div>
+    <!-- 线条 -->
+    <div class="watch-border hidden-xs"></div>
+    <!-- 联系方式内容 -->
+    <div class="watch-contact-information">
+      <div class="text-center font-s16 color-six padding-top15">联系方式</div>
+      <div class="text-center color-ash padding-top15 padding-bot45">请详细填写联系地址及联系人快递收货使用</div>
+      <div class="container">
+        <div class="row">
+          <form class="ContactInfoform">
+            <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
+              <label class="color-seven">姓名：</label>
+              <input type="text" name="name" placeholder="请填写你的姓名" datatype="*" nullmsg="请填写姓名" errormsg="请填写正确的姓名">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
+              <label class="color-seven">手机：</label>
+              <input type="text" name="phone" placeholder="手机号码" datatype="m" nullmsg="请填写手机号码" errormsg="请填写正确的手机号码">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
+              <label class="color-seven">图形验证码：</label>
+              <input type="text" name="code" placeholder="图形验证码" datatype="*" nullmsg="请填写验证码" errormsg="请填写正确的验证码">
+              <img src="images/code.png" class="margin-left100">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
+              <label class="color-seven">短信验证：</label>
+              <input type="text" name="noteCode" placeholder="请填写短信验证码" datatype="*" nullmsg="请填写短信验证码" errormsg="请填写正确的短信验证码">
+              <span class="watch-btn-code text-center">
+                <a class="margin-left100" href="javascript:;">发送短信验证码</a>
+              </span>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
+              <label class="sanjiliandong color-seven">地址：</label>
+              <select class="province" name="province"></select>
+              <select class="city" name="city"></select>
+              <select class="district" name="district"></select>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
+              <label class="color-seven">详细地址：</label>
+              <input class="contacinfo-last" type="text" name="address" placeholder="详细地址" datatype="*" nullmsg="请填写地址" errormsg="请填写正确的地址">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 watch-btn-next text-center padding-top30 padding-bot45">
+              <a href="WorkOrderDetails.html" class=" ContactInfoSubmit">提交维修工单</a>
+            </div>
+          </form>  
+        </div>
+      </div>
+    </div>
+    <!-- 底部菜单 -->
+    <div class="watch-menu">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-3 col-sm-3 col-md-3 text-center">
+            <a href="index.html">
+              <img src="images/Wristwatch2.png">
+              <div class="font-s18 color-green padding-top8">腕表维修</div>
+            </a>  
+          </div>
+          <div class="col-xs-3 col-sm-3 col-md-3 text-center">
+            <a href="ChargesNotes.html">
+              <img src="images/rates.png">
+              <div class="font-s18 color-six padding-top8">收费标准</div>
+            </a>  
+          </div>
+          <div class="col-xs-3 col-sm-3 col-md-3 text-center">
+            <a href="WorkOrderDetails.html">
+              <img src="images/guySingle.png">
+              <div class="font-s18 color-six padding-top8">维修工单</div>
+            </a>  
+          </div>
+          <div class="col-xs-3 col-sm-3 col-md-3 text-center right-menu padding-0">
+            <a href="javascript:;">
+                <img src="images/customer.png">
+                <div class="font-s18 color-six padding-top8">客户中心</div>
+            </a>
+            <div class="right-sub-menu">
+              <div class="media">
+                <a href="ContactUs.html">
+                  <div class="media-left media-middle">
+                    <img class="media-object" src="images/contactus.png" alt="...">
+                  </div>
+                  <div class="media-body media-middle color-six">联系我们</div>
+                </a>  
+              </div>
+              <div class="media">
+                <a href="HelpService.html">
+                  <div class="media-left media-middle">
+                    <img class="media-object" src="images/helpCustomers.png" alt="...">
+                  </div>
+                  <div class="media-body media-middle color-six">客户帮助</div>
+                </a>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>   
+    </div>
+  </body>
+  <!-- jq -->
+  <script type="text/javascript" src="js/jquery-1.12.2.min.js"></script>
+  <!-- bootstrap -->
+  <script src="js/bootstrap.min.js"></script>
+  <!-- style -->
+  <script type="text/javascript" src="js/style.js"></script>
+  <!-- Validform -->
+  <script src="js/Validform_v5.3.2_min.js"></script>
+  <!-- sanjiliandong -->
+  <script src="js/jsAddress.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      addressInit('province', 'city', 'district', '', '', '');
+      $(".ContactInfoform").Validform({
+        btnSubmit:".ContactInfoSubmit",
+      });
+      $('html').click(function(){
+        if ($('#Validform_msg').css('display')=='block') {
+          $('#Validform_msg').css('display','none');
+        }
+      })
+      // 验证码
+      var times = 60;
+      $('.watch-btn-code a').click(function(){
+          if($(this).text()=="发送短信验证码") {
+            var getcode = setInterval(function(){
+              $('.watch-btn-code a').text("发送成功（"+times+"）");
+              times--;
+              if (times==0) {
+                clearInterval(getcode);
+                $('.watch-btn-code a').text("发送短信验证码");
+                times=60;
+              }
+            },1000)
+          }
+      })
+      
+    })
+  </script>
+</html>
