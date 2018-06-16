@@ -34,14 +34,15 @@ class ChargeController extends Controller
 
 		if (!$userId) {
 			// 写入用户表
+			$name   = '';
 			$userId = DB::table('t_user')->insertGetId([
 				'phone'      => $phone,
-				'username'   => '',
+				'username'   => $name,
 				'created_at' => date('Y-m-d H:i:s'),
 			]);
 
 			// 存一下cookie
-			session('user_id',$userId);
+			session(['user_id' => $userId, 'phone' => $phone, 'username' => $name]);
 		}
 
 		$insert = DB::table('t_reserve')->insert([
@@ -52,8 +53,6 @@ class ChargeController extends Controller
 
 		return $this->response();
 	}
-
-
 
 	public function verify (Request $request)
 	{

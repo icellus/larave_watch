@@ -82,3 +82,13 @@ create table t_courier (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=162794 DEFAULT CHARSET=utf8mb4 COMMENT='短信验证码'
 ;
+
+
+  ALTER  table t_courier CHANGE order_id watch_id int(11) not null comment '腕表id' AFTER id;
+  alter table t_watch change area_code province VARCHAR(16) not null COMMENT '省' AFTER error_comment;
+ALTER table t_watch add city VARCHAR(16) not null COMMENT '市' AFTER province;
+ALTER table t_watch add district VARCHAR(16) not null comment '区域' AFTER city;
+ALTER table t_watch add user_id int(11) not null comment '用户id' AFTER id;
+alter table t_orders add watch_id int(11) not null comment '腕表id' after user_id;
+alter table t_orders add out_order_id VARCHAR(63) not null comment '外部订单id' after watch_id;
+alter table t_orders add transaction_id VARCHAR(63) not null comment '微信订单' after out_order_id;

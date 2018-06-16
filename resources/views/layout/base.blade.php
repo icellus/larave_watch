@@ -7,12 +7,12 @@
 	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 	<title>腕表维修</title>
 	<!-- Bootstrap -->
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/normalize.css">
 	<!-- 通用 -->
-	<link rel="stylesheet" type="text/css" href="css/global.css">
+	<link rel="stylesheet" type="text/css" href="/css/global.css">
 	<!-- style -->
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 
 	@yield('page_css')
 
@@ -32,11 +32,11 @@
 
 </body>
 <!-- jq -->
-<script type="text/javascript" src="js/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="/js/jquery-1.12.2.min.js"></script>
 <!-- bootstrap -->
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <!-- Validform -->
-<script src="js/Validform_v5.3.2_min.js"></script>
+<script src="/js/Validform_v5.3.2_min.js"></script>
 <!-- style -->
 <script type="text/javascript" src="/js/style.js"></script>
 

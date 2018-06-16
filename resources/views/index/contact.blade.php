@@ -63,7 +63,7 @@
     <div class="watch-case">
         <div class="media">
             <div class="media-left media-middle">
-                <a href="/error">
+                <a href="/errorpage">
                     <img class="media-object" src="images/left.png" alt="...">
                 </a>
             </div>
@@ -84,19 +84,19 @@
         <div class="text-center color-ash padding-top15 padding-bot45">请详细填写联系地址及联系人快递收货使用</div>
         <div class="container">
             <div class="row">
-                <form class="ContactInfoform">
+                <form class="ContactInfoform" method="post" action="/watch">
                     <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
                         <label class="color-seven">姓名：</label>
-                        <input type="text" name="name" placeholder="请填写你的姓名" datatype="*" nullmsg="请填写姓名" errormsg="请填写正确的姓名">
+                        <input type="text" name="name" placeholder="请填写你的姓名" datatype="*" nullmsg="请填写姓名" errormsg="请填写正确的姓名" value="{{session('username')}}">
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
                         <label class="color-seven">手机：</label>
-                        <input type="text" name="phone" placeholder="手机号码" datatype="m" nullmsg="请填写手机号码" errormsg="请填写正确的手机号码">
+                        <input type="text" name="phone" placeholder="手机号码" datatype="m" nullmsg="请填写手机号码" errormsg="请填写正确的手机号码" value="{{session('phone')}}">
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
                         <label class="color-seven">图形验证码：</label>
-                        <input type="text" name="code" placeholder="图形验证码" datatype="*" nullmsg="请填写验证码" errormsg="请填写正确的验证码">
-                        <img src="images/code.png" class="margin-left100">
+                        <input type="text" name="captcha" placeholder="图形验证码" datatype="*" nullmsg="请填写验证码" errormsg="请填写正确的验证码">
+                        <img src="{{ captcha_src() }}"  class="margin-left100" id="img-captcha">
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
                         <label class="color-seven">短信验证：</label>
@@ -113,10 +113,11 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
                         <label class="color-seven">详细地址：</label>
-                        <input class="contacinfo-last" type="text" name="address" placeholder="详细地址" datatype="*" nullmsg="请填写地址" errormsg="请填写正确的地址">
+                        <input class="contacinfo-last" type="text" name="area" placeholder="详细地址" datatype="*" nullmsg="请填写地址" errormsg="请填写正确的地址">
                     </div>
+                    <input type="hidden" value="{{session('watch_id')}}" name="id">
                     <div class="col-xs-12 col-sm-12 col-md-12 watch-btn-next text-center padding-top30 padding-bot45">
-                        <a href="/goods" class=" ContactInfoSubmit">提交维修工单</a>
+                        <a href="/goods" class="ContactInfoSubmit" id="contactForm">提交维修工单</a>
                     </div>
                 </form>
             </div>
@@ -137,6 +138,11 @@
             addressInit('province', 'city', 'district', '', '', '');
             $(".ContactInfoform").Validform({
                 btnSubmit:".ContactInfoSubmit",
+                ajaxPost: true,
+                postonce: true,
+                callback: function (data) {
+                    $('#img-captcha').attr('src', "http://watch.com/captcha/default?OTF0v3P2" + Math.random())
+                }
             });
             $('html').click(function(){
                 if ($('#Validform_msg').css('display')=='block') {
