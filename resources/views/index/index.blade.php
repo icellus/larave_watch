@@ -21,7 +21,7 @@
 @section('content')
 	<!-- banner -->
 	<div class="watch-banner">
-		<img src="images/banner.png">
+		<img src="/images/banner.png">
 		<div class="watch-banner-spirit">工匠精神 极致服务</div>
 		<div class="watch-banner-repair">腕表维修 品质配件 直营保障 一年质保</div>
 	</div>
@@ -30,27 +30,27 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-					<img src="images/icon.png" alt="..." class="img-responsive">
+					<img src="/images/icon.png" alt="..." class="img-responsive">
 					<div class="font-s16 color-three">专业团队</div>
 					<div class="color-ash">原厂品质高级维修</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-					<img src="images/qc.png" alt="..." class="img-responsive">
+					<img src="/images/qc.png" alt="..." class="img-responsive">
 					<div class="font-s16 color-three">质检标准</div>
 					<div class="color-ash">杜绝任何遗漏故障</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-					<img src="images/character.png" alt="..." class="img-responsive">
+					<img src="/images/character.png" alt="..." class="img-responsive">
 					<div class="font-s16 color-three">品质配件</div>
 					<div class="color-ash">高品质配件严格检验</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-					<img src="images/quality.png" alt="..." class="img-responsive">
+					<img src="/images/quality.png" alt="..." class="img-responsive">
 					<div class="font-s16 color-three">一年质保</div>
 					<div class="color-ash">原故障免费360天</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-					<img src="images/priceTransparency.png" alt="..." class="img-responsive">
+					<img src="/images/priceTransparency.png" alt="..." class="img-responsive">
 					<div class="font-s16 color-three">价格透明</div>
 					<div class="color-ash">维修费用公示</div>
 				</div>
@@ -76,7 +76,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-6 col-sm-6 col-md-3 text-center color-ash">
-					<img src="images/CleaningM.png">
+					<img src="/images/CleaningM.png">
 					<div class="color-six">清洗保养</div>
 					<div class="padding-top15">
 						<span>定期保养</span>
@@ -88,7 +88,7 @@
 					</div>
 				</div>
 				<div class="col-xs-6 col-sm-6 col-md-3 text-center color-ash">
-					<img src="images/replacementPart.png">
+					<img src="/images/replacementPart.png">
 					<div class="color-six">更换零件</div>
 					<div  class="padding-top15">
 						<span>表带、表节、表壳、后盖</span>
@@ -98,7 +98,7 @@
 					</div>
 				</div>
 				<div class="col-xs-6 col-sm-6 col-md-3 text-center color-ash">
-					<img src="images/Watchrefurbished.png">
+					<img src="/images/Watchrefurbished.png">
 					<div class="color-six">手表翻新</div>
 					<div class="padding-top15">
 						<span>清洗外观</span>
@@ -110,7 +110,7 @@
 					</div>
 				</div>
 				<div class="col-xs-6 col-sm-6 col-md-3 text-center color-ash">
-					<img src="images/Whenthefault.png">
+					<img src="/images/Whenthefault.png">
 					<div class="color-six">走时故障</div>
 					<div class="padding-top15">
 						<span>手表走快</span>
@@ -133,7 +133,7 @@
 					<div class="col-xs-2 col-sm-3 col-md-3 process-reset-width20">
 						<div class="media">
 							<div class="media-left media-middle">
-								<img class="media-object" src="images/work.png" alt="...">
+								<img class="media-object" src="/images/work.png" alt="...">
 							</div>
 							<div class="media-body media-middle color-ash">提交</div>
 						</div>
@@ -141,7 +141,7 @@
 					<div class="col-xs-2 col-sm-3 col-md-3 process-reset-width20">
 						<div class="media">
 							<div class="media-left media-middle">
-								<img class="media-object" src="images/expressage.png" alt="...">
+								<img class="media-object" src="/images/expressage.png" alt="...">
 							</div>
 							<div class="media-body media-middle color-ash">邮寄</div>
 						</div>
@@ -149,7 +149,7 @@
 					<div class="col-xs-2 col-sm-3 col-md-3 process-reset-width20">
 						<div class="media">
 							<div class="media-left media-middle">
-								<img class="media-object" src="images/maintain.png" alt="...">
+								<img class="media-object" src="/images/maintain.png" alt="...">
 							</div>
 							<div class="media-body media-middle color-ash">检测</div>
 						</div>
@@ -157,7 +157,7 @@
 					<div class="col-xs-2 col-sm-3 col-md-3 process-reset-width20">
 						<div class="media">
 							<div class="media-left media-middle">
-								<img class="media-object" src="images/pay.png" alt="...">
+								<img class="media-object" src="/images/pay.png" alt="...">
 							</div>
 							<div class="media-body media-middle color-ash">支付</div>
 						</div>
@@ -165,7 +165,7 @@
 					<div class="col-xs-2 col-sm-3 col-md-3 process-reset-width20">
 						<div class="media">
 							<div class="media-left media-middle">
-								<img class="media-object" src="images/wacth.png" alt="...">
+								<img class="media-object" src="/images/wacth.png" alt="...">
 							</div>
 							<div class="media-body media-middle color-ash">回寄</div>
 						</div>

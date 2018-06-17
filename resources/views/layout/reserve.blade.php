@@ -6,7 +6,7 @@
             <div class="col-xs-12 col-sm-2 col-md-2">
                 <div class="media">
                     <div class="media-left media-middle">
-                        <img class="media-object" src="images/booking.png" alt="...">
+                        <img class="media-object" src="/images/booking.png" alt="...">
                     </div>
                     <div class="media-body media-middle font-s16 watch-Rapid-booking-s12">极速预约</div>
                 </div>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-2 col-md-2">
                     <img src="{{ captcha_src() }}" class="img-responsive" id="img-captcha">
-                    {{--<img src="images/code.png" class="img-responsive">--}}
+                    {{--<img src="/images/code.png" class="img-responsive">--}}
                 </div>
                 <div class="col-xs-12 col-sm-2 col-md-2">
                     <div class="watch-Rapid-booking-btn">

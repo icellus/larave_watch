@@ -9,9 +9,13 @@
  rewrite ^/(.*)$ http://www.phpwamp.com/$1 permanent;
                  }
 
- #rewrite ^/(.*)$ /public/index.php/$1 last;
 
- #rewrite ^/(.*) http://www.watch.com/public/index.php/$1 permanent;
+ #rewrite ^/(.*) http://watch.com/public/index.php/$1 permanent;
+ if (!-e $request_filename){
+            rewrite ^/(.*)$ http://watch.com/public/$1 last;
+            break;
+ }
+
 
 
 

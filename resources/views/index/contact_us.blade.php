@@ -26,7 +26,7 @@
         <div class="media">
             <div class="media-left media-middle">
                 <a href="/">
-                    <img class="media-object" src="images/left.png" alt="...">
+                    <img class="media-object" src="/images/left.png" alt="...">
                 </a>
             </div>
             <div class="media-body media-middle font-s18 padding-left20 color-three">联系方式</div>

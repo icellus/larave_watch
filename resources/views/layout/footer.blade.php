@@ -7,7 +7,7 @@
                     @if(Request::getRequestUri() == '/index')
                     <img src="/images/Wristwatch2.png">
                     @else
-                        <img src="/images/Wristwatch1.png">
+                        <img src="/images/Wristwatch.png">
                     @endif
                     <div class="font-s18 padding-top8
                      @if(Request::getRequestUri() == '/index')
