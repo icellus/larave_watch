@@ -6,7 +6,6 @@
 @section('page_css')
 
     <link rel="stylesheet" type="text/css" href="/css/upload.css">
-    <link rel="stylesheet" type="text/css" href="/css/webuploader.css">
     {{--<style type="text/css">
         @media (max-width: 768px){
             body{
@@ -158,5 +157,7 @@
 
 @section('page_js')
 
-    <script type="text/javascript" src="/js/webuploader.min.js"></script>
+    <script type="text/javascript" src="/js/upload.js"></script>
+
+
 @endsection

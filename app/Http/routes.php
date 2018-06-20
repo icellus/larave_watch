@@ -22,7 +22,7 @@ Route::group(['middleware' => ['admin']], function() {
 	Route::any('/reserve', 'ChargeController@reserve'); // 预约
 
 	// 下单
-	Route::get('/image', 'OrderController@image');
+	Route::post('/image', 'OrderController@image');
 
 	// 支付流程页面
 	Route::get('/goods', 'GoodsController@goods');

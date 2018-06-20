@@ -4,13 +4,13 @@
         <div class="row">
             <div class="col-xs-3 col-sm-3 col-md-3 text-center">
                 <a href="/index">
-                    @if(Request::getRequestUri() == '/index')
+                    @if(strpos(Request::getUri(),'/index') !== false)
                     <img src="/images/Wristwatch2.png">
                     @else
                         <img src="/images/Wristwatch.png">
                     @endif
                     <div class="font-s18 padding-top8
-                     @if(Request::getRequestUri() == '/index')
+                     @if(strpos(Request::getUri(),'/index') !== false)
                             color-green
                         @endif
                     ">腕表维修</div>
@@ -18,37 +18,38 @@
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 text-center">
                 <a href="/charge">
-                    @if(Request::getRequestUri() == '/charge')
+                    @if(strpos(Request::getUri(),'/charge') !== false)
                         <img src="/images/rates2.png">
                     @else
                         <img src="/images/rates.png">
                     @endif
 
-                    <div class="font-s18 color-six padding-top8  @if(Request::getRequestUri() == '/charge')
+                    <div class="font-s18 color-six padding-top8  @if(strpos(Request::getUri(),'/charge') !== false)
                             color-green
                         @endif">收费标准</div>
                 </a>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 text-center">
                 <a href="/order">
-                    @if(strpos('/order',Request::getUri()))
+                    @if(strpos(Request::getUri(),'/order') !== false)
                         <img src="/images/guySingle2.png">
                     @else
                         <img src="/images/guySingle.png">
                     @endif
-                    <div class="font-s18 color-six padding-top8 @if(strpos('/order',Request::getUri()))
+                    <div class="font-s18 color-six padding-top8 @if(strpos(Request::getUri(),'/order') !== false)
                             color-green
                         @endif">维修工单</div>
                 </a>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 text-center right-menu padding-0">
                 <a href="javascript:;">
-                    @if(in_array(Request::getRequestUri(),['/contactUs','/help']))
+                    @if(strpos(Request::getUri(),'/contactUs') !== false || strpos(Request::getUri(),'/help') !== false)
                         <img src="/images/customer2.png">
                     @else
                         <img src="/images/customer.png">
                     @endif
-                    <div class="font-s18 color-six padding-top8  @if(in_array(Request::getRequestUri(),['/contactUs','/help']))
+                    <div class="font-s18 color-six padding-top8
+@if(strpos(Request::getUri(),'/contactUs') !== false || strpos(Request::getUri(),'/help') !== false)
                             color-green
                         @endif">客户中心</div>
                 </a>

@@ -75,7 +75,7 @@ class GoodsController extends Controller
 
 			// 验证验证码
 			$this->validate($request, [
-				//				'captcha' => 'required|captcha',
+								'captcha' => 'required|captcha',
 			]);
 			unset($data['captcha']);
 			unset($data['noteCode']);

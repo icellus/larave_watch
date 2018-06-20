@@ -83,7 +83,6 @@
         <div class="text-center font-s16 color-six padding-top15">故障描述</div>
         <div class="text-center font-s16 color-ash padding-top15 padding-bot45">腕表当前故障选择，以便快速进入维修</div>
         <div class="container">
-            {{dump($info)}}
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-top15">
                     <div class="padding-top8 watch-case-list" id="error_movement">

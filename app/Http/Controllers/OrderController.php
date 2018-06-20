@@ -170,20 +170,24 @@ class OrderController extends Controller
 		]);
 	}
 
-
 	/**
 	 * 上传图片
 	 *
 	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
 	 */
 	public function image (Request $request)
 	{
-		dd($request->all());
 		$file = $request->file('image');
-		dd($file);
 
 		$date = date('Y-m-d');
-		$request->file('image')->move(public_path("images/{$date}/"), date('Ymd_His') . random_int(1, 9999));
+		$path = public_path("/images/{$date}/");
+		$name = date('Ymd_His') . random_int(1, 9999) . '.' . $file -> getClientOriginalExtension();
+		$file->move($path, $name);
+
+
+		return $this->response(0,'success',['src' => "/images/{$date}/" . $name]);
 	}
 
 }
