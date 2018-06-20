@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.2.45 on 2018-06-10 15:44:58.
+ * Generated for Laravel 5.2.45 on 2018-06-20 23:21:35.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -10631,6 +10631,514 @@ namespace Yansongda\LaravelPay\Facades {
  
 }
 
+namespace Thetispro\Setting\Facades { 
+
+    class Setting {
+        
+        /**
+         * Set the path to the file to use
+         *
+         * @param string $path The path to the file
+         * @return \Thetispro\Setting\Setting 
+         * @static 
+         */ 
+        public static function path($path)
+        {
+            return \Thetispro\Setting\Setting::path($path);
+        }
+        
+        /**
+         * Set the filename to use
+         *
+         * @param string $filename The filename
+         * @return \Thetispro\Setting\Setting 
+         * @static 
+         */ 
+        public static function filename($filename)
+        {
+            return \Thetispro\Setting\Setting::filename($filename);
+        }
+        
+        /**
+         * Get a value and return it
+         *
+         * @param string $key String using dot notation
+         * @param Mixed $default
+         * @return Mixed The value(s) found
+         * @static 
+         */ 
+        public static function get($key = null, $default = null)
+        {
+            return \Thetispro\Setting\Setting::get($key, $default);
+        }
+        
+        /**
+         * Store the passed value in to the json file
+         *
+         * @param $key
+         * @param mixed $value The value(s) to be stored
+         * @return void 
+         * @static 
+         */ 
+        public static function set($key, $value)
+        {
+            \Thetispro\Setting\Setting::set($key, $value);
+        }
+        
+        /**
+         * Forget the value(s) currently stored
+         *
+         * @param mixed $deleteKey The value(s) to be removed (dot notation)
+         * @return void 
+         * @static 
+         */ 
+        public static function forget($deleteKey)
+        {
+            \Thetispro\Setting\Setting::forget($deleteKey);
+        }
+        
+        /**
+         * Check to see if the value exists
+         *
+         * @param string $searchKey The key to search for
+         * @return boolean True: found - False not found
+         * @static 
+         */ 
+        public static function has($searchKey)
+        {
+            return \Thetispro\Setting\Setting::has($searchKey);
+        }
+        
+        /**
+         * Load the file in to $this->settings so values can be used immediately
+         *
+         * @param string $path The path to be used
+         * @param string $filename The filename to be used
+         * @return \Thetispro\Setting\Setting 
+         * @static 
+         */ 
+        public static function load($path = null, $filename = null)
+        {
+            return \Thetispro\Setting\Setting::load($path, $filename);
+        }
+        
+        /**
+         * Save the file
+         *
+         * @param string $path The path to be used
+         * @param string $filename The filename to be used
+         * @return void 
+         * @static 
+         */ 
+        public static function save($path = null, $filename = null)
+        {
+            \Thetispro\Setting\Setting::save($path, $filename);
+        }
+        
+        /**
+         * Clears the JSON Config file
+         *
+         * @static 
+         */ 
+        public static function clear()
+        {
+            return \Thetispro\Setting\Setting::clear();
+        }
+        
+        /**
+         * This will mass assign data to the Setting
+         *
+         * @param array $data
+         * @static 
+         */ 
+        public static function setArray($data)
+        {
+            return \Thetispro\Setting\Setting::setArray($data);
+        }
+         
+    }
+ 
+}
+
+namespace Yuansir\Toastr\Facades { 
+
+    class Toastr {
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function render()
+        {
+            return \Yuansir\Toastr\Toastr::render();
+        }
+        
+        /**
+         * Add notification.
+         *
+         * @param $type
+         * @param $message
+         * @param null $title
+         * @param array $options
+         * @return bool 
+         * @static 
+         */ 
+        public static function add($type, $message, $title = null, $options = array())
+        {
+            return \Yuansir\Toastr\Toastr::add($type, $message, $title, $options);
+        }
+        
+        /**
+         * Add info notification.
+         *
+         * @param $message
+         * @param null $title
+         * @param array $options
+         * @static 
+         */ 
+        public static function info($message, $title = null, $options = array())
+        {
+            return \Yuansir\Toastr\Toastr::info($message, $title, $options);
+        }
+        
+        /**
+         * Add warning notification.
+         *
+         * @param $message
+         * @param null $title
+         * @param array $options
+         * @static 
+         */ 
+        public static function warning($message, $title = null, $options = array())
+        {
+            return \Yuansir\Toastr\Toastr::warning($message, $title, $options);
+        }
+        
+        /**
+         * Add success notification.
+         *
+         * @param $message
+         * @param null $title
+         * @param array $options
+         * @static 
+         */ 
+        public static function success($message, $title = null, $options = array())
+        {
+            return \Yuansir\Toastr\Toastr::success($message, $title, $options);
+        }
+        
+        /**
+         * Add error notification.
+         *
+         * @param $message
+         * @param null $title
+         * @param array $options
+         * @static 
+         */ 
+        public static function error($message, $title = null, $options = array())
+        {
+            return \Yuansir\Toastr\Toastr::error($message, $title, $options);
+        }
+        
+        /**
+         * Clear notifications.
+         *
+         * @static 
+         */ 
+        public static function clear()
+        {
+            return \Yuansir\Toastr\Toastr::clear();
+        }
+         
+    }
+ 
+}
+
+namespace Zizaco\Entrust { 
+
+    class EntrustFacade {
+        
+        /**
+         * Checks if the current user has a role by its name
+         *
+         * @param string $name Role name.
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasRole($role, $requireAll = false)
+        {
+            return \Zizaco\Entrust\Entrust::hasRole($role, $requireAll);
+        }
+        
+        /**
+         * Check if the current user has a permission by its name
+         *
+         * @param string $permission Permission string.
+         * @return bool 
+         * @static 
+         */ 
+        public static function can($permission, $requireAll = false)
+        {
+            return \Zizaco\Entrust\Entrust::can($permission, $requireAll);
+        }
+        
+        /**
+         * Check if the current user has a role or permission by its name
+         *
+         * @param array|string $roles The role(s) needed.
+         * @param array|string $permissions The permission(s) needed.
+         * @param array $options The Options.
+         * @return bool 
+         * @static 
+         */ 
+        public static function ability($roles, $permissions, $options = array())
+        {
+            return \Zizaco\Entrust\Entrust::ability($roles, $permissions, $options);
+        }
+        
+        /**
+         * Get the currently authenticated user or null.
+         *
+         * @return \Zizaco\Entrust\Illuminate\Auth\UserInterface|null 
+         * @static 
+         */ 
+        public static function user()
+        {
+            return \Zizaco\Entrust\Entrust::user();
+        }
+        
+        /**
+         * Filters a route for a role or set of roles.
+         * 
+         * If the third parameter is null then abort with status code 403.
+         * Otherwise the $result is returned.
+         *
+         * @param string $route Route pattern. i.e: "admin/*"
+         * @param array|string $roles The role(s) needed
+         * @param mixed $result i.e: Redirect::to('/')
+         * @param bool $requireAll User must have all roles
+         * @return mixed 
+         * @static 
+         */ 
+        public static function routeNeedsRole($route, $roles, $result = null, $requireAll = true)
+        {
+            return \Zizaco\Entrust\Entrust::routeNeedsRole($route, $roles, $result, $requireAll);
+        }
+        
+        /**
+         * Filters a route for a permission or set of permissions.
+         * 
+         * If the third parameter is null then abort with status code 403.
+         * Otherwise the $result is returned.
+         *
+         * @param string $route Route pattern. i.e: "admin/*"
+         * @param array|string $permissions The permission(s) needed
+         * @param mixed $result i.e: Redirect::to('/')
+         * @param bool $requireAll User must have all permissions
+         * @return mixed 
+         * @static 
+         */ 
+        public static function routeNeedsPermission($route, $permissions, $result = null, $requireAll = true)
+        {
+            return \Zizaco\Entrust\Entrust::routeNeedsPermission($route, $permissions, $result, $requireAll);
+        }
+        
+        /**
+         * Filters a route for role(s) and/or permission(s).
+         * 
+         * If the third parameter is null then abort with status code 403.
+         * Otherwise the $result is returned.
+         *
+         * @param string $route Route pattern. i.e: "admin/*"
+         * @param array|string $roles The role(s) needed
+         * @param array|string $permissions The permission(s) needed
+         * @param mixed $result i.e: Redirect::to('/')
+         * @param bool $requireAll User must have all roles and permissions
+         * @return void 
+         * @static 
+         */ 
+        public static function routeNeedsRoleOrPermission($route, $roles, $permissions, $result = null, $requireAll = false)
+        {
+            \Zizaco\Entrust\Entrust::routeNeedsRoleOrPermission($route, $roles, $permissions, $result, $requireAll);
+        }
+         
+    }
+ 
+}
+
+namespace DaveJamesMiller\Breadcrumbs { 
+
+    class Facade {
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function register($name, $callback)
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::register($name, $callback);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function exists($name = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::exists($name);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function generate($name = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::generate($name);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function generateArray($name, $params = array())
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::generateArray($name, $params);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function generateIfExists($name = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::generateIfExists($name);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function generateIfExistsArray($name, $params = array())
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::generateIfExistsArray($name, $params);
+        }
+        
+        /**
+         * 
+         *
+         * @deprecated Since 3.0.0
+         * @see generateIfExistsArray
+         * @static 
+         */ 
+        public static function generateArrayIfExists()
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::generateArrayIfExists();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function render($name = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::render($name);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function renderArray($name, $params = array())
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::renderArray($name, $params);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function renderIfExists($name = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::renderIfExists($name);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function renderIfExistsArray($name, $params = array())
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::renderIfExistsArray($name, $params);
+        }
+        
+        /**
+         * 
+         *
+         * @deprecated Since 3.0.0
+         * @see renderIfExistsArray
+         * @static 
+         */ 
+        public static function renderArrayIfExists()
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::renderArrayIfExists();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setCurrentRoute($name)
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::setCurrentRoute($name);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setCurrentRouteArray($name, $params = array())
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::setCurrentRouteArray($name, $params);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function clearCurrentRoute()
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::clearCurrentRoute();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setView($view)
+        {
+            return \DaveJamesMiller\Breadcrumbs\Manager::setView($view);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -12542,6 +13050,14 @@ namespace  {
     class Captcha extends \Mews\Captcha\Facades\Captcha {}
 
     class Pay extends \Yansongda\LaravelPay\Facades\Pay {}
+
+    class Setting extends \Thetispro\Setting\Facades\Setting {}
+
+    class Toastr extends \Yuansir\Toastr\Facades\Toastr {}
+
+    class Entrust extends \Zizaco\Entrust\EntrustFacade {}
+
+    class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facade {}
  
 }
 

@@ -18,8 +18,8 @@ Route::group(['middleware' => ['admin']], function() {
 	Route::get('/index', 'IndexController@index');
 	Route::get('/charge', 'ChargeController@index');
 
-	route::any('/verify', 'ChargeController@verify'); // 校验验证码
-	route::any('/sendsms','ChargeController@sendSms');
+	Route::any('/verify', 'ChargeController@verify'); // 校验验证码
+	Route::any('/sendsms','ChargeController@sendSms');
 	Route::any('/reserve', 'ChargeController@reserve'); // 预约
 
 	// 下单
@@ -38,4 +38,22 @@ Route::group(['middleware' => ['admin']], function() {
 	//联系我们  客服帮助
 	Route::get('/contactUs', 'ContactController@contact');
 	Route::get('/help', 'ContactController@help');
+
+
+
+
+	Route::group(['namespace' => 'Admin','prefix' => 'admin'],function () {
+		Route::auth();
+
+		Route::get('/home', ['as' => 'admin.home', 'uses' => 'HomeController@index']);
+		Route::resource('admin_user', 'AdminUserController');
+		Route::post('admin_user/destroyall',['as'=>'admin.admin_user.destroy.all','uses'=>'AdminUserController@destroyAll']);
+		Route::resource('role', 'RoleController');
+		Route::post('role/destroyall',['as'=>'admin.role.destroy.all','uses'=>'RoleController@destroyAll']);
+		Route::get('role/{id}/permissions',['as'=>'admin.role.permissions','uses'=>'RoleController@permissions']);
+		Route::post('role/{id}/permissions',['as'=>'admin.role.permissions','uses'=>'RoleController@storePermissions']);
+		Route::resource('permission', 'PermissionController');
+		Route::post('permission/destroyall',['as'=>'admin.permission.destroy.all','uses'=>'PermissionController@destroyAll']);
+		Route::resource('blog', 'BlogController');
+	});
 });

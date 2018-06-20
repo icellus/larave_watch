@@ -9,7 +9,7 @@ class Phone
 	public static function send ($mobile, $text)
 	{
 
-		$apikey = 'xxxxxxxxxxx'; //修改为您的apikey(https://www.yunpian.com)登录官网后获取
+		$apikey = '7ce0483176e62329b772869a76b848ce'; //修改为您的apikey(https://www.yunpian.com)登录官网后获取
 		$ch     = curl_init();
 		/* 设置验证方式 */
 		curl_setopt($ch, CURLOPT_HTTPHEADER, [
