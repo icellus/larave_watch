@@ -322,3 +322,13 @@
 	height: 120px;
 	cursor: pointer;
 }
+
+
+.checkImg {
+	position: absolute;
+	display: none;
+	left: 292px;
+	top: 24px;
+	width: 25px;
+	height: 25px
+}

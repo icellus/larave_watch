@@ -18,6 +18,7 @@ class Controller extends BaseController
 	 * @param int    $code
 	 * @param string $msg
 	 * @param string $data
+	 * @param string $info
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */

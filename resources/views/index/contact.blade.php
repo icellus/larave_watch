@@ -87,20 +87,26 @@
                 <form class="ContactInfoform" method="post" action="/watch">
                     <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
                         <label class="color-seven">姓名：</label>
-                        <input type="text" name="name" placeholder="请填写你的姓名" datatype="*" nullmsg="请填写姓名" errormsg="请填写正确的姓名" value="{{session('username')}}">
+                        <input type="text" name="name" placeholder="请填写你的姓名" datatype="*" nullmsg="请填写姓名"
+                               errormsg="请填写正确的姓名" value="{{session('username')}}">
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
                         <label class="color-seven">手机：</label>
-                        <input type="text" name="phone" placeholder="手机号码" datatype="m" nullmsg="请填写手机号码" errormsg="请填写正确的手机号码" value="{{session('phone')}}">
+                        <input type="text" name="phone" placeholder="手机号码" datatype="m" nullmsg="请填写手机号码"
+                               errormsg="请填写正确的手机号码" value="{{session('phone')}}">
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
                         <label class="color-seven">图形验证码：</label>
-                        <input type="text" name="captcha" placeholder="图形验证码" datatype="*" nullmsg="请填写验证码" errormsg="请填写正确的验证码">
-                        <img src="{{ captcha_src() }}"  class="margin-left100" id="img-captcha">
+                        <input type="text" name="captcha" placeholder="图形验证码" datatype="*" nullmsg="请填写验证码"
+                               errormsg="请填写正确的验证码">
+                        <img src="{{ captcha_src() }}" class="margin-left100" id="img-captcha">
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
                         <label class="color-seven">短信验证：</label>
-                        <input type="text" name="noteCode" placeholder="请填写短信验证码" datatype="*" nullmsg="请填写短信验证码" errormsg="请填写正确的短信验证码">
+                        <input type="text" name="code" placeholder="请填写短信验证码" datatype="*" nullmsg="请填写短信验证码"
+                               errormsg="请填写正确的短信验证码">
+                        <img src="/images/success.png" class="checkImg"/>
+                        <img src="/images/error.png" class="checkImg"/>
                         <span class="watch-btn-code text-center">
                 <a class="margin-left100" href="javascript:;">发送短信验证码</a>
               </span>
@@ -113,11 +119,12 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
                         <label class="color-seven">详细地址：</label>
-                        <input class="contacinfo-last" type="text" name="area" placeholder="详细地址" datatype="*" nullmsg="请填写地址" errormsg="请填写正确的地址">
+                        <input class="contacinfo-last" type="text" name="area" placeholder="详细地址" datatype="*"
+                               nullmsg="请填写地址" errormsg="请填写正确的地址">
                     </div>
                     <input type="hidden" value="{{session('watch_id')}}" name="id">
                     <div class="col-xs-12 col-sm-12 col-md-12 watch-btn-next text-center padding-top30 padding-bot45">
-                        <a href="/goods" class="ContactInfoSubmit" id="contactForm">提交维修工单</a>
+                        <a href="javascript:;" class="ContactInfoSubmit" id="contactForm">提交维修工单</a>
                     </div>
                 </form>
             </div>
@@ -134,34 +141,68 @@
     <!-- sanjiliandong -->
     <script src="js/jsAddress.js"></script>
     <script type="text/javascript">
-        $(function(){
+        $(function () {
             addressInit('province', 'city', 'district', '', '', '');
+            // 验证码
+            var times = 60;
+            $('.watch-btn-code a').click(function () {
+                if ($(this).text() == "发送短信验证码") {
+                    var phone = $("input[name='phone']").val();
+                    if (phone.length == 0) {
+                        alert("请输入手机号码");
+                        return false
+                    }
+                    if (!/^1[345789]\d{9}$/.test(phone)) {
+                        alert("请输入正确的手机号码");
+                        return false
+                    }
+                    $.get('/sendsms', {phone: phone}, function (data) {
+                        var getcode = setInterval(function () {
+                            $('.watch-btn-code a').text("发送成功（" + times + "）");
+                            times--;
+                            if (times == 0) {
+                                clearInterval(getcode);
+                                $('.watch-btn-code a').text("发送短信验证码");
+                                times = 60;
+                            }
+                        }, 1000)
+                    })
+                }
+            })
+
+            $("input[name='code']").keyup(function () {
+                var e = $("input[name='code']").val();
+                if (e.length == 0) {
+                    return
+                }
+                $.get("/verify", {phone: $("input[name='phone']").val(), code: e}, function (e) {
+                    if (e.code == 0) {
+                        $(".checkImg").eq(0).css({display: "block"});
+                        $(".checkImg").eq(1).css({display: "none"});
+                        // $(".contactForm").addClass("ContactInfoSubmit");
+                        // $(".contactForm").attr("href","");
+                        // $(".contactForm").css("background", '#1bb71f');
+                    } else {
+                        $(".checkImg").eq(0).css({display: "none"});
+                        $(".checkImg").eq(1).css({display: "block"});
+                        // $(".contactForm").removeClass();
+                        // $(".contactForm").attr("href","javascript:;")  ;
+                        // $(".contactForm").css("background", '#A9A9A9');
+                    }
+                })
+            });
+
             $(".ContactInfoform").Validform({
-                btnSubmit:".ContactInfoSubmit",
+                btnSubmit: ".ContactInfoSubmit",
                 ajaxPost: true,
                 postonce: true,
                 callback: function (data) {
                     $('#img-captcha').attr('src', "http://watch.com/captcha/default?OTF0v3P2" + Math.random())
                 }
             });
-            $('html').click(function(){
-                if ($('#Validform_msg').css('display')=='block') {
-                    $('#Validform_msg').css('display','none');
-                }
-            })
-            // 验证码
-            var times = 60;
-            $('.watch-btn-code a').click(function(){
-                if($(this).text()=="发送短信验证码") {
-                    var getcode = setInterval(function(){
-                        $('.watch-btn-code a').text("发送成功（"+times+"）");
-                        times--;
-                        if (times==0) {
-                            clearInterval(getcode);
-                            $('.watch-btn-code a').text("发送短信验证码");
-                            times=60;
-                        }
-                    },1000)
+            $('html').click(function () {
+                if ($('#Validform_msg').css('display') == 'block') {
+                    $('#Validform_msg').css('display', 'none');
                 }
             })
 

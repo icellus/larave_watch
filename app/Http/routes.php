@@ -19,6 +19,7 @@ Route::group(['middleware' => ['admin']], function() {
 	Route::get('/charge', 'ChargeController@index');
 
 	route::any('/verify', 'ChargeController@verify'); // 校验验证码
+	route::any('/sendsms','ChargeController@sendSms');
 	Route::any('/reserve', 'ChargeController@reserve'); // 预约
 
 	// 下单

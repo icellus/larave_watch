@@ -75,10 +75,23 @@ class GoodsController extends Controller
 
 			// 验证验证码
 			$this->validate($request, [
-								'captcha' => 'required|captcha',
+				'captcha' => 'required|captcha',
 			]);
 			unset($data['captcha']);
-			unset($data['noteCode']);
+
+
+			// 验证手机验证码
+			$check = DB::table('t_verify_codes')
+				->where('phone', $data['phone'])
+				->where('code', $data['code'])
+				->where('used', 0)
+				->where('expire_at', '>', date('Y-m-d H:i:s'))
+				->first();
+			if ($check == null) {
+				return $this->response(1, 'error code',[],'短信验证码错误');
+			}
+			DB::table('t_verify_codes')->where('code', $data['code'])->where('phone', $data['phone'])->update(['used' => 1]);
+			unset($data['code']);
 
 			$phone = $data['phone'];
 			$user  = (array)$user = DB::table('t_user')->where('phone', $phone)->first();

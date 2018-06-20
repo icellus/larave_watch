@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Tools\Phone;
 use DB;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,7 @@ class ChargeController extends Controller
 	 */
 	public function reserve (Request $request)
 	{
-		// 验证验证码
+		// 图片验证码
 		$this->validate($request, [
 			'captcha' => 'required|captcha',
 		]);
@@ -59,18 +60,43 @@ class ChargeController extends Controller
 		$phone = $request->input('phone', '');
 		$code  = $request->input('code', '');
 
-		$check = DB::table('t_verify_code')
+		$check = DB::table('t_verify_codes')
 			->where('phone', $phone)
 			->where('code', $code)
 			->where('used', 0)
 			->where('expire_at', '>', date('Y-m-d H:i:s'))
 			->first();
 		if ($check != null) {
-			DB::table('t_verify_code')->where('code', $code)->where('phone', $phone)->update(['used' => 1]);
-
 			return $this->response();
 		}
 
 		return $this->response(1, 'error code');
+	}
+
+
+	public function sendSms (Request $request)
+	{
+		$phone = $request->get('phone');
+
+		$code    = $checkCode = random_int(1000, 9999);//验证码
+		$message = "【xxx】您的验证码是 " . $code . ",验证码将于5分钟后失效。如非本人操作，请忽略本短信";
+		$result  = Phone::send($phone, $message);
+
+		if ($result['code'] == 0) {
+			// 写入验证码表
+			$info = [
+				'phone'      => $phone,
+				'code'       => $code,
+				'data'       => $message,
+				'expire_at'  => date('Y-m-d H:i:s', time() + 5 * 60),
+				'created_at' => date('Y-m-d H:i:s', time()),
+			];
+
+			DB::table("t_verify_codes")->insert($info);
+
+			return $this->response();
+		}
+
+		return $this->response(-1,'request fail!',[],'发送短信失败');
 	}
 }
