@@ -79,7 +79,7 @@ class ChargeController extends Controller
 		$phone = $request->get('phone');
 
 		$code    = $checkCode = random_int(1000, 9999);//验证码
-		$message = "【xxx】您的验证码是 " . $code . ",验证码将于5分钟后失效。如非本人操作，请忽略本短信";
+		$message = "【xxx】您的验证码是 " . $code;
 		$result  = Phone::send($phone, $message);
 
 		if ($result['code'] == 0) {
