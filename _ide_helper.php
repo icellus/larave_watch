@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.2.45 on 2018-06-20 23:21:35.
+ * Generated for Laravel 5.2.45 on 2018-06-21 21:35:04.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1772,18 +1772,6 @@ namespace Illuminate\Support\Facades {
         /**
          * Determine if the current user is authenticated.
          *
-         * @return \App\User 
-         * @throws \Illuminate\Auth\AuthenticationException
-         * @static 
-         */ 
-        public static function authenticate()
-        {
-            return \Illuminate\Auth\SessionGuard::authenticate();
-        }
-        
-        /**
-         * Determine if the current user is authenticated.
-         *
          * @return bool 
          * @static 
          */ 
@@ -1801,6 +1789,18 @@ namespace Illuminate\Support\Facades {
         public static function guest()
         {
             return \Illuminate\Auth\SessionGuard::guest();
+        }
+        
+        /**
+         * Determine if the current user is authenticated.
+         *
+         * @return \App\User 
+         * @throws \Illuminate\Auth\AuthenticationException
+         * @static 
+         */ 
+        public static function authenticate()
+        {
+            return \Illuminate\Auth\SessionGuard::authenticate();
         }
          
     }
@@ -2415,7 +2415,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function increment($key, $value = 1)
         {
-            return \Illuminate\Cache\FileStore::increment($key, $value);
+            return \Illuminate\Cache\ArrayStore::increment($key, $value);
         }
         
         /**
@@ -2428,7 +2428,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function decrement($key, $value = 1)
         {
-            return \Illuminate\Cache\FileStore::decrement($key, $value);
+            return \Illuminate\Cache\ArrayStore::decrement($key, $value);
         }
         
         /**
@@ -2439,29 +2439,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function flush()
         {
-            \Illuminate\Cache\FileStore::flush();
-        }
-        
-        /**
-         * Get the Filesystem instance.
-         *
-         * @return \Illuminate\Filesystem\Filesystem 
-         * @static 
-         */ 
-        public static function getFilesystem()
-        {
-            return \Illuminate\Cache\FileStore::getFilesystem();
-        }
-        
-        /**
-         * Get the working directory of the cache.
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getDirectory()
-        {
-            return \Illuminate\Cache\FileStore::getDirectory();
+            \Illuminate\Cache\ArrayStore::flush();
         }
         
         /**
@@ -2472,7 +2450,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getPrefix()
         {
-            return \Illuminate\Cache\FileStore::getPrefix();
+            return \Illuminate\Cache\ArrayStore::getPrefix();
         }
          
     }
@@ -10525,106 +10503,29 @@ namespace Yansongda\LaravelPay\Facades {
     class Pay {
         
         /**
-         * Pay an order.
+         * set pay's driver.
+         *
+         * @author JasonYan <me@yansongda.cn>
+         * @param string $driver
+         * @return \Pay 
+         * @static 
+         */ 
+        public static function driver($driver)
+        {
+            return \Yansongda\Pay\Pay::driver($driver);
+        }
+        
+        /**
+         * set pay's gateway.
          *
          * @author yansongda <me@yansongda.cn>
          * @param string $gateway
-         * @param array $params
-         * @return \Response|\Yansongda\Pay\Gateways\Collection 
+         * @return \Yansongda\Pay\Contracts\GatewayInterface 
          * @static 
          */ 
-        public static function pay($gateway, $params = array())
+        public static function gateway($gateway = 'web')
         {
-            return \Yansongda\Pay\Gateways\Alipay::pay($gateway, $params);
-        }
-        
-        /**
-         * Verfiy sign.
-         *
-         * @author yansongda <me@yansongda.cn>
-         * @return \Yansongda\Pay\Gateways\Collection 
-         * @static 
-         */ 
-        public static function verify()
-        {
-            return \Yansongda\Pay\Gateways\Alipay::verify();
-        }
-        
-        /**
-         * Query an order.
-         *
-         * @author yansongda <me@yansongda.cn>
-         * @param string|array $order
-         * @return \Yansongda\Pay\Gateways\Collection 
-         * @static 
-         */ 
-        public static function find($order)
-        {
-            return \Yansongda\Pay\Gateways\Alipay::find($order);
-        }
-        
-        /**
-         * Refund an order.
-         *
-         * @author yansongda <me@yansongda.cn>
-         * @param array $order
-         * @return \Yansongda\Pay\Gateways\Collection 
-         * @static 
-         */ 
-        public static function refund($order)
-        {
-            return \Yansongda\Pay\Gateways\Alipay::refund($order);
-        }
-        
-        /**
-         * Cancel an order.
-         *
-         * @author yansongda <me@yansongda.cn>
-         * @param string|array $order
-         * @return \Yansongda\Pay\Gateways\Collection 
-         * @static 
-         */ 
-        public static function cancel($order)
-        {
-            return \Yansongda\Pay\Gateways\Alipay::cancel($order);
-        }
-        
-        /**
-         * Close an order.
-         *
-         * @author yansongda <me@yansongda.cn>
-         * @param string|array $order
-         * @return \Yansongda\Pay\Gateways\Collection 
-         * @static 
-         */ 
-        public static function close($order)
-        {
-            return \Yansongda\Pay\Gateways\Alipay::close($order);
-        }
-        
-        /**
-         * Download bill.
-         *
-         * @author yansongda <me@yansongda.cn>
-         * @param string|array $bill
-         * @return string 
-         * @static 
-         */ 
-        public static function download($bill)
-        {
-            return \Yansongda\Pay\Gateways\Alipay::download($bill);
-        }
-        
-        /**
-         * Reply success to alipay.
-         *
-         * @author yansongda <me@yansongda.cn>
-         * @return \Response 
-         * @static 
-         */ 
-        public static function success()
-        {
-            return \Yansongda\Pay\Gateways\Alipay::success();
+            return \Yansongda\Pay\Pay::gateway($gateway);
         }
          
     }
