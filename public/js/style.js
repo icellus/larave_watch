@@ -119,7 +119,9 @@ $(function () {
 
         //所有图片是否上传完毕
         var allUploaded = false;
-
+        //用户没选择图片直接设置为true
+        if( $('.upload-box .image-box .upload-section .image-section.waiting-upload').length === 0 )
+            allUploaded = true;
         //手表照片上传
         $('.upload-box').find('.image-box .upload-section').each(function(){
             var _this = this;
