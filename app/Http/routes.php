@@ -48,8 +48,13 @@ Route::group(['middleware' => ['admin']], function() {
 		});
 		Route::auth();
 
+		// 预约工单
 		Route::get('/reserve',['as' => 'admin.reserve','uses' => 'ChargeController@index']);
 		Route::any('/reserve/handle','ChargeController@handle');
+
+		// 维修工单
+		Route::any('/goods',['as' => 'admin.goods','uses' => 'GoodsController@index']);
+		Route::any('/goods/detail',['as' => 'admin.goods.detail','uses' => 'GoodsController@detail']);
 
 
 
