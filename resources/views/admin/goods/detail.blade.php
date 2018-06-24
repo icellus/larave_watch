@@ -19,37 +19,51 @@
 
                 <div class="row">
                     <div class="col-sm-12">
-                        <h5 class="subtitle subtitle-lined">腕表详情</h5>
+                        <h2 class="subtitle subtitle-lined">腕表详情</h2>
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="row">
-                                    @foreach ($watch as $k => $v)
-                                        @if(!in_array($k,['id','user_id','order_id','height','province','city','district','area','created_at','updated_at','watch_comment','error_comment']))
-                                            @if(!strpos($k,'error'))
-                                            <div class="col-xs-6">
-                                                <span>{{$k}}：</span><span>{{$v}}</span>
-                                            </div>
-                                                @endif
-                                        @endif
+                                    @foreach ($watch['watch'] as $k => $v)
+                                        <div class="col-xs-6">
+                                            {{--<span>{{$k}}：</span><span>{{$v}}</span>--}}
+                                        </div>
                                     @endforeach
                                 </div>
                             </div><!-- col-sm-6 -->
                         </div><!-- row -->
 
-                        <br/><br/>
+                        <div class="row">
+                            <div class="col-sm-12">描述：{{$watch['watch_comment']}}</div>
+                        </div>
 
-                        <h5 class="subtitle subtitle-lined">Description</h5>
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-                            voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
-                            cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id
-                            est laborum et dolorum fuga.</p>
-                        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta
-                            nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere
-                            possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam
-                            et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae
-                            sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut
-                            reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores
-                            repellat.</p>
+                        <br/>
+
+                        <h3 class="subtitle subtitle-lined">故障详情</h3>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    @foreach ($watch['error'] as $k => $v)
+                                        <div class="col-xs-6">
+                                            {{--<span>{{$k}}：</span><span>{{$v}}</span>--}}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div><!-- col-sm-6 -->
+                        </div><!-- row -->
+                        <div class="row">
+                            <div class="col-sm-12">故障描述：{{$watch['error_comment']}}</div>
+                        </div>
+
+                        <br/>
+                        <h5 class="subtitle subtitle-lined">地址信息：</h5>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                地址：{{$watch['province']}}{{$watch['city']}}{{$watch['district']}}
+                            </div><!-- col-sm-6 -->
+                            <div class="col-xs-6">
+                                详细地址：{{$watch['area']}}
+                            </div>
+                        </div><!-- row -->
 
                         <br/><br/>
 

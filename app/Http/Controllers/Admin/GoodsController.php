@@ -182,9 +182,9 @@ class GoodsController extends BaseController
 		foreach ($watch as $k => $v) {
 			if (array_key_exists($k, $this->watch)) {
 				if (array_key_exists('name', $this->watch[ $k ])) {
-					$watch[ $this->watch[ $k ]['name'] ] = $this->watch[ $k ][ $v ];
+					$watch['watch'][ $this->watch[ $k ]['name'] ] = $this->watch[ $k ][ $v ];
 				} elseif ($v > 0) {
-					$watch[ $this->watch[ $k ][0] ] = $this->watch[ $k ][ $v ];
+					$watch['error'][ $this->watch[ $k ][0] ] = $this->watch[ $k ][ $v ];
 				}
 				unset($watch[ $k ]);
 			}
