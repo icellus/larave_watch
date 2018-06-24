@@ -39,13 +39,17 @@
                                         @elseif($order->status == 1)
                                             <span class="badge badge-info">已收货，待补充价格</span>
                                         @elseif($order->status == 2)
-                                            <span class="badge badge-info">已提交价格，待买家付款</span>
+                                            <span class="badge badge-info">已提交价格，待买家确认</span>
                                         @elseif($order->status == 3)
-                                            <span class="badge badge-info">买家已付款，维修中</span>
+                                            <span class="badge badge-info">买家已确认，维修中</span>
                                         @elseif($order->status == 4)
-                                            <span class="badge badge-info">待付款</span>
+                                            <span class="badge badge-info">维修已完成，待付款</span>
                                         @elseif($order->status == 5)
+                                            <span class="badge badge-info">已付款，待发货</span>
+                                        @elseif($order->status == 6)
                                             <span class="badge badge-info">已完成</span>
+                                        @elseif($order->status == 7)
+                                            <span class="badge badge-info">已取消</span>
                                         @endif
                                     </div>
                                 </div>
