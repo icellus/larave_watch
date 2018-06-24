@@ -55,6 +55,8 @@ Route::group(['middleware' => ['admin']], function() {
 		// 维修工单
 		Route::any('/goods',['as' => 'admin.goods','uses' => 'GoodsController@index']);
 		Route::any('/goods/detail',['as' => 'admin.goods.detail','uses' => 'GoodsController@detail']);
+		Route::any('/goods/submit',['as' => 'admin.goods.submit','uses' => 'GoodsController@submit']);
+		Route::any('/goods/price',['as' => 'admin.goods.price','uses' => 'GoodsController@price']);
 
 
 

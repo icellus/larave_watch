@@ -17,11 +17,11 @@
 
                         @include('admin._partials.show-page-status',['result'=>$data])
 
-                        {{dump($data)}}
                         <div class="table-responsive col-md-12">
                             <table class="table mb30">
                                 <thead>
                                 <tr>
+                                    <th>订单编号</th>
                                     <th>用户名</th>
                                     <th>手机号</th>
                                     <th>状态</th>
@@ -34,6 +34,7 @@
                                 <tbody>
                                 @foreach($data as $user)
                                     <tr>
+                                        <td>{{$user->uid}}</td>
                                         <td>{{ $user->user->username }}</td>
                                         <td>{{ $user->user->phone }}</td>
                                         <td>

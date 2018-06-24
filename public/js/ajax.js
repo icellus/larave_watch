@@ -15,15 +15,15 @@ var Rbac = window.Rbac || {};
 		 * }
          */
         request: function (params) {
-            var params = params || {},
-                _type = params.type || 'POST',
+            var params = params || {};
+            var    _type = params.type || 'POST',
                 _data = params.data || {},
                 _successFnc = params.successFnc || function () {
-                        // window.location.reload();
+                        window.location.reload();
                     },
                 _successTitle = params.successTitle || '操作成功',
                 _errorFnc = params.errorFnc || function () {
-                        swal('操作失败', 'error');
+                        swal('操作失败','', 'error');
                     };
             $.ajax({
                 url: params.href, type: _type, data: _data
@@ -43,8 +43,6 @@ var Rbac = window.Rbac || {};
                     _errorFnc()
                 }
             }).fail(function () {
-
-                alert(params);
                 swal('服务器请求错误', '', 'error');
             });
         },

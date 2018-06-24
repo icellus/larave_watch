@@ -176,21 +176,19 @@ class GoodsController extends BaseController
 		$id    = $request->get('id');
 		$order = DB::table('t_orders')->where('id', $id)->first();
 
-		$watch   = DB::table('t_watch')->where('id', $order->watch_id)->first();
+		$watch = DB::table('t_watch')->where('id', $order->watch_id)->first();
 		$watch = json_decode(json_encode($watch), true);
 
 		foreach ($watch as $k => $v) {
 			if (array_key_exists($k, $this->watch)) {
 				if (array_key_exists('name', $this->watch[ $k ])) {
 					$watch['watch'][ $this->watch[ $k ]['name'] ] = $this->watch[ $k ][ $v ];
-				} elseif ($v > 0) {
+				} else if ($v > 0) {
 					$watch['error'][ $this->watch[ $k ][0] ] = $this->watch[ $k ][ $v ];
 				}
 				unset($watch[ $k ]);
 			}
 		}
-
-
 
 		$courier = DB::table('t_courier')->where('watch_id', $watch['id'])->get();
 
@@ -199,5 +197,41 @@ class GoodsController extends BaseController
 			'watch'   => $watch,
 			'courier' => $courier,
 		]);
+	}
+
+	public function submit (Request $request)
+	{
+		$id = $request->get('id');
+
+		// 查询当前订单状态
+		$update = false;
+		$status = DB::table('t_orders')->where('id', $id)->value('status');
+		if ($status === null) {
+			return $this->response(-1, '无效订单');
+		} else if ($status == 1) {
+			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 2]);
+		} else if ($status == 3) {
+			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 5]);
+		}
+
+		if ($update) {
+			return $this->response();
+		}
+
+		return $this->response(-1, '更新订单失败');
+	}
+
+	public function price (Request $request) {
+		$id = $request->get('id');
+		$price = $request->get('price');
+
+		$order = DB::table('t_orders')->where('id',$id)->first();
+		if ($order->status < 3) {
+			$update = DB::table('t_orders')->where('id', $id)->update(['repair_price' => $price]);
+		}else{
+			$update = DB::table('t_orders')->where('id', $id)->update(['extra_price' => $price]);
+		}
+
+		return $this->response();
 	}
 }

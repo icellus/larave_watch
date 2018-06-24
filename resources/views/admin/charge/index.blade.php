@@ -49,7 +49,7 @@
                                         <td>{{ $user->handle_time }}</td>
                                         <td>
                                             @if($user->status == 0)
-                                                <a href="{{ route('admin.reserve') }}"
+                                                <a href="javascript:;"
                                                    class="btn btn-white btn-xs reserve-handle" data-id="{{$user->id}}"><i class="fa fa-pencil"></i> 标记已处理</a>
                                             @endif
                                         </td>
@@ -59,7 +59,6 @@
                             </table>
                         </div>
                         <div class="text-center">
-
                             {!! $data->render() !!}
                         </div>
 
@@ -86,6 +85,7 @@
                     id:$('.reserve-handle').data('id')
                 }
             });
+
         });
     </script>
 
