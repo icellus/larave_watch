@@ -19,7 +19,7 @@ var Rbac = window.Rbac || {};
                 _type = params.type || 'POST',
                 _data = params.data || {},
                 _successFnc = params.successFnc || function () {
-                        window.location.reload();
+                        // window.location.reload();
                     },
                 _successTitle = params.successTitle || '操作成功',
                 _errorFnc = params.errorFnc || function () {
@@ -28,7 +28,7 @@ var Rbac = window.Rbac || {};
             $.ajax({
                 url: params.href, type: _type, data: _data
             }).done(function (data) {
-                if (data.status == 1) {
+                if (data.status == 1 || data.code == 0) {
                     swal({
                         title: _successTitle,
                         type: 'success',
@@ -37,12 +37,14 @@ var Rbac = window.Rbac || {};
                     }, function () {
                         _successFnc()
                     });
-                } else if (data.status == -1) {
+                } else if (data.status == -1 || data.code != 0) {
                     swal(data.msg, '', 'error');
                 } else {
                     _errorFnc()
                 }
             }).fail(function () {
+
+                alert(params);
                 swal('服务器请求错误', '', 'error');
             });
         },

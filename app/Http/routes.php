@@ -43,7 +43,15 @@ Route::group(['middleware' => ['admin']], function() {
 
 
 	Route::group(['namespace' => 'Admin','prefix' => 'admin'],function () {
+		Route::get('/',function () {
+			return redirect('/admin/login');
+		});
 		Route::auth();
+
+		Route::get('/reserve',['as' => 'admin.reserve','uses' => 'ChargeController@index']);
+		Route::any('/reserve/handle','ChargeController@handle');
+
+
 
 		Route::get('/home', ['as' => 'admin.home', 'uses' => 'HomeController@index']);
 		Route::resource('admin_user', 'AdminUserController');

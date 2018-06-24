@@ -98,7 +98,7 @@ CREATE TABLE `admin_users` (
 --
 
 /*!40000 ALTER TABLE `admin_users` DISABLE KEYS */;
-INSERT INTO `admin_users` (`id`, `name`, `email`, `password`, `is_super`, `remember_token`, `created_at`, `updated_at`) VALUES (1,'admin','admin@admin.com','$2y$10$GBKiY/ngDVpe1iHwlTem3e0fbNrnv1sRLGcj4wT1isK0gbzY4oQoC',1,'aot2y8pFRyurjUWQs2JiH3QWZJcSTepfsgB1qXPwtXST8inqnjdTwilMSaa4','2018-06-18 18:44:26','2018-06-18 18:44:26');
+INSERT INTO `admin_users` (`id`, `name`, `email`, `password`, `is_super`, `remember_token`, `created_at`, `updated_at`) VALUES (1,'admin','admin@admin.com','$2y$10$GBKiY/ngDVpe1iHwlTem3e0fbNrnv1sRLGcj4wT1isK0gbzY4oQoC',1,'nKc86Fxw2KVEx3Nj0rXxru8zSenjIi0AvKXxVQi1sLrjcNb7x7lXhnGcpKjl','2018-06-24 05:07:07','2018-06-24 05:07:07');
 /*!40000 ALTER TABLE `admin_users` ENABLE KEYS */;
 
 --
@@ -168,7 +168,7 @@ CREATE TABLE `permission_role` (
 --
 
 /*!40000 ALTER TABLE `permission_role` DISABLE KEYS */;
-INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES (20,10),(21,10),(22,10),(35,10),(36,10),(37,10),(38,10),(39,10),(40,10),(42,10),(43,10),(44,10),(45,10),(46,10),(47,10),(48,10),(49,10),(50,10),(51,10),(52,10),(53,10),(54,10),(55,10),(56,10),(57,10),(58,10),(20,12),(21,12),(22,12),(35,12),(36,12),(37,12);
+INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES (20,10),(21,10),(22,10),(35,10),(38,10),(39,10),(40,10),(42,10),(43,10),(44,10),(45,10),(46,10),(47,10),(48,10),(49,10),(50,10),(51,10),(52,10),(53,10),(54,10),(55,10),(56,10),(57,10),(58,10),(59,10),(20,12),(21,12),(22,12),(35,12);
 /*!40000 ALTER TABLE `permission_role` ENABLE KEYS */;
 
 --
@@ -191,7 +191,7 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间，有修改自动更新',
   PRIMARY KEY (`id`),
   UNIQUE KEY `permissions_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,7 +199,7 @@ CREATE TABLE `permissions` (
 --
 
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
-INSERT INTO `permissions` (`id`, `fid`, `icon`, `name`, `display_name`, `description`, `is_menu`, `sort`, `created_at`, `updated_at`) VALUES (20,0,'edit','#-1456129983','系统设置','',1,100,'2018-06-19 00:33:03','2018-06-19 00:33:03'),(21,20,'','admin.admin_user.index','用户权限','查看后台用户列表',1,0,'2018-06-18 23:56:26','2018-06-18 23:56:26'),(22,20,'','admin.admin_user.create','创建后台用户','页面',0,0,'2018-06-18 19:48:18','2018-06-18 19:48:18'),(35,0,'home','admin.home','Dashboard','后台首页',1,0,'2018-06-19 00:32:40','2018-06-19 00:32:40'),(36,0,' fa-laptop','#-1456132007','博客管理','',1,0,'2018-06-19 01:06:47','2018-06-19 01:06:47'),(37,36,'','admin.blog.index','博客列表','',1,0,'2018-06-19 01:15:48','2018-06-19 01:15:48'),(38,20,'','admin.admin_user.store','保存新建后台用户','操作',0,0,'2018-06-18 19:48:52','2018-06-18 19:48:52'),(39,20,'','admin.admin_user.destroy','删除后台用户','操作',0,0,'2018-06-18 19:49:09','2018-06-18 19:49:09'),(40,20,'','admin.admin_user.destory.all','批量后台用户删除','操作',0,0,'2018-06-18 20:01:01','2018-06-18 20:01:01'),(42,20,'','admin.admin_user.edit','编辑后台用户','页面',0,0,'2018-06-18 19:48:35','2018-06-18 19:48:35'),(43,20,'','admin.admin_user.update','保存编辑后台用户','操作',0,0,'2018-06-18 19:50:12','2018-06-18 19:50:12'),(44,20,'','admin.permission.index','权限管理','页面',0,0,'2018-06-18 19:51:36','2018-06-18 19:51:36'),(45,20,'','admin.permission.create','新建权限','页面',0,0,'2018-06-18 19:52:16','2018-06-18 19:52:16'),(46,20,'','admin.permission.store','保存新建权限','操作',0,0,'2018-06-18 19:52:38','2018-06-18 19:52:38'),(47,20,'','admin.permission.edit','编辑权限','页面',0,0,'2018-06-18 19:53:29','2018-06-18 19:53:29'),(48,20,'','admin.permission.update','保存编辑权限','操作',0,0,'2018-06-18 19:53:56','2018-06-18 19:53:56'),(49,20,'','admin.permission.destroy','删除权限','操作',0,0,'2018-06-18 19:54:27','2018-06-18 19:54:27'),(50,20,'','admin.permission.destory.all','批量删除权限','操作',0,0,'2018-06-18 19:55:17','2018-06-18 19:55:17'),(51,20,'','admin.role.index','角色管理','页面',0,0,'2018-06-18 19:56:07','2018-06-18 19:56:07'),(52,20,'','admin.role.create','新建角色','页面',0,0,'2018-06-18 19:56:33','2018-06-18 19:56:33'),(53,20,'','admin.role.store','保存新建角色','操作',0,0,'2018-06-18 19:57:26','2018-06-18 19:57:26'),(54,20,'','admin.role.edit','编辑角色','页面',0,0,'2018-06-18 19:58:25','2018-06-18 19:58:25'),(55,20,'','admin.role.update','保存编辑角色','操作',0,0,'2018-06-18 19:58:50','2018-06-18 19:58:50'),(56,20,'','admin.role.permissions','角色权限设置','',0,0,'2018-06-18 19:59:26','2018-06-18 19:59:26'),(57,20,'','admin.role.destroy','角色删除','操作',0,0,'2018-06-18 19:59:49','2018-06-18 19:59:49'),(58,20,'','admin.role.destory.all','批量删除角色','',0,0,'2018-06-18 20:01:58','2018-06-18 20:01:58');
+INSERT INTO `permissions` (`id`, `fid`, `icon`, `name`, `display_name`, `description`, `is_menu`, `sort`, `created_at`, `updated_at`) VALUES (20,0,'edit','#-1529816456','系统设置','',1,100,'2018-06-24 05:00:56','2018-06-24 05:00:56'),(21,20,'','admin.admin_user.index','用户权限','查看后台用户列表',1,0,'2018-06-18 23:56:26','2018-06-18 23:56:26'),(22,20,'','admin.admin_user.create','创建后台用户','页面',0,0,'2018-06-18 19:48:18','2018-06-18 19:48:18'),(35,0,'home','admin.home','Dashboard','后台首页',1,0,'2018-06-19 00:32:40','2018-06-19 00:32:40'),(38,20,'','admin.admin_user.store','保存新建后台用户','操作',0,0,'2018-06-18 19:48:52','2018-06-18 19:48:52'),(39,20,'','admin.admin_user.destroy','删除后台用户','操作',0,0,'2018-06-18 19:49:09','2018-06-18 19:49:09'),(40,20,'','admin.admin_user.destory.all','批量后台用户删除','操作',0,0,'2018-06-18 20:01:01','2018-06-18 20:01:01'),(42,20,'','admin.admin_user.edit','编辑后台用户','页面',0,0,'2018-06-18 19:48:35','2018-06-18 19:48:35'),(43,20,'','admin.admin_user.update','保存编辑后台用户','操作',0,0,'2018-06-18 19:50:12','2018-06-18 19:50:12'),(44,20,'','admin.permission.index','权限管理','页面',0,0,'2018-06-18 19:51:36','2018-06-18 19:51:36'),(45,20,'','admin.permission.create','新建权限','页面',0,0,'2018-06-18 19:52:16','2018-06-18 19:52:16'),(46,20,'','admin.permission.store','保存新建权限','操作',0,0,'2018-06-18 19:52:38','2018-06-18 19:52:38'),(47,20,'','admin.permission.edit','编辑权限','页面',0,0,'2018-06-18 19:53:29','2018-06-18 19:53:29'),(48,20,'','admin.permission.update','保存编辑权限','操作',0,0,'2018-06-18 19:53:56','2018-06-18 19:53:56'),(49,20,'','admin.permission.destroy','删除权限','操作',0,0,'2018-06-18 19:54:27','2018-06-18 19:54:27'),(50,20,'','admin.permission.destory.all','批量删除权限','操作',0,0,'2018-06-18 19:55:17','2018-06-18 19:55:17'),(51,20,'','admin.role.index','角色管理','页面',0,0,'2018-06-18 19:56:07','2018-06-18 19:56:07'),(52,20,'','admin.role.create','新建角色','页面',0,0,'2018-06-18 19:56:33','2018-06-18 19:56:33'),(53,20,'','admin.role.store','保存新建角色','操作',0,0,'2018-06-18 19:57:26','2018-06-18 19:57:26'),(54,20,'','admin.role.edit','编辑角色','页面',0,0,'2018-06-18 19:58:25','2018-06-18 19:58:25'),(55,20,'','admin.role.update','保存编辑角色','操作',0,0,'2018-06-18 19:58:50','2018-06-18 19:58:50'),(56,20,'','admin.role.permissions','角色权限设置','',0,0,'2018-06-18 19:59:26','2018-06-18 19:59:26'),(57,20,'','admin.role.destroy','角色删除','操作',0,0,'2018-06-18 19:59:49','2018-06-18 19:59:49'),(58,20,'','admin.role.destory.all','批量删除角色','',0,0,'2018-06-18 20:01:58','2018-06-18 20:01:58'),(59,0,'edit','admin.reserve','预约工单','预约工单',1,0,'2018-06-24 05:02:25','2018-06-24 05:02:25');
 /*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
 
 --
@@ -298,10 +298,12 @@ CREATE TABLE `t_reserve` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `user_id` int(11) NOT NULL COMMENT '用户id',
   `phone` varchar(32) NOT NULL COMMENT '预约手机号',
+  `status` tinyint(2) NOT NULL COMMENT '预约状态',
+  `handle_time` datetime DEFAULT NULL COMMENT '处理时间',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间，有修改自动更新',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='预约记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COMMENT='预约记录表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,6 +311,7 @@ CREATE TABLE `t_reserve` (
 --
 
 /*!40000 ALTER TABLE `t_reserve` DISABLE KEYS */;
+INSERT INTO `t_reserve` (`id`, `user_id`, `phone`, `status`, `handle_time`, `created_at`, `updated_at`) VALUES (1,1,'1234',0,NULL,'2018-06-24 05:43:52','2018-06-24 05:43:52'),(2,1,'1234',0,NULL,'2018-06-24 05:43:52','2018-06-24 05:43:52'),(3,1,'1234',0,NULL,'2018-06-24 05:43:52','2018-06-24 05:43:52'),(4,1,'1234',0,NULL,'2018-06-24 05:43:52','2018-06-24 05:43:52'),(5,1,'1234',0,NULL,'2018-06-24 05:43:52','2018-06-24 05:43:52'),(6,1,'1234',0,NULL,'2018-06-24 05:43:52','2018-06-24 05:43:52'),(7,1,'1234',0,NULL,'2018-06-24 05:43:52','2018-06-24 05:43:52'),(8,1,'1234',0,NULL,'2018-06-24 05:43:52','2018-06-24 05:43:52'),(9,1,'1234',0,NULL,'2018-06-24 05:43:52','2018-06-24 05:43:52'),(10,1,'1234',0,NULL,'2018-06-24 05:43:52','2018-06-24 05:43:52'),(11,1,'1234',1,NULL,'2018-06-24 06:22:21','2018-06-24 06:22:21');
 /*!40000 ALTER TABLE `t_reserve` ENABLE KEYS */;
 
 --
@@ -326,7 +329,7 @@ CREATE TABLE `t_user` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间，有修改自动更新',
   PRIMARY KEY (`id`),
   UNIQUE KEY `phone` (`phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -334,6 +337,7 @@ CREATE TABLE `t_user` (
 --
 
 /*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
+INSERT INTO `t_user` (`id`, `username`, `phone`, `created_at`, `updated_at`) VALUES (1,'xiaoming','1233','2018-06-24 05:40:32','2018-06-24 05:40:34'),(2,'xiaoming','111','2018-06-24 05:40:44','2018-06-24 05:40:46');
 /*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
 
 --
@@ -446,4 +450,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-23 22:57:25
+-- Dump completed on 2018-06-24 15:16:42

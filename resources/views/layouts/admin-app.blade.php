@@ -8,19 +8,19 @@
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/png">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
-    <title>Rbac</title>
+    <title>腕表维修管理后台</title>
 
     @section('css')
         <link href="{{ asset('css/style.default.css') }}" rel="stylesheet">
         <link href="{{ asset('css/jquery.datatables.css') }}" rel="stylesheet">
         <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
-        @show
+    @show
 
-                <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-        <script src="{{ asset('js/html5shiv.js') }}"></script>
-        <script src="{{ asset('js/respond.min.js') }}"></script>
-        <![endif]-->
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="{{ asset('js/html5shiv.js') }}"></script>
+    <script src="{{ asset('js/respond.min.js') }}"></script>
+    <![endif]-->
 </head>
 
 <body>
@@ -35,7 +35,7 @@
     <div class="leftpanel">
 
         <div class="logopanel">
-            <h1><span>[</span> Rbac <span>]</span></h1>
+            <h1><span>[</span> 腕表维修 <span>]</span></h1>
         </div><!-- logopanel -->
 
         <div class="leftpanelinner">
