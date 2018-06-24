@@ -77,7 +77,7 @@
             <table data-toggle="table">
                 <thead>
                 <tr>
-                    <th>项目</th>
+                    <th class="text-center">项目</th>
                     <th>维修明细</th>
                     <th>非原装手表</th>
                     <th>原装手表</th>
@@ -87,7 +87,7 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td rowspan="2" class="bg-ddd boder-bot-ccc color-black">翻新</td>
+                    <td rowspan="2" class="bg-ddd boder-bot-ccc color-black text-center">翻新</td>
                     <td>Item 1</td>
                     <td>$1</td>
                     <td>Item 1</td>
@@ -103,7 +103,7 @@
 
 
                 <tr>
-                    <td rowspan="2" class="bg-ddd boder-bot-ccc color-black">更换</td>
+                    <td rowspan="2" class="bg-ddd boder-bot-ccc color-black  text-center">更换</td>
                     <td>Item 1</td>
                     <td>$1</td>
                     <td>Item 1</td>
@@ -117,7 +117,7 @@
                     <td>Item 2</td>
                 </tr>
                 <tr>
-                    <td rowspan="2" class="bg-ddd boder-bot-ccc color-black">定制</td>
+                    <td rowspan="2" class="bg-ddd boder-bot-ccc color-black text-center">定制</td>
                     <td>Item 1</td>
                     <td>$1</td>
                     <td>Item 1</td>
@@ -131,7 +131,7 @@
                     <td>Item 2</td>
                 </tr>
                 <tr>
-                    <td rowspan="2" class="bg-ddd boder-bot-ccc color-black">补钻后加钻</td>
+                    <td rowspan="2" class="bg-ddd boder-bot-ccc color-black text-center">补钻后加钻</td>
                     <td>Item 1</td>
                     <td>$1</td>
                     <td>Item 1</td>
@@ -145,7 +145,7 @@
                     <td>Item 2</td>
                 </tr>
                 <tr>
-                    <td rowspan="2" class="bg-ddd boder-bot-ccc color-black">机械机芯</td>
+                    <td rowspan="2" class="bg-ddd boder-bot-ccc color-black text-center">机械机芯</td>
                     <td>Item 1</td>
                     <td>$1</td>
                     <td>Item 1</td>

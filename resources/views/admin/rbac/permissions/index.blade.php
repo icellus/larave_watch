@@ -6,7 +6,6 @@
         {!! Breadcrumbs::render('admin-permission-index') !!}
     </div>
 
-    <div class="contentpanel panel-email">
 
         <div class="row">
 

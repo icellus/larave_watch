@@ -53,7 +53,7 @@
                             color-green
                         @endif">客户中心</div>
                 </a>
-                <div class="right-sub-menu">
+                <div class="right-sub-menu" style="background: white">
                     <div class="media">
                         <a href="/contactUs">
                             <div class="media-left media-middle">

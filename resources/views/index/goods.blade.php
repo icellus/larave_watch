@@ -61,14 +61,14 @@
     <!-- 线条 -->
     <div class="watch-border hidden-xs"></div>
     <!-- 手表情况头部 -->
-    <div class="watch-case">
+    <div class="watch-case" style="border-bottom: none">
         <div class="media">
             <div class="media-left media-middle">
                 <a href="/">
                     <img class="media-object" src="/images/left.png" alt="...">
                 </a>
             </div>
-            <div class="media-body media-middle text-center font-s24">
+            <div class="media-body media-middle text-center font-s24" style="margin-top:16px;padding:8px 0 8px 0;background: white">
                 <span class="color-red">1步手表情况 </span>
                 <span>-</span>
                 <span class="color-three">2步故障描述</span>
@@ -78,11 +78,11 @@
         </div>
     </div>
     <!-- 线条 -->
-    <div class="watch-border hidden-xs"></div>
+    <div class="watch-border " style="position: fixed;top:50px;z-index:11"></div>
     <!-- 手表情况内容 -->
-    <div class="watch-case-cont">
-        <div class="text-center font-s16 color-six padding-top15">手表状况</div>
-        <div class="text-center font-s16 color-ash padding-top15 padding-lr15">根据您的腕表当前基本情况选择，以便我们为您的腕表建立初步电子档案</div>
+    <div class="watch-case-cont" style="padding-top:80px;">
+        <div class="text-center font-s16 color-six padding-top15" style="font-weight:bold">手表状况</div>
+        <div class=" font-s16 color-ash padding-top15 padding-lr15">根据您的腕表当前基本情况选择，以便我们为您的腕表建立初步电子档案</div>
         <div class="container">
 
             <div class="row">
@@ -142,7 +142,7 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="padding-top30 color-six">备注</div>
-                    <div class="padding-top15 wacth-remarks"><input type="text" name="comment" placeholder="您可以简单描述手表当前情况说明或注意事项"></div>
+                    <div class="padding-top15 wacth-remarks"><input type="text" name="comment" style="width:100%" placeholder="您可以简单描述手表当前情况说明或注意事项"></div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 watch-btn-next text-center padding-top30 padding-bot45">
                     <a href="javascript:;" id="goodsSubmit">下一步</a>

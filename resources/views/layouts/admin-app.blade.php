@@ -23,7 +23,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body style="overflow: auto">
 
 <!-- Preloader -->
 <!-- <div id="preloader">

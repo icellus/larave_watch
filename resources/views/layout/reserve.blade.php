@@ -13,16 +13,16 @@
             </div>
             <form class="bookingform" action="/reserve" >
                 <div class="col-xs-12 col-sm-2 col-md-2">
-                    <input type="text" name="name" placeholder="姓名 (必填)" datatype="s" nullmsg="请填写姓名" errormsg="请填写正确的姓名" style="width: 120px">
+                    <input type="text" name="name" placeholder="姓名 (必填)" datatype="s" nullmsg="请填写姓名" errormsg="请填写正确的姓名" >
                 </div>
                 <div class="col-xs-12 col-sm-2 col-md-2">
-                    <input type="text" name="phone" placeholder="手机号 (必填)" datatype="m" nullmsg="请填写手机号码" errormsg="请填写正确的手机号码" style="width: 160px">
+                    <input type="text" name="phone" placeholder="手机号 (必填)" datatype="m" nullmsg="请填写手机号码" errormsg="请填写正确的手机号码" >
                 </div>
                 <div class="col-xs-12 col-sm-2 col-md-2">
-                    <input type="text" name="captcha" placeholder="验证码" datatype="*" nullmsg="请填写验证码" errormsg="请填写正确的验证码" style="width: 160px;">
+                    <input type="text" name="captcha" placeholder="验证码" datatype="*" nullmsg="请填写验证码" errormsg="请填写正确的验证码" >
                 </div>
                 <div class="col-xs-12 col-sm-2 col-md-2">
-                    <img src="{{ captcha_src() }}" class="img-responsive" id="img-captcha">
+                    <img src="{{ captcha_src() }}" class="img-responsive" id="img-captcha" style="border-radius: 3px">
                     {{--<img src="/images/code.png" class="img-responsive">--}}
                 </div>
                 <div class="col-xs-12 col-sm-2 col-md-2">

@@ -58,8 +58,11 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="text-center">
 
-                        {!! $data->render() !!}
+                            {!! $data->render() !!}
+                        </div>
+
 
                     </div><!-- panel-body -->
                 </div><!-- panel -->
