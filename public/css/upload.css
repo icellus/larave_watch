@@ -77,7 +77,6 @@
     height: 30px;
     top: 5px;
     right: 5px;
-    display: none;
     z-index: 10;
     background: url(/images/delete.png) no-repeat center;
 }

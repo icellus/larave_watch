@@ -8,32 +8,28 @@
         <div class="col-xs-6 col-sm-3 col-md-3 image-box clear">
             <section class="upload-section">
                 <div class="upload-btn"></div>
-                <input type="file" name="image" id="upload-input" class="upload-input" value="" accept="image/*"
-                       multiple="multiple"/>
+
             </section>
             <span >正面</span>
         </div>
         <div class="col-xs-6 col-sm-3 col-md-3 image-box clear">
             <section class="upload-section">
                 <div class="upload-btn"></div>
-                <input type="file" name="image" id="upload-input" class="upload-input" value="" accept="image/*"
-                       multiple="multiple"/>
+
             </section>
             <span >反面</span>
         </div>
         <div class="col-xs-6 col-sm-3 col-md-3 image-box clear">
             <section class="upload-section">
                 <div class="upload-btn"></div>
-                <input type="file" name="image" id="upload-input" class="upload-input" value="" accept="image/*"
-                       multiple="multiple"/>
+
             </section>
             <span >左侧</span>
         </div>
         <div class="col-xs-6 col-sm-3 col-md-3 image-box clear">
             <section class="upload-section">
                 <div class="upload-btn"></div>
-                <input type="file" name="image" id="upload-input" class="upload-input" value="" accept="image/*"
-                       multiple="multiple"/>
+
             </section>
             <span >右侧</span>
         </div>

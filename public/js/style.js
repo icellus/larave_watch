@@ -117,20 +117,76 @@ $(function () {
             }
         })
 
+        //所有图片是否上传完毕
+        var allUploaded = false;
 
-        $.post('/error',{
-            movement : movement,
-            watch_case : watch_case,
-            watch_band : watch_band,
-            watch_face : watch_face,
-            watch_band : watch_band,
-            watch_clasp : watch_clasp,
-            height : height,
-            watch_comment : comment,
-        },function (data) {
-            window.location.href = '/errorpage';
-        })
-    })
+        //手表照片上传
+        $('.upload-box').find('.image-box .upload-section').each(function(){
+            var _this = this;
+            var image_section = $(_this).find('.image-section');
+            if( image_section.length === 0 )//未选择图片
+                return ;
+
+            var img = image_section.find('img.image-show');
+            if( img.attr('src').substring(0,10) !== 'data:image')//data:image开头表示还未上传
+                return;//图片已上传跳出本次循环
+
+            //开始上传
+            var formData = new FormData();
+            var fileData = $(_this).closest('.upload-section').find('.upload-btn input[type="file"]').get(0).files[0];//取得该input框中文件对象
+            formData.append('image', fileData);
+            img.hide();//隐藏图片
+            image_section.find('.image-delete').hide();//隐藏删除图标
+            $(_this).addClass('image-loading');//显示loading
+            $.ajax({
+                url: '/image',
+                type: "post",
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function (data) {
+                    $(_this).removeClass('image-loading');
+                    img.attr('src',data.data.src).show();
+                    image_section.removeClass('waiting-upload').find('.image-delete').show();//去掉图片还未上传标志，隐藏删除图标
+
+                    //检查是否所有图片上传完毕
+                    if( $('.upload-box .image-box .upload-section .image-section.waiting-upload').length === 0 )
+                        allUploaded = true;
+                },
+                error: function (e) {
+                    imageSection.remove();
+                    imageBox.children('.image-section').show();
+                    // 执行失败回调函数
+                    var callback = config.error;
+                    callback(e);
+
+                }
+            });
+
+        });
+
+        //等待图片上传完毕，才能执行页面跳转操作
+        setInterval(function () {
+            if( allUploaded )
+            {
+                $.post('/error',{
+                    movement : movement,
+                    watch_case : watch_case,
+                    watch_band : watch_band,
+                    watch_face : watch_face,
+                    watch_band : watch_band,
+                    watch_clasp : watch_clasp,
+                    height : height,
+                    watch_comment : comment,
+                },function (data) {
+                    window.location.href = '/errorpage';
+                })
+            }
+        },200);
+
+
+    });
 
     $('#errorSubmit').click(function () {
         var error_movement='';
