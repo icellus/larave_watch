@@ -34,6 +34,8 @@ Route::group(['middleware' => ['admin']], function () {
 
 	// 订单详情页
 	Route::get('/order/{status?}', 'OrderController@index');
+	Route::post('/order/close', 'OrderController@close');
+	Route::post('/order/submit', 'OrderController@submit');
 
 	//联系我们  客服帮助
 	Route::get('/contactUs', 'ContactController@contact');

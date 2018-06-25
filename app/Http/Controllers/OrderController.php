@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
-{
+class OrderController extends Controller {
 
 	public $watch = [
 		"movement"    => [
@@ -135,25 +134,32 @@ class OrderController extends Controller
 	 *
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-	public function index ($status = 0)
-	{
-		$userId = session('user_id',3);
-//		dump($userId);
-		$orders = DB::table('t_orders')->where('user_id', $userId)->where('status', $status)->get();
+	public function index ($status = 0) {
+		$userId = session('user_id', 3);
+		//		dump($userId);
+		$orders = DB::table('t_orders')->where('user_id', $userId)->where(function ($query) use ($status) {
+			if($status >= 5) $query->where('status', '>=', 5);
+			if($status < 5) $query->where('status', $status);
+		})->get();
 
-//		dump($orders);
+		//		dump($orders);
 		foreach ($orders as $order) {
-			$watch   = DB::table('t_watch')->where('order_id', $order->id)->first();
-			$user    = DB::table('t_user')->where('id', $userId)->first();
-			$courier = DB::table('t_courier')->where('watch_id', $watch->id)->get();
+			$watch = DB::table('t_watch')->where('order_id', $order->id)->first();
+			$user  = DB::table('t_user')->where('id', $userId)->first();
+
+			$courier = null;
+			if($watch) {
+
+				$courier = DB::table('t_courier')->where('watch_id', $watch->id)->get();
+			}
 
 			$watch = json_decode(json_encode($watch), true);
 
 			foreach ($watch as $k => $v) {
-				if (array_key_exists($k, $this->watch)) {
-					if (array_key_exists('name', $this->watch[ $k ])) {
+				if(array_key_exists($k, $this->watch)) {
+					if(array_key_exists('name', $this->watch[ $k ])) {
 						$watch[ $this->watch[ $k ]['name'] ] = $this->watch[ $k ][ $v ];
-					} elseif ($v > 0) {
+					} else if($v > 0) {
 						$watch[ $this->watch[ $k ][0] ] = $this->watch[ $k ][ $v ];
 					}
 					unset($watch[ $k ]);
@@ -165,12 +171,33 @@ class OrderController extends Controller
 			$order->courier = $courier;
 		}
 
-
-//		dump($orders);
+		//		dump($orders);
 		return view('index.order', [
 			'status' => $status,
 			'orders' => $orders,
 		]);
+	}
+
+	public function close (Request $request) {
+		$id     = $request->get('id');
+		$update = DB::table('t_orders')->where('id', $id)->update(['status' => 7]);
+
+		if($update) {
+			return $this->response();
+		}
+
+		return $this->response(-1, '更新订单失败');
+	}
+
+	public function submit (Request $request) {
+		$id     = $request->get('id');
+		$update = DB::table('t_orders')->where('id', $id)->update(['status' => 3]);
+
+		if($update) {
+			return $this->response();
+		}
+
+		return $this->response(-1, '更新订单失败');
 	}
 
 	/**
@@ -180,17 +207,15 @@ class OrderController extends Controller
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function image (Request $request)
-	{
+	public function image (Request $request) {
 		$file = $request->file('image');
 
 		$date = date('Y-m-d');
 		$path = public_path("/images/{$date}/");
-		$name = date('Ymd_His') . random_int(1, 9999) . '.' . $file -> getClientOriginalExtension();
+		$name = date('Ymd_His') . random_int(1, 9999) . '.' . $file->getClientOriginalExtension();
 		$file->move($path, $name);
 
-
-		return $this->response(0,'success',['src' => "/images/{$date}/" . $name]);
+		return $this->response(0, 'success', ['src' => "/images/{$date}/" . $name]);
 	}
 
 }

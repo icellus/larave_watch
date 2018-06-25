@@ -15,7 +15,6 @@ $(function () {
         var t = {};
         t.init = function () {
             $('.orderListPart').click(function () {
-                $("#order").removeClass("active");
                 $(this).addClass("active");
                 $(".watch-detail").removeClass("active");
                 $(this).children(".watch-detail").addClass("active");
@@ -79,13 +78,13 @@ $(function () {
     });
 
     $('#goodsSubmit').click(function () {
-        var movement='';
-        var watch_case='';
-        var watch_face='';
-        var watch_band='';
-        var watch_clasp='';
-        var height=$("input[name='height']").val();
-        var comment=$("input[name='comment']").val();
+        var movement = '';
+        var watch_case = '';
+        var watch_face = '';
+        var watch_band = '';
+        var watch_clasp = '';
+        var height = $("input[name='height']").val();
+        var comment = $("input[name='comment']").val();
         $('#movement span').each(function (index, element) {
             if ($(element).is('.wacth-active')) {
                 movement = $(this).data('id');
@@ -120,17 +119,17 @@ $(function () {
         //所有图片是否上传完毕
         var allUploaded = false;
         //用户没选择图片直接设置为true
-        if( $('.upload-box .image-box .upload-section .image-section.waiting-upload').length === 0 )
+        if ($('.upload-box .image-box .upload-section .image-section.waiting-upload').length === 0)
             allUploaded = true;
         //手表照片上传
-        $('.upload-box').find('.image-box .upload-section').each(function(){
+        $('.upload-box').find('.image-box .upload-section').each(function () {
             var _this = this;
             var image_section = $(_this).find('.image-section');
-            if( image_section.length === 0 )//未选择图片
-                return ;
+            if (image_section.length === 0)//未选择图片
+                return;
 
             var img = image_section.find('img.image-show');
-            if( img.attr('src').substring(0,10) !== 'data:image')//data:image开头表示还未上传
+            if (img.attr('src').substring(0, 10) !== 'data:image')//data:image开头表示还未上传
                 return;//图片已上传跳出本次循环
 
             //开始上传
@@ -149,11 +148,11 @@ $(function () {
                 dataType: 'json',
                 success: function (data) {
                     $(_this).removeClass('image-loading');
-                    img.attr('src',data.data.src).show();
+                    img.attr('src', data.data.src).show();
                     image_section.removeClass('waiting-upload').find('.image-delete').show();//去掉图片还未上传标志，隐藏删除图标
 
                     //检查是否所有图片上传完毕
-                    if( $('.upload-box .image-box .upload-section .image-section.waiting-upload').length === 0 )
+                    if ($('.upload-box .image-box .upload-section .image-section.waiting-upload').length === 0)
                         allUploaded = true;
                 },
                 error: function (e) {
@@ -170,44 +169,43 @@ $(function () {
 
         //等待图片上传完毕，才能执行页面跳转操作
         var timer = setInterval(function () {
-            if( allUploaded )
-            {
+            if (allUploaded) {
                 clearInterval(timer);
-                $.post('/error',{
-                    movement : movement,
-                    watch_case : watch_case,
-                    watch_band : watch_band,
-                    watch_face : watch_face,
-                    watch_band : watch_band,
-                    watch_clasp : watch_clasp,
-                    height : height,
-                    watch_comment : comment,
-                },function (data) {
+                $.post('/error', {
+                    movement: movement,
+                    watch_case: watch_case,
+                    watch_band: watch_band,
+                    watch_face: watch_face,
+                    watch_band: watch_band,
+                    watch_clasp: watch_clasp,
+                    height: height,
+                    watch_comment: comment,
+                }, function (data) {
                     window.location.href = '/errorpage';
                 })
             }
-        },200);
+        }, 200);
 
 
     });
 
     $('#errorSubmit').click(function () {
-        var error_movement='';
-        var error_case='';
-        var error_bezel='';
-        var error_cover='';
-        var error_bade='';
-        var error_screws='';
-        var error_glass='';
-        var error_pin='';
-        var error_face='';
-        var error_band='';
-        var error_clasp='';
-        var error_function='';
-        var courier='';
-        var error_comment=$("input[name='error_comment']").val();
-        var number=$("input[name='number']").val();
-        var id=$("input[name='id']").val();
+        var error_movement = '';
+        var error_case = '';
+        var error_bezel = '';
+        var error_cover = '';
+        var error_bade = '';
+        var error_screws = '';
+        var error_glass = '';
+        var error_pin = '';
+        var error_face = '';
+        var error_band = '';
+        var error_clasp = '';
+        var error_function = '';
+        var courier = '';
+        var error_comment = $("input[name='error_comment']").val();
+        var number = $("input[name='number']").val();
+        var id = $("input[name='id']").val();
         $('#error_movement span').each(function (index, element) {
             if ($(element).is('.wacth-active')) {
                 error_movement = $(this).data('id');
@@ -291,24 +289,24 @@ $(function () {
         if (!id) {
             alert('请先填写腕表详细情况');
         }
-        $.post('/contact',{
-            error_movement : error_movement,
-            error_case : error_case,
-            error_bezel : error_bezel,
-            error_cover : error_cover,
-            error_bade : error_bade,
-            error_screws : error_screws,
-            error_glass : error_glass,
-            error_pin : error_pin,
-            error_face : error_face,
-            error_band : error_band,
-            error_clasp : error_clasp,
-            error_function : error_function,
-            error_comment : error_comment,
-            number : number,
-            courier : courier,
-            id : id
-        },function (data) {
+        $.post('/contact', {
+            error_movement: error_movement,
+            error_case: error_case,
+            error_bezel: error_bezel,
+            error_cover: error_cover,
+            error_bade: error_bade,
+            error_screws: error_screws,
+            error_glass: error_glass,
+            error_pin: error_pin,
+            error_face: error_face,
+            error_band: error_band,
+            error_clasp: error_clasp,
+            error_function: error_function,
+            error_comment: error_comment,
+            number: number,
+            courier: courier,
+            id: id
+        }, function (data) {
             window.location.href = '/watch';
         })
     })
