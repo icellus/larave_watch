@@ -60,14 +60,14 @@
     <!-- 线条 -->
     <div class="watch-border hidden-xs"></div>
     <!-- 手表情况头部 -->
-    <div class="watch-case">
+    <div class="watch-case" style="border-bottom: none">
         <div class="media">
             <div class="media-left media-middle">
                 <a href="/goods">
                     <img class="media-object" src="/images/left.png" alt="...">
                 </a>
             </div>
-            <div class="media-body media-middle text-center font-s24">
+            <div class="media-body media-middle text-center font-s24" style="margin-top:16px;padding:8px 0 8px 0;background: white">
                 <span class="color-three">1步手表情况 </span>
                 <span>-</span>
                 <span class="color-red">2步故障描述</span>
@@ -77,11 +77,11 @@
         </div>
     </div>
     <!-- 线条 -->
-    <div class="watch-border hidden-xs"></div>
+    <div class="watch-border " style="position: fixed;top:50px;z-index:11"></div>
     <!-- 手表情况内容 -->
-    <div class="watch-case-cont">
+    <div class="watch-case-cont" style="padding-top:80px;">
         <div class="text-center font-s16 color-six padding-top15">故障描述</div>
-        <div class="text-center font-s16 color-ash padding-top15 padding-bot45">腕表当前故障选择，以便快速进入维修</div>
+        <div class="text-center font-s16 color-ash padding-top15 padding-bot20">腕表当前故障选择，以便快速进入维修</div>
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-top15">
