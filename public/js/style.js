@@ -169,9 +169,10 @@ $(function () {
         });
 
         //等待图片上传完毕，才能执行页面跳转操作
-        setInterval(function () {
+        var timer = setInterval(function () {
             if( allUploaded )
             {
+                clearInterval(timer);
                 $.post('/error',{
                     movement : movement,
                     watch_case : watch_case,

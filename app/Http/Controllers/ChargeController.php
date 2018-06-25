@@ -42,9 +42,10 @@ class ChargeController extends Controller
 				'created_at' => date('Y-m-d H:i:s'),
 			]);
 
-			// 存一下cookie
-			session(['user_id' => $userId, 'phone' => $phone, 'username' => $name]);
+
 		}
+		// 存一下cookie
+		session(['user_id' => $userId, 'phone' => $phone]);
 
 		$insert = DB::table('t_reserve')->insert([
 			'user_id'    => $userId,

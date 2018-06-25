@@ -137,9 +137,11 @@ class OrderController extends Controller
 	 */
 	public function index ($status = 0)
 	{
-		$userId = session('user_id');
+		$userId = session('user_id',3);
+//		dump($userId);
 		$orders = DB::table('t_orders')->where('user_id', $userId)->where('status', $status)->get();
 
+//		dump($orders);
 		foreach ($orders as $order) {
 			$watch   = DB::table('t_watch')->where('order_id', $order->id)->first();
 			$user    = DB::table('t_user')->where('id', $userId)->first();
@@ -164,6 +166,7 @@ class OrderController extends Controller
 		}
 
 
+//		dump($orders);
 		return view('index.order', [
 			'status' => $status,
 			'orders' => $orders,
