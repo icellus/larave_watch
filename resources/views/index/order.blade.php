@@ -145,11 +145,15 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12 padding-top30">
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
                                         <span>取货方式：</span><span>
-                                                @if($order->courier && $order->courier->type == 0)
-                                                自取
-                                            @else
-                                                顺丰快递
-                                            @endif
+                                            @foreach ($order->courier as $courier)
+                                                @if($courier->payment_type == 0)
+                                                    @if($courier->type == 0)
+                                                        自取
+                                                    @else
+                                                        顺丰快递
+                                                    @endif
+                                                @endif
+                                            @endforeach
                                             </span></div>
                                 </div>
                                 <!-- 联系方式 -->

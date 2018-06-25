@@ -16,15 +16,15 @@ var Rbac = window.Rbac || {};
          */
         request: function (params) {
             var params = params || {};
-            var    _type = params.type || 'POST',
+            var _type = params.type || 'POST',
                 _data = params.data || {},
                 _successFnc = params.successFnc || function () {
-                        window.location.reload();
-                    },
+                    window.location.reload();
+                },
                 _successTitle = params.successTitle || '操作成功',
                 _errorFnc = params.errorFnc || function () {
-                        swal('操作失败','', 'error');
-                    };
+                    swal('操作失败', '', 'error');
+                };
             $.ajax({
                 url: params.href, type: _type, data: _data
             }).done(function (data) {
@@ -58,12 +58,12 @@ var Rbac = window.Rbac || {};
             var params = params || {},
                 _confirmTitle = params.confirmTitle || '确定删除该记录吗?',
                 _successFnc = params.successFnc || function () {
-                        window.location.reload();
-                    },
+                    window.location.reload();
+                },
                 _successTitle = params.successTitle || '删除成功',
                 _errorFnc = params.errorFnc || function () {
-                        swal('删除失败', 'error');
-                    }, _this = this;
+                    swal('删除失败', '', 'error');
+                }, _this = this;
             swal({
                 title: _confirmTitle,
                 type: "warning",

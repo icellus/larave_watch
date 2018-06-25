@@ -143,7 +143,7 @@ class OrderController extends Controller
 		foreach ($orders as $order) {
 			$watch   = DB::table('t_watch')->where('order_id', $order->id)->first();
 			$user    = DB::table('t_user')->where('id', $userId)->first();
-			$courier = DB::table('t_courier')->where('watch_id', $watch->id)->where('payment_type', 0)->first();
+			$courier = DB::table('t_courier')->where('watch_id', $watch->id)->get();
 
 			$watch = json_decode(json_encode($watch), true);
 

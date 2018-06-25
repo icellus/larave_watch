@@ -45,7 +45,7 @@
                                         @elseif($order->status == 4)
                                             <span class="badge badge-info">维修已完成，待付款</span>
                                         @elseif($order->status == 5)
-                                            <span class="badge badge-info">已付款，待发货</span>
+                                            <span class="badge badge-info">买家已付款，待发货</span>
                                         @elseif($order->status == 6)
                                             <span class="badge badge-info">已完成</span>
                                         @elseif($order->status == 7)
@@ -55,25 +55,25 @@
                                 </div>
                                 <div class="row" style="padding: 10px 0 10px 0;">
                                     <div class="col-xs-6">
-                                        订单价格：￥{{number_format($order->repair_price / 100,2)}}
-                                        @if($order->extra_price > 0)
-                                            +￥{{number_format($order->extra_price / 100,2)}}
-                                        @endif
+                                        订单价格：￥{{number_format($order->price / 100,2)}}
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <div class="btn-group mr10">
-                                            @if($order->repair_price == 0)
-                                                <button class="btn btn-primary price-button" type="button" style="line-height: 13px">
+                                            @if($order->price == 0)
+                                                <button class="btn btn-primary price-button" type="button"
+                                                        style="line-height: 13px">
                                                     <i class="fa fa-pencil mr5"></i>提交订单价格
                                                 </button>
-                                            @elseif($order->repair_price > 0 && $order->status == 2)
-                                                <button class="btn btn-primary price-button" type="button" style="line-height: 13px">
+                                            @elseif($order->price > 0 && $order->status == 2)
+                                                <button class="btn btn-primary price-button" type="button"
+                                                        style="line-height: 13px">
                                                     <i class="fa fa-pencil mr5"></i>修改订单价格
                                                 </button>
-                                            @else
-                                                <button class="btn btn-primary price-button" type="button" style="line-height: 13px">
+                                            @elseif($order->status > 2)
+                                                <button class="btn btn-primary price-button" type="button"
+                                                        style="line-height: 13px">
                                                     <i class="fa fa-pencil mr5"></i>额外维修费用
                                                 </button>
                                             @endif
@@ -116,7 +116,7 @@
                             </div>
                         </div><!-- row -->
                         <br/>
-                        <h5 class="subtitle subtitle-lined">快递方式：</h5>
+                        <h5 class="subtitle subtitle-lined">取货方式：</h5>
                         <div class="row">
                             @foreach($courier as $k => $v)
                                 @if($v->payment_type == 0)
@@ -137,14 +137,32 @@
                         </div><!-- row -->
 
                         <br/><br/>
-
+                        @if($order->status == 5)
+                            <div class="btn-group mr10">
+                                <button class="btn btn-primary courier-submit" type="button"><i
+                                            class="fa fa-pencil mr5"></i> 填写发货单号
+                                </button>
+                            </div>
+                        @endif
                         <div class="btn-group mr10">
                             @if($order->status == 0)
-                                <button class="btn btn-primary order-submit" type="button"><i class="fa fa-pencil mr5"></i> 确认收货
+                                <button class="btn btn-primary order-submit" type="button"><i
+                                            class="fa fa-pencil mr5"></i> 确认收货
                                 </button>
                             @elseif($order->status == 3)
-                                <button class="btn btn-primary order-submit" type="button"><i class="fa fa-pencil mr5"></i> 维修完成
+                                <button class="btn btn-primary order-submit" type="button"><i
+                                            class="fa fa-pencil mr5"></i> 维修完成
                                 </button>
+                            @elseif($order->status == 5)
+                                <button class="btn btn-primary order-submit" type="button"><i
+                                            class="fa fa-pencil mr5"></i> 完成订单
+                                </button>
+                            @endif
+                        </div>
+
+                        <div class="btn-group mr10">
+                            @if($order->status < 6)
+                                <button class="btn btn-default close-order" type="button">取消订单</button>
                             @endif
                         </div>
                     </div>
@@ -162,10 +180,39 @@
     <script type="text/javascript">
         $(".reserve-handle").click(function () {
             Rbac.ajax.request({
-                type:'POST',
-                href:'/admin/goods/submit',
+                type: 'POST',
+                href: '/admin/goods/submit',
                 data: {
-                    id:$("input[name='id']").val(),
+                    id: $("input[name='id']").val(),
+                }
+            });
+        });
+        $(".close-order").click(function () {
+            Rbac.ajax.delete({
+                confirmTitle: '确认取消订单吗？',
+                successTitle: '取消成功',
+                errorFnc: function () {
+                    swal('操作失败', '', 'error');
+                },
+                type: 'POST',
+                href: '/admin/goods/close',
+                data: {
+                    id: $("input[name='id']").val(),
+                }
+            });
+        });
+        // todo 发货
+        $(".courier-submit").click(function () {
+            Rbac.ajax.delete({
+                confirmTitle: '确认取消订单吗？',
+                successTitle: '取消成功',
+                errorFnc: function () {
+                    swal('操作失败', '', 'error');
+                },
+                type: 'POST',
+                href: '/admin/goods/close',
+                data: {
+                    id: $("input[name='id']").val(),
                 }
             });
         });
@@ -180,8 +227,8 @@
                     animation: "slide-from-top",
                     inputPlaceholder: 0
                 },
-                function(inputValue){
-                    if (inputValue === false  || inputValue < 0 || inputValue === "") {
+                function (inputValue) {
+                    if (inputValue === false || inputValue < 0 || inputValue === "") {
                         swal.showInputError("请输入一个价格！");
                         return false
                     }
@@ -190,17 +237,17 @@
                         url: '/admin/goods/price',
                         type: "POST",
                         data: {
-                            id:$("input[name='id']").val(),
-                            price:inputValue
+                            id: $("input[name='id']").val(),
+                            price: inputValue
                         },
                         dataType: 'json',
                         success: function (data) {
-                           if (data.code == 0) {
-                               swal('操作成功');
-                           }else {
-                               swal('操作失败');
-                           }
-                           return false;
+                            if (data.code == 0) {
+                                swal('操作成功');
+                            } else {
+                                swal('操作失败');
+                            }
+                            return false;
                         },
                         error: function (e) {
                             swal('操作失败');

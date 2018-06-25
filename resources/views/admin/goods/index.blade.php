@@ -57,10 +57,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{number_format($user->repair_price / 100,2)}}
-                                            @if($user->extra_price > 0)
-                                                + {{number_format($user->extra_price / 100,2)}}
-                                            @endif
+                                            {{number_format($user->price / 100,2)}}
                                         </td>
                                         <td>
                                             @if(strtotime($user->pay_time) > 0)

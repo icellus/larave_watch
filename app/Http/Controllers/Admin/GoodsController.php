@@ -7,8 +7,7 @@ use Breadcrumbs;
 use DB;
 use Illuminate\Http\Request;
 
-class GoodsController extends BaseController
-{
+class GoodsController extends BaseController {
 
 	public $watch = [
 		"movement"    => [
@@ -136,18 +135,19 @@ class GoodsController extends BaseController
 	 * Create a new controller instance.
 	 * @return void
 	 */
-	public function __construct ()
-	{
+	public function __construct () {
 		parent::__construct();
 
 		// 面包屑样式
 		Breadcrumbs::setView('admin._partials.breadcrumbs');
 	}
 
-	public function index ()
-	{
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function index () {
 
-		Breadcrumbs::register('admin-goods', function($breadcrumbs) {
+		Breadcrumbs::register('admin-goods', function ($breadcrumbs) {
 			$breadcrumbs->parent('dashboard');
 			$breadcrumbs->push('预约工单', route('admin.reserve'));
 		});
@@ -166,9 +166,13 @@ class GoodsController extends BaseController
 		]);
 	}
 
-	public function detail (Request $request)
-	{
-		Breadcrumbs::register('admin-goods-detail', function($breadcrumbs) {
+	/**
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function detail (Request $request) {
+		Breadcrumbs::register('admin-goods-detail', function ($breadcrumbs) {
 			$breadcrumbs->parent('dashboard');
 			$breadcrumbs->push('预约工单', route('admin.reserve'));
 		});
@@ -180,10 +184,10 @@ class GoodsController extends BaseController
 		$watch = json_decode(json_encode($watch), true);
 
 		foreach ($watch as $k => $v) {
-			if (array_key_exists($k, $this->watch)) {
-				if (array_key_exists('name', $this->watch[ $k ])) {
+			if(array_key_exists($k, $this->watch)) {
+				if(array_key_exists('name', $this->watch[ $k ])) {
 					$watch['watch'][ $this->watch[ $k ]['name'] ] = $this->watch[ $k ][ $v ];
-				} else if ($v > 0) {
+				} else if($v > 0) {
 					$watch['error'][ $this->watch[ $k ][0] ] = $this->watch[ $k ][ $v ];
 				}
 				unset($watch[ $k ]);
@@ -199,39 +203,75 @@ class GoodsController extends BaseController
 		]);
 	}
 
-	public function submit (Request $request)
-	{
+	/**
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function submit (Request $request) {
 		$id = $request->get('id');
 
 		// 查询当前订单状态
 		$update = false;
 		$status = DB::table('t_orders')->where('id', $id)->value('status');
-		if ($status === null) {
+		if($status === null) {
 			return $this->response(-1, '无效订单');
-		} else if ($status == 1) {
+		} else if($status == 1) {
 			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 2]);
-		} else if ($status == 3) {
+		} else if($status == 3) {
 			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 5]);
 		}
 
-		if ($update) {
+		if($update) {
 			return $this->response();
 		}
 
 		return $this->response(-1, '更新订单失败');
 	}
 
-	public function price (Request $request) {
-		$id = $request->get('id');
-		$price = $request->get('price');
+	/**
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function close (Request $request) {
+		$id     = $request->get('id');
+		$update = DB::table('t_orders')->where('id', $id)->update(['status' => 7]);
 
-		$order = DB::table('t_orders')->where('id',$id)->first();
-		if ($order->status < 3) {
-			$update = DB::table('t_orders')->where('id', $id)->update(['repair_price' => $price]);
-		}else{
-			$update = DB::table('t_orders')->where('id', $id)->update(['extra_price' => $price]);
+		if($update) {
+			return $this->response();
 		}
 
-		return $this->response();
+		return $this->response(-1, '更新订单失败');
+	}
+
+	/**
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function price (Request $request) {
+		$id      = $request->get('id');
+		$price   = $request->get('price');
+		$comment = $request->get('comment', '');
+
+		$order  = DB::table('t_orders')->where('id', $id)->first();
+		$insert = DB::table('t_price_records')->insert([
+			'order_id'      => $order->id,
+			'modify_user'   => 1,
+			'present_price' => $order->price,
+			'change_price'  => $order->price - $price,
+			'comment'       => $comment,
+			'created_at'    => date('Y-m-d H:i:s'),
+		]);
+
+		$update = DB::table('t_orders')->where('id', $id)->update(['price', $price]);
+
+		if($insert && $update) {
+			return $this->response();
+		}
+
+		return $this->response(-1, '提交失败');
+
 	}
 }
