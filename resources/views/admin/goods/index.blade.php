@@ -53,7 +53,11 @@
 
                                                 <span class="badge badge-info">待付款</span>
                                             @elseif($user->status == 5)
+                                                <span class="badge badge-info">已付款</span>
+                                            @elseif($user->status == 6)
                                                 <span class="badge badge-info">已完成</span>
+                                            @elseif($user->status == 7)
+                                                <span class="badge badge-info">已取消</span>
                                             @endif
                                         </td>
                                         <td>

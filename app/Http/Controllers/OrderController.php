@@ -144,7 +144,7 @@ class OrderController extends Controller {
 
 		//		dump($orders);
 		foreach ($orders as $order) {
-			$watch = DB::table('t_watch')->where('order_id', $order->id)->first();
+			$watch = DB::table('t_watch')->where('id', $order->watch_id)->first();
 			$user  = DB::table('t_user')->where('id', $userId)->first();
 
 			$courier = null;

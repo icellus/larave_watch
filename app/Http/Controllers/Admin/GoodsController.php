@@ -183,6 +183,8 @@ class GoodsController extends BaseController {
 		$watch = DB::table('t_watch')->where('id', $order->watch_id)->first();
 		$watch = json_decode(json_encode($watch), true);
 
+		$watch['watch'] = [];
+		$watch['error'] = [];
 		foreach ($watch as $k => $v) {
 			if(array_key_exists($k, $this->watch)) {
 				if(array_key_exists('name', $this->watch[ $k ])) {

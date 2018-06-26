@@ -67,7 +67,7 @@ class GoodsController extends Controller
 			$id   = $data['id'];
 			unset($data['id']);
 
-			$order = DB::table('t_watch')->where('id', $id)->value('order_id');
+			$order = DB::table('t_orders')->where('id', $id)->value('id');
 
 			if ($order) {
 				return $this->response(0, '', [], '您已经提交过该腕表的维修工单啦！');
@@ -126,10 +126,7 @@ class GoodsController extends Controller
 				'watch_id'   => $id,
 				'created_at' => date('Y-m-d H:i:s'),
 			];
-			$orderId = DB::table('t_orders')->insertGetId($order);
-
-			$data['order_id'] = $orderId;
-			$update           = DB::table('t_watch')->where('id', $id)->update($data);
+			DB::table('t_orders')->insert($order);
 
 			return $this->response(0, 'request success', [], '提交成功，请前往维修工单查看订单详情');
 		}

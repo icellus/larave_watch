@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.6.35, for Win32 (AMD64)
 --
--- Host: 127.0.0.1    Database: db_watch
+-- Host: 123.207.107.131    Database: db_watch
 -- ------------------------------------------------------
--- Server version	5.7.17-log
+-- Server version	5.7.22
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -245,7 +245,7 @@ CREATE TABLE `t_courier` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间，有修改自动更新',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='快递记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='快递记录表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,7 +253,7 @@ CREATE TABLE `t_courier` (
 --
 
 /*!40000 ALTER TABLE `t_courier` DISABLE KEYS */;
-INSERT INTO `t_courier` (`id`, `watch_id`, `payment_type`, `type`, `number`, `created_at`, `updated_at`) VALUES (1,2,0,0,'','2018-06-24 07:28:09','2018-06-24 07:28:09'),(2,6,0,1,'1222222','2018-06-24 15:42:17','2018-06-24 15:42:17');
+INSERT INTO `t_courier` (`id`, `watch_id`, `payment_type`, `type`, `number`, `created_at`, `updated_at`) VALUES (1,2,0,0,'','2018-06-24 07:28:09','2018-06-24 07:28:09'),(2,6,0,1,'1222222','2018-06-24 15:42:17','2018-06-24 15:42:17'),(3,16,0,0,' ','2018-06-25 15:05:04','2018-06-25 15:05:15');
 /*!40000 ALTER TABLE `t_courier` ENABLE KEYS */;
 
 --
@@ -270,15 +270,13 @@ CREATE TABLE `t_orders` (
   `watch_id` int(11) NOT NULL COMMENT '腕表id',
   `out_order_id` varchar(63) NOT NULL COMMENT '外部订单id',
   `transaction_id` varchar(63) NOT NULL COMMENT '微信订单',
-  `price` int(11) NOT NULL COMMENT '维修价格',
-  `extra_price` int(11) NOT NULL COMMENT '额外维修价格',
   `price` int(11) NOT NULL COMMENT '订单总价格',
   `pay_time` datetime NOT NULL COMMENT '支付时间',
   `status` tinyint(2) NOT NULL COMMENT '订单状态',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间，有修改自动更新',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='预约记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COMMENT='预约记录表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -286,8 +284,35 @@ CREATE TABLE `t_orders` (
 --
 
 /*!40000 ALTER TABLE `t_orders` DISABLE KEYS */;
-INSERT INTO `t_orders` (`id`, `uid`, `user_id`, `watch_id`, `out_order_id`, `transaction_id`, `price`, `extra_price`, `price`, `pay_time`, `status`, `created_at`, `updated_at`) VALUES (1,'20180624213957',3,6,'','',1,0,0,'0000-00-00 00:00:00',2,'2018-06-24 17:03:16','2018-06-24 17:03:16');
+INSERT INTO `t_orders` (`id`, `uid`, `user_id`, `watch_id`, `out_order_id`, `transaction_id`, `price`, `pay_time`, `status`, `created_at`, `updated_at`) VALUES (1,'20180624213957',3,15,'','',10,'0000-00-00 00:00:00',0,'2018-06-25 16:49:17','2018-06-25 16:49:17'),(2,'20180624213923',3,16,'','',0,'2018-06-25 22:38:42',0,'2018-06-25 16:44:53','2018-06-25 16:44:53'),(3,'20180624213945',3,17,'','',0,'2018-06-25 22:38:42',1,'2018-06-25 16:47:55','2018-06-25 16:47:55'),(4,'20180624213923',3,18,'','',0,'2018-06-25 22:38:42',2,'2018-06-25 16:47:57','2018-06-25 16:47:57'),(5,'20180624213923',3,19,'','',0,'2018-06-25 22:38:42',3,'2018-06-25 16:48:00','2018-06-25 16:48:00'),(6,'20180624213923',3,20,'','',0,'2018-06-25 22:38:42',4,'2018-06-25 16:48:02','2018-06-25 16:48:02'),(7,'20180624213923',3,21,'','',0,'2018-06-25 22:38:42',5,'2018-06-25 16:48:04','2018-06-25 16:48:04'),(8,'20180624213923',3,22,'','',0,'2018-06-25 22:38:42',6,'2018-06-25 16:48:06','2018-06-25 16:48:06'),(9,'20180624213923',3,23,'','',0,'2018-06-25 22:38:42',7,'2018-06-25 16:48:08','2018-06-25 16:48:08');
 /*!40000 ALTER TABLE `t_orders` ENABLE KEYS */;
+
+--
+-- Table structure for table `t_price_records`
+--
+
+DROP TABLE IF EXISTS `t_price_records`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_price_records` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `order_id` int(11) NOT NULL COMMENT '订单id',
+  `modify_user` int(11) NOT NULL COMMENT '修改人',
+  `present_price` int(11) NOT NULL COMMENT '当前价格',
+  `change_price` int(11) NOT NULL COMMENT '变更价格',
+  `comment` varchar(256) NOT NULL COMMENT '修改备注',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间，有修改自动更新',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_price_records`
+--
+
+/*!40000 ALTER TABLE `t_price_records` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_price_records` ENABLE KEYS */;
 
 --
 -- Table structure for table `t_reserve`
@@ -305,7 +330,7 @@ CREATE TABLE `t_reserve` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间，有修改自动更新',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COMMENT='预约记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COMMENT='预约记录表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -313,7 +338,7 @@ CREATE TABLE `t_reserve` (
 --
 
 /*!40000 ALTER TABLE `t_reserve` DISABLE KEYS */;
-INSERT INTO `t_reserve` (`id`, `user_id`, `phone`, `status`, `handle_time`, `created_at`, `updated_at`) VALUES (1,1,'1234',1,'2018-06-25 01:20:13','2018-06-24 17:20:13','2018-06-24 17:20:13'),(2,1,'1234',1,'2018-06-25 01:20:22','2018-06-24 17:20:22','2018-06-24 17:20:22'),(3,1,'1234',1,'2018-06-25 01:20:29','2018-06-24 17:20:29','2018-06-24 17:20:29'),(4,1,'1234',1,'2018-06-25 02:00:53','2018-06-24 18:00:53','2018-06-24 18:00:53'),(5,1,'1234',0,'2018-06-25 01:09:32','2018-06-24 17:20:02','2018-06-24 17:20:02'),(6,1,'1234',0,'2018-06-25 01:09:42','2018-06-24 17:20:02','2018-06-24 17:20:02'),(7,1,'1234',0,'2018-06-25 01:12:24','2018-06-24 17:20:02','2018-06-24 17:20:02'),(8,1,'1234',0,'2018-06-25 01:12:51','2018-06-24 17:20:02','2018-06-24 17:20:02'),(9,1,'1234',0,'2018-06-25 01:15:28','2018-06-24 17:20:02','2018-06-24 17:20:02'),(10,1,'1234',0,'2018-06-25 01:18:30','2018-06-24 17:20:02','2018-06-24 17:20:02'),(11,1,'1234',0,NULL,'2018-06-24 17:20:02','2018-06-24 17:20:02');
+INSERT INTO `t_reserve` (`id`, `user_id`, `phone`, `status`, `handle_time`, `created_at`, `updated_at`) VALUES (1,1,'1234',1,'2018-06-25 01:20:13','2018-06-24 17:20:13','2018-06-24 17:20:13'),(2,1,'1234',1,'2018-06-25 01:20:22','2018-06-24 17:20:22','2018-06-24 17:20:22'),(3,1,'1234',1,'2018-06-25 01:20:29','2018-06-24 17:20:29','2018-06-24 17:20:29'),(4,1,'1234',1,'2018-06-25 02:00:53','2018-06-24 18:00:53','2018-06-24 18:00:53'),(5,1,'1234',0,'2018-06-25 01:09:32','2018-06-24 17:20:02','2018-06-24 17:20:02'),(6,1,'1234',0,'2018-06-25 01:09:42','2018-06-24 17:20:02','2018-06-24 17:20:02'),(7,1,'1234',0,'2018-06-25 01:12:24','2018-06-24 17:20:02','2018-06-24 17:20:02'),(8,1,'1234',0,'2018-06-25 01:12:51','2018-06-24 17:20:02','2018-06-24 17:20:02'),(9,1,'1234',0,'2018-06-25 01:15:28','2018-06-24 17:20:02','2018-06-24 17:20:02'),(10,1,'1234',0,'2018-06-25 01:18:30','2018-06-24 17:20:02','2018-06-24 17:20:02'),(11,1,'1234',0,NULL,'2018-06-24 17:20:02','2018-06-24 17:20:02'),(12,3,'18403018682',0,NULL,'2018-06-25 14:54:38','2018-06-25 14:54:40');
 /*!40000 ALTER TABLE `t_reserve` ENABLE KEYS */;
 
 --
@@ -406,7 +431,7 @@ CREATE TABLE `t_watch` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间，有修改自动更新',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COMMENT='腕表配置表';
+) ENGINE=InnoDB AUTO_INCREMENT=1496 DEFAULT CHARSET=utf8mb4 COMMENT='腕表配置表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -414,7 +439,7 @@ CREATE TABLE `t_watch` (
 --
 
 /*!40000 ALTER TABLE `t_watch` DISABLE KEYS */;
-INSERT INTO `t_watch` (`id`, `user_id`, `order_id`, `movement`, `watch_case`, `watch_face`, `watch_band`, `watch_clasp`, `height`, `watch_comment`, `error_movement`, `error_case`, `error_bezel`, `error_cover`, `error_bade`, `error_screws`, `error_glass`, `error_pin`, `error_face`, `error_band`, `error_clasp`, `error_function`, `error_comment`, `province`, `city`, `district`, `area`, `created_at`, `updated_at`) VALUES (1,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-24 07:28:04','2018-06-24 07:28:04'),(2,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-24 07:28:04','2018-06-24 07:28:04'),(3,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-24 07:28:05','2018-06-24 07:28:05'),(4,0,0,1,2,0,2,0,11,'111',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-24 13:38:13','2018-06-24 13:38:13'),(5,0,0,1,2,0,2,0,11,'111',1,2,0,2,0,0,2,2,0,0,0,0,'','','','','','2018-06-24 13:38:26','2018-06-24 13:38:26'),(6,0,1,1,2,0,2,0,11,'111',0,0,0,1,1,1,1,0,0,0,0,0,'','北京','市辖区','东城区','122222','2018-06-24 14:21:50','2018-06-24 14:21:50'),(7,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-24 15:06:09','2018-06-24 15:06:09'),(8,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-24 15:06:09','2018-06-24 15:06:09'),(9,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-24 15:06:09','2018-06-24 15:06:09'),(10,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-24 15:06:10','2018-06-24 15:06:10'),(11,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-24 15:06:10','2018-06-24 15:06:10'),(12,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-24 15:06:10','2018-06-24 15:06:10'),(13,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-24 15:06:10','2018-06-24 15:06:10');
+INSERT INTO `t_watch` (`id`, `user_id`, `order_id`, `movement`, `watch_case`, `watch_face`, `watch_band`, `watch_clasp`, `height`, `watch_comment`, `error_movement`, `error_case`, `error_bezel`, `error_cover`, `error_bade`, `error_screws`, `error_glass`, `error_pin`, `error_face`, `error_band`, `error_clasp`, `error_function`, `error_comment`, `province`, `city`, `district`, `area`, `created_at`, `updated_at`) VALUES (1,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-24 07:28:04','2018-06-24 07:28:04'),(2,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-24 07:28:04','2018-06-24 07:28:04'),(3,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-24 07:28:05','2018-06-24 07:28:05'),(14,0,0,1,2,1,0,2,111,'111111111',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-25 16:49:07','2018-06-25 16:49:07'),(15,3,1,1,2,1,0,2,111,'111111111',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-25 16:49:12','2018-06-25 16:49:12'),(16,3,2,1,2,1,0,2,111,'111111111',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-25 15:08:47','2018-06-25 15:08:47'),(17,3,3,1,2,1,0,2,111,'111111111',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-25 16:48:35','2018-06-25 16:48:35'),(18,3,4,1,2,1,0,2,111,'111111111',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-25 16:48:35','2018-06-25 16:48:35'),(19,3,5,1,2,1,0,2,111,'111111111',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-25 16:48:36','2018-06-25 16:48:36'),(20,3,6,1,2,1,0,2,111,'111111111',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-25 16:48:37','2018-06-25 16:48:37'),(21,3,7,1,2,1,0,2,111,'111111111',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-25 16:48:37','2018-06-25 16:48:37'),(22,3,8,1,2,1,0,2,111,'111111111',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-25 16:48:38','2018-06-25 16:48:38'),(23,3,9,1,2,1,0,2,111,'111111111',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-25 16:48:40','2018-06-25 16:48:40'),(24,0,0,1,2,1,0,2,111,'111111111',0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','2018-06-25 14:33:15','2018-06-25 14:33:15');
 /*!40000 ALTER TABLE `t_watch` ENABLE KEYS */;
 
 --
@@ -453,4 +478,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-25 21:25:23
+-- Dump completed on 2018-06-26  0:52:30

@@ -13,7 +13,7 @@
     @section('css')
         <link href="{{ asset('css/style.default.css') }}" rel="stylesheet">
         <link href="{{ asset('css/jquery.datatables.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
+        <link href="https://cdn.bootcss.com/limonte-sweetalert2/7.21.1/sweetalert2.min.css" rel="stylesheet">
     @show
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -140,7 +140,8 @@
     <script src="{{ asset('js/morris.min.js') }}"></script>
     <script src="{{ asset('js/raphael-2.1.0.min.js') }}"></script>
     <script src="{{ asset('js/chosen.jquery.min.js') }}"></script>
-    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+    {{--<script src="{{ asset('js/sweetalert.min.js') }}"></script>--}}
+    <script src="https://cdn.bootcss.com/limonte-sweetalert2/7.21.1/sweetalert2.min.js"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 
     {!! Toastr::render() !!}

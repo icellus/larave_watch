@@ -84,7 +84,7 @@
                         </div><!-- row -->
 
                         <div class="row">
-                            <div class="col-sm-12">描述：{{$watch['watch_comment']}}</div>
+                            <div class="col-sm-12">买家描述：{{$watch['watch_comment']}}</div>
                         </div>
 
                         <br/>
@@ -135,7 +135,6 @@
                                 @endif
                             @endforeach
                         </div><!-- row -->
-
                         <br/><br/>
                         @if($order->status == 5)
                             <div class="btn-group mr10">
@@ -219,42 +218,104 @@
 
         $(".price-button").click(function () {
             swal({
-                    title: "修改价格",
-                    text: "请输入价格",
-                    type: "input",
-                    showCancelButton: true,
-                    closeOnConfirm: false,
-                    animation: "slide-from-top",
-                    inputPlaceholder: 0
-                },
-                function (inputValue) {
-                    if (inputValue === false || inputValue < 0 || inputValue === "") {
-                        swal.showInputError("请输入一个价格！");
-                        return false
-                    }
+                title: '请输入价格',
+                html:
 
-                    $.ajax({
-                        url: '/admin/goods/price',
-                        type: "POST",
-                        data: {
-                            id: $("input[name='id']").val(),
-                            price: inputValue
-                        },
-                        dataType: 'json',
-                        success: function (data) {
-                            if (data.code == 0) {
-                                swal('操作成功');
-                            } else {
-                                swal('操作失败');
-                            }
-                            return false;
-                        },
-                        error: function (e) {
+
+                '<div style="text-align: left">' +
+                '修改备注</div><input id="swal-input1" class="swal2-input" style="float: right;width: 70%"><br/>' +
+                '<div style="text-align: left">价格</div><input id="swal-input2" class="swal2-input" style="float: right;width: 70%">',
+                preConfirm: function () {
+                    return new Promise(function (resolve,reject) {
+                        resolve([
+                            $('#swal-input1').val(),
+                            $('#swal-input2').val()
+                        ])
+                    })
+                },
+                onOpen: function () {
+                    $('#swal-input1').focus()
+                },
+                showCancelButton:true
+            }).then(function (result) {
+                var value = result.value;
+                var id = value[0];
+                var inputValue = value[1];
+                if (inputValue === false || inputValue < 0 || inputValue === "" || !inputValue) {
+                    swal('请输入一个有效价格');
+                    return false
+                }
+
+                $.ajax({
+                    url: '/admin/goods/price',
+                    type: "POST",
+                    data: {
+                        id: $("input[name='id']").val(),
+                        price: inputValue
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.code == 0) {
+                            swal('操作成功');
+                        } else {
                             swal('操作失败');
                         }
-                    });
+                        return false;
+                    },
+                    error: function (e) {
+                        swal('操作失败');
+                    }
                 });
+            })
         })
+        /*
+                $(".price-button").click(function () {
+                    swal({
+                            title: "修改价格",
+                            html: '<input id="swal-input_price" class="swal2-input">' +
+                            '<input id="swal-input_price_comment" class="swal2-input">',
+                            // preConfirm: function () {
+                            //     return new Promise(function (resolve) {
+                            //         resolve([
+                            //             $('#swal_input_price').val(),
+                            //             $('#swal_input_price_comment').val(),
+                            //         ])
+                            //     })
+                            // },
+                            // onOpen: function () {
+                            //     $('#swal-input1').focus()
+                            // }
+                        },
+                        function (inputValue) {
+                            swal(JSON.stringify(inputValue));
+                            return false;
+                            if (inputValue === false || inputValue < 0 || inputValue === "") {
+                                swal.showInputError("请输入一个价格！");
+                                return false
+                            }
+
+                            $.ajax({
+                                url: '/admin/goods/price',
+                                type: "POST",
+                                data: {
+                                    id: $("input[name='id']").val(),
+                                    price: inputValue
+                                },
+                                dataType: 'json',
+                                success: function (data) {
+                                    if (data.code == 0) {
+                                        swal('操作成功');
+                                    } else {
+                                        swal('操作失败');
+                                    }
+                                    return false;
+                                },
+                                error: function (e) {
+                                    swal('操作失败');
+                                }
+                            });
+                        });
+                })*/
     </script>
 
 @endsection
