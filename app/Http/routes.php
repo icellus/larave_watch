@@ -49,7 +49,7 @@ Route::group(['middleware' => ['admin']], function () {
 
 		// 预约工单
 		Route::get('/reserve', ['as' => 'admin.reserve', 'uses' => 'ChargeController@index']);
-		Route::any('/reserve/handle', 'ChargeController@handle');
+		Route::any('/reserve/handle',['as' => 'admin.reserve.handle','use' => 'ChargeController@handle']);
 
 		// 维修工单
 		Route::any('/goods', ['as' => 'admin.goods', 'uses' => 'GoodsController@index']);
@@ -67,6 +67,5 @@ Route::group(['middleware' => ['admin']], function () {
 		Route::post('role/{id}/permissions', ['as' => 'admin.role.permissions', 'uses' => 'RoleController@storePermissions']);
 		Route::resource('permission', 'PermissionController');
 		Route::post('permission/destroyall', ['as' => 'admin.permission.destroy.all', 'uses' => 'PermissionController@destroyAll']);
-		Route::resource('blog', 'BlogController');
 	});
 });
