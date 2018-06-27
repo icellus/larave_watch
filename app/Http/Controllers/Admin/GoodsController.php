@@ -221,7 +221,7 @@ class GoodsController extends BaseController {
 		} else if($status == 0) {
 			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 1]);
 		} else if($status == 3) {
-			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 5]);
+			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 5,'finish_time' => date('Y-m-d H:i:s')]);
 		}
 
 		if($update) {
@@ -238,7 +238,7 @@ class GoodsController extends BaseController {
 	 */
 	public function close (Request $request) {
 		$id     = $request->get('id');
-		$update = DB::table('t_orders')->where('id', $id)->update(['status' => 7]);
+		$update = DB::table('t_orders')->where('id', $id)->update(['status' => 7,'cancel_time' => date('Y-m-d H:i:s')]);
 
 		if($update) {
 			return $this->response();
