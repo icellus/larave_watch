@@ -47,6 +47,9 @@ Route::group(['middleware' => ['admin']], function () {
 		});
 		Route::auth();
 
+		Route::get('/home', ['as' => 'admin.home', 'uses' => 'HomeController@index']);
+
+
 		// 预约工单
 		Route::get('/reserve', ['as' => 'admin.reserve', 'uses' => 'ChargeController@index']);
 		Route::any('/reserve/handle',['as' => 'admin.reserve.handle','use' => 'ChargeController@handle']);
@@ -56,15 +59,26 @@ Route::group(['middleware' => ['admin']], function () {
 		Route::any('/goods/detail', ['as' => 'admin.goods.detail', 'uses' => 'GoodsController@detail']);
 		Route::any('/goods/submit', ['as' => 'admin.goods.submit', 'uses' => 'GoodsController@submit']);
 		Route::any('/goods/price', ['as' => 'admin.goods.price', 'uses' => 'GoodsController@price']);
+		Route::any('/goods/price/page', ['as' => 'admin.goods.price.page', 'uses' => 'GoodsController@pricePage']);
+		Route::any('/goods/price/history', ['as' => 'admin.goods.price.history', 'uses' => 'GoodsController@priceHistory']);
 		Route::any('/goods/close', ['as' => 'admin.goods.close', 'uses' => 'GoodsController@close']);
+		Route::any('/goods/courier', ['as' => 'admin.goods.courier', 'uses' => 'GoodsController@courier']);
+		Route::any('/goods/courier/update', ['as' => 'admin.goods.courier.update', 'uses' => 'GoodsController@courierUpdate']);
 
-		Route::get('/home', ['as' => 'admin.home', 'uses' => 'HomeController@index']);
+		// 财务统计
+		Route::any('/order',['as' => 'admin.order','uses' => 'OrderController@index']);
+
+		// 用户管理
 		Route::resource('admin_user', 'AdminUserController');
 		Route::post('admin_user/destroyall', ['as' => 'admin.admin_user.destroy.all', 'uses' => 'AdminUserController@destroyAll']);
+
+		// 角色管理
 		Route::resource('role', 'RoleController');
 		Route::post('role/destroyall', ['as' => 'admin.role.destroy.all', 'uses' => 'RoleController@destroyAll']);
 		Route::get('role/{id}/permissions', ['as' => 'admin.role.permissions', 'uses' => 'RoleController@permissions']);
 		Route::post('role/{id}/permissions', ['as' => 'admin.role.permissions', 'uses' => 'RoleController@storePermissions']);
+
+		// 权限管理
 		Route::resource('permission', 'PermissionController');
 		Route::post('permission/destroyall', ['as' => 'admin.permission.destroy.all', 'uses' => 'PermissionController@destroyAll']);
 	});

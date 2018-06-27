@@ -57,32 +57,62 @@
                                     <div class="col-xs-6">
                                         订单价格：￥{{number_format($order->price / 100,2)}}
                                     </div>
+                                    <div class="col-xs-6">
+                                        <a href="{{ route('admin.goods.price.history',['id'=>$order->id]) }}">
+                                            <button class="btn btn-primary price-button" type="button"
+                                                    style="line-height: 13px">
+                                                <i class="fa mr5"></i>查看价格修改记录
+                                            </button>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <div class="btn-group mr10">
-                                            @if($order->price == 0)
-                                                <button class="btn btn-primary price-button" type="button"
-                                                        style="line-height: 13px">
-                                                    <i class="fa fa-pencil mr5"></i>提交订单价格
-                                                </button>
-                                            @elseif($order->price > 0 && $order->status == 2)
-                                                <button class="btn btn-primary price-button" type="button"
-                                                        style="line-height: 13px">
-                                                    <i class="fa fa-pencil mr5"></i>修改订单价格
-                                                </button>
-                                            @elseif($order->status > 2)
-                                                <button class="btn btn-primary price-button" type="button"
-                                                        style="line-height: 13px">
-                                                    <i class="fa fa-pencil mr5"></i>额外维修费用
-                                                </button>
-                                            @endif
+                                            <a href="/admin/goods/price/page?id={{$order->id}}">
+                                                @if($order->price == 0 && $order->status == 1)
+                                                    <button class="btn btn-primary price-button" type="button"
+                                                            style="line-height: 13px">
+                                                        <i class="fa fa-pencil mr5"></i>提交订单价格
+                                                    </button>
+                                                @elseif($order->price > 0 && $order->status < 3 )
+                                                    <button class="btn btn-primary price-button" type="button"
+                                                            style="line-height: 13px">
+                                                        <i class="fa fa-pencil mr5"></i>修改订单价格
+                                                    </button>
+                                                @elseif($order->status > 2 && $order->status < 4)
+                                                    <button class="btn btn-primary price-button" type="button"
+                                                            style="line-height: 13px">
+                                                        <i class="fa fa-pencil mr5"></i>额外维修费用
+                                                    </button>
+                                                @endif
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div><!-- col-sm-6 -->
                         </div><!-- row -->
 
+                        <br/>
+                        <h5 class="subtitle subtitle-lined">买家发货方式：</h5>
+                        <div class="row">
+                            @foreach($courier as $k => $v)
+                                @if($v->payment_type == 0)
+                                    @if($v->type == 0)
+                                        <div class="col-xs-6">
+                                            快递方式：自取
+                                        </div>
+                                    @else
+                                        <div class="col-xs-6">
+                                            快递方式：顺丰快递
+                                        </div>
+                                        <div class="col-xs-6">
+                                            快递单号：{{$v->number}}
+                                        </div>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </div>
                         <div class="row">
                             <div class="col-sm-12">买家描述：{{$watch['watch_comment']}}</div>
                         </div>
@@ -116,31 +146,37 @@
                             </div>
                         </div><!-- row -->
                         <br/>
-                        <h5 class="subtitle subtitle-lined">取货方式：</h5>
-                        <div class="row">
-                            @foreach($courier as $k => $v)
-                                @if($v->payment_type == 0)
-                                    @if($v->type == 0)
-                                        <div class="col-xs-6">
-                                            快递方式：自取
-                                        </div>
-                                    @else
-                                        <div class="col-xs-6">
-                                            快递方式：顺丰快递
-                                        </div>
-                                        <div class="col-xs-6">
-                                            快递单号：{{$v->number}}
-                                        </div>
+
+                        @if($order->status >= 5 && $order->status != 7)
+                            <h5 class="subtitle subtitle-lined">取货方式：</h5>
+                            <div class="row">
+                                @foreach($courier as $k => $v)
+                                    @if($v->payment_type == 1)
+                                        @if($v->type == 0)
+                                            <div class="col-xs-6">
+                                                快递方式：自取
+                                            </div>
+                                        @else
+                                            <div class="col-xs-6">
+                                                快递方式：顺丰快递
+                                            </div>
+                                            <div class="col-xs-6">
+                                                快递单号：{{$v->number}}
+                                            </div>
+                                        @endif
                                     @endif
-                                @endif
-                            @endforeach
-                        </div><!-- row -->
-                        <br/><br/>
+                                @endforeach
+                            </div>
+                        @endif
+                        <br/>
+                        <br/>
                         @if($order->status == 5)
                             <div class="btn-group mr10">
-                                <button class="btn btn-primary courier-submit" type="button"><i
-                                            class="fa fa-pencil mr5"></i> 填写发货单号
-                                </button>
+                                <a href="{{ route('admin.goods.courier',['id' => $order->id]) }}">
+                                    <button class="btn btn-primary courier-submit" type="button"><i
+                                                class="fa fa-pencil mr5"></i> 填写发货信息
+                                    </button>
+                                </a>
                             </div>
                         @endif
                         <div class="btn-group mr10">
@@ -170,14 +206,14 @@
             </div><!-- panel-body -->
         </div><!-- panel -->
 
-    </div><!-- contentpanel -->
+    </div>
 @endsection
 
 @section('javascript')
     @parent
     <script src="{{ asset('js/ajax.js') }}"></script>
     <script type="text/javascript">
-        $(".reserve-handle").click(function () {
+        $(".order-submit").click(function () {
             Rbac.ajax.request({
                 type: 'POST',
                 href: '/admin/goods/submit',
@@ -200,122 +236,99 @@
                 }
             });
         });
-        // todo 发货
-        $(".courier-submit").click(function () {
-            Rbac.ajax.delete({
-                confirmTitle: '确认取消订单吗？',
-                successTitle: '取消成功',
-                errorFnc: function () {
-                    swal('操作失败', '', 'error');
-                },
-                type: 'POST',
-                href: '/admin/goods/close',
-                data: {
-                    id: $("input[name='id']").val(),
-                }
-            });
-        });
-
-        $(".price-button").click(function () {
-            swal({
-                title: '请输入价格',
-                html:
 
 
-                '<div style="text-align: left">' +
-                '修改备注</div><input id="swal-input1" class="swal2-input" style="float: right;width: 70%"><br/>' +
-                '<div style="text-align: left">价格</div><input id="swal-input2" class="swal2-input" style="float: right;width: 70%">',
-                preConfirm: function () {
-                    return new Promise(function (resolve,reject) {
-                        resolve([
-                            $('#swal-input1').val(),
-                            $('#swal-input2').val()
-                        ])
-                    })
-                },
-                onOpen: function () {
-                    $('#swal-input1').focus()
-                },
-                showCancelButton:true
-            }).then(function (result) {
-                var value = result.value;
-                var id = value[0];
-                var inputValue = value[1];
-                if (inputValue === false || inputValue < 0 || inputValue === "" || !inputValue) {
-                    swal('请输入一个有效价格');
-                    return false
-                }
-
-                $.ajax({
-                    url: '/admin/goods/price',
-                    type: "POST",
-                    data: {
-                        id: $("input[name='id']").val(),
-                        price: inputValue
-                    },
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.code == 0) {
-                            swal('操作成功');
-                        } else {
-                            swal('操作失败');
-                        }
-                        return false;
-                    },
-                    error: function (e) {
-                        swal('操作失败');
-                    }
-                });
-            })
-        })
-        /*
-                $(".price-button").click(function () {
-                    swal({
-                            title: "修改价格",
-                            html: '<input id="swal-input_price" class="swal2-input">' +
-                            '<input id="swal-input_price_comment" class="swal2-input">',
-                            // preConfirm: function () {
-                            //     return new Promise(function (resolve) {
-                            //         resolve([
-                            //             $('#swal_input_price').val(),
-                            //             $('#swal_input_price_comment').val(),
-                            //         ])
-                            //     })
-                            // },
-                            // onOpen: function () {
-                            //     $('#swal-input1').focus()
-                            // }
-                        },
-                        function (inputValue) {
-                            swal(JSON.stringify(inputValue));
-                            return false;
-                            if (inputValue === false || inputValue < 0 || inputValue === "") {
-                                swal.showInputError("请输入一个价格！");
-                                return false
-                            }
-
-                            $.ajax({
-                                url: '/admin/goods/price',
-                                type: "POST",
-                                data: {
-                                    id: $("input[name='id']").val(),
-                                    price: inputValue
-                                },
-                                dataType: 'json',
-                                success: function (data) {
-                                    if (data.code == 0) {
-                                        swal('操作成功');
-                                    } else {
-                                        swal('操作失败');
-                                    }
-                                    return false;
-                                },
-                                error: function (e) {
-                                    swal('操作失败');
-                                }
-                            });
-                        });
-                })*/
+        // $(".price-button").click(function () {
+        //     swal({
+        //             title: "修改价格",
+        //             text: "请输入价格",
+        //             type: "input",
+        //             showCancelButton: true,
+        //             closeOnConfirm: false,
+        //             animation: "slide-from-top",
+        //             inputPlaceholder: 0
+        //         },
+        //         function (inputValue) {
+        //             if (inputValue === false || inputValue < 0 || inputValue === "") {
+        //                 swal.showInputError("请输入一个价格！");
+        //                 return false
+        //             }
+        //
+        //             $.ajax({
+        //                 url: '/admin/goods/price',
+        //                 type: "POST",
+        //                 data: {
+        //                     id: $("input[name='id']").val(),
+        //                     price: inputValue
+        //                 },
+        //                 dataType: 'json',
+        //                 success: function (data) {
+        //                     if (data.code == 0) {
+        //                         swal('操作成功');
+        //                     } else {
+        //                         swal('操作失败');
+        //                     }
+        //                     return false;
+        //                 },
+        //                 error: function (e) {
+        //                     swal('操作失败');
+        //                 }
+        //             });
+        //         });
+        // })
+        //
+        // $(".price-button").click(function () {
+        //     swal({
+        //         title: '请输入价格',
+        //         html:
+        //
+        //
+        //         '<div style="text-align: left">' +
+        //         '修改备注</div><input id="swal-input1" class="swal2-input" style="float: right;width: 70%"><br/>' +
+        //         '<div style="text-align: left">价格</div><input id="swal-input2" class="swal2-input" style="float: right;width: 70%">',
+        //         preConfirm: function () {
+        //             return new Promise(function (resolve,reject) {
+        //                 resolve([
+        //                     $('#swal-input1').val(),
+        //                     $('#swal-input2').val()
+        //                 ])
+        //             })
+        //         },
+        //         onOpen: function () {
+        //             $('#swal-input1').focus()
+        //         },
+        //         showCancelButton:true
+        //     }).then(function (result) {
+        //         var value = result.value;
+        //         var id = value[0];
+        //         var inputValue = value[1];
+        //         if (inputValue === false || inputValue < 0 || inputValue === "" || !inputValue) {
+        //             swal('请输入一个有效价格');
+        //             return false
+        //         }
+        //
+        //         $.ajax({
+        //             url: '/admin/goods/price',
+        //             type: "POST",
+        //             data: {
+        //                 id: $("input[name='id']").val(),
+        //                 price: inputValue
+        //             },
+        //             dataType: 'json',
+        //             success: function (data) {
+        //                 if (data.code == 0) {
+        //                     swal('操作成功');
+        //                 } else {
+        //                     swal('操作失败');
+        //                 }
+        //                 return false;
+        //             },
+        //             error: function (e) {
+        //                 swal('操作失败');
+        //             }
+        //         });
+        //     })
+        // })
     </script>
 
 @endsection

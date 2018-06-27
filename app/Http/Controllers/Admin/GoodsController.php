@@ -218,8 +218,8 @@ class GoodsController extends BaseController {
 		$status = DB::table('t_orders')->where('id', $id)->value('status');
 		if($status === null) {
 			return $this->response(-1, '无效订单');
-		} else if($status == 1) {
-			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 2]);
+		} else if($status == 0) {
+			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 1]);
 		} else if($status == 3) {
 			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 5]);
 		}
@@ -247,6 +247,20 @@ class GoodsController extends BaseController {
 		return $this->response(-1, '更新订单失败');
 	}
 
+	public function pricePage (Request $request) {
+		Breadcrumbs::register('admin-goods-price-page', function ($breadcrumbs) {
+			$breadcrumbs->parent('dashboard');
+			$breadcrumbs->push('预约工单', route('admin.goods'));
+		});
+
+		$id    = $request->get('id');
+		$order = DB::table('t_orders')->where('id', $id)->first();
+
+		return view('admin.goods.price', [
+			'order' => $order,
+		]);
+	}
+
 	/**
 	 * @param \Illuminate\Http\Request $request
 	 *
@@ -262,18 +276,88 @@ class GoodsController extends BaseController {
 			'order_id'      => $order->id,
 			'modify_user'   => 1,
 			'present_price' => $order->price,
-			'change_price'  => $order->price - $price,
+			'change_price'  => $price - $order->price,
 			'comment'       => $comment,
 			'created_at'    => date('Y-m-d H:i:s'),
 		]);
 
-		$update = DB::table('t_orders')->where('id', $id)->update(['price', $price]);
-
-		if($insert && $update) {
-			return $this->response();
+		$data['price'] = $price;
+		if($order->status == 1) {
+			$data['status'] = 2;
 		}
+		$update = DB::table('t_orders')->where('id', $id)->update($data);
 
-		return $this->response(-1, '提交失败');
+		return redirect(route('admin.goods.detail', ['id' => $order->id]));
+
+		//		if($insert && $update) {
+		//			return $this->response();
+		//		}
+		//
+		//		return $this->response(-1, '提交失败');
 
 	}
+
+	/**
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function priceHistory (Request $request) {
+		Breadcrumbs::register('admin-goods-price-history', function ($breadcrumbs) {
+			$breadcrumbs->parent('dashboard');
+			$breadcrumbs->push('预约工单', route('admin.goods'));
+		});
+
+		$id    = $request->get('id');
+		$order = DB::table('t_orders')->where('id', $id)->first();
+		$data  = DB::table('t_price_records')->where('order_id', $id)->paginate(10);
+
+		return view('admin.goods.history', [
+			'order' => $order,
+			'data'  => $data,
+		]);
+	}
+
+	public function courier (Request $request) {
+
+		Breadcrumbs::register('admin-goods-courier', function ($breadcrumbs) {
+			$breadcrumbs->parent('dashboard');
+			$breadcrumbs->push('预约工单', route('admin.goods'));
+		});
+
+		$id     = $request->get('id');
+		$order  = DB::table('t_orders')->where('id', $id)->first();
+		$courier = DB::table('t_courier')->where('watch_id', $order->watch_id)->where('payment_type', 1)->first();
+
+		return view('admin.goods.courier', [
+			'order'   => $order,
+			'courier' => $courier,
+		]);
+	}
+
+	public function courierUpdate(Request $request) {
+		$id = $request->get('id');
+		$type = $request->get('type');
+		$number = $request->get('number');
+		$order  = DB::table('t_orders')->where('id', $id)->first();
+		$courier = DB::table('t_courier')->where('watch_id', $order->watch_id)->where('payment_type', 1)->first();
+
+		if($courier) {
+			$update = DB::table('t_courier')->where('watch_id', $order->watch_id)->where('payment_type', 1)->update([
+				'type' => $type,
+				'number' => $number
+			]);
+		}else {
+			$insert = DB::table('t_courier')->insert([
+				'watch_id' => $order->watch_id,
+				'payment_type' => 1,
+				'type' => $type,
+				'number'=> $number,
+				'created_at' => date('Y-m-d H:i:s')
+			]);
+		}
+
+		return redirect(route('admin.goods.detail', ['id' => $order->id]));
+	}
+
 }

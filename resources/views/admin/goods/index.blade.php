@@ -57,7 +57,7 @@
                                             @elseif($user->status == 6)
                                                 <span class="badge badge-info">已完成</span>
                                             @elseif($user->status == 7)
-                                                <span class="badge badge-info">已取消</span>
+                                                <span class="badge">已取消</span>
                                             @endif
                                         </td>
                                         <td>
