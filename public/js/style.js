@@ -172,11 +172,13 @@ $(function () {
             if (allUploaded) {
                 clearInterval(timer);
 
-                $("#image-show").each(function(i,n) {
-                    var image+i = $(n).src();
-                })
-
-
+                //收集图片src
+                var imgs = [];
+                $('.wacth-up-photo .image-section .image-show').each(function () {
+                    imgs.push($(this).attr('src'));
+                });
+                imgs = imgs.join(',');//数组转字符串
+                
                 $.post('/error', {
                     movement: movement,
                     watch_case: watch_case,
