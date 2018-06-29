@@ -137,22 +137,11 @@
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
-                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                            <img src="/images/watch-front.png" class="img-responsive">
-                                            <div class="color-ash">正面</div>
-                                        </div>
-                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                            <img src="/images/watch-reverse.png" class="img-responsive">
-                                            <div class="color-ash">反面</div>
-                                        </div>
-                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                            <img src="/images/watch-left.png" class="img-responsive">
-                                            <div class="color-ash">左侧</div>
-                                        </div>
-                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                            <img src="/images/wacth-right.png" class="img-responsive">
-                                            <div class="color-ash">右侧</div>
-                                        </div>
+                                        @foreach ($order->images[1] as $k => $v)
+                                            <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
+                                                <img src="{{$v->img_url}}" class="img-responsive" style="max-width: 102px">
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <!-- 故障描述 -->
@@ -339,22 +328,11 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12 padding-bot15">
                                     <span>维修完成组图</span>
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
-                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                            <img src="/images/watch-front.png" class="img-responsive">
-                                            <div class="color-ash">正面</div>
-                                        </div>
-                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                            <img src="/images/watch-reverse.png" class="img-responsive">
-                                            <div class="color-ash">反面</div>
-                                        </div>
-                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                            <img src="/images/watch-left.png" class="img-responsive">
-                                            <div class="color-ash">左侧</div>
-                                        </div>
-                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                            <img src="/images/wacth-right.png" class="img-responsive">
-                                            <div class="color-ash">右侧</div>
-                                        </div>
+                                        @foreach ($order->images[2] as $k => $v)
+                                            <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
+                                                <img src="{{$v->img_url}}" class="img-responsive" style="max-width: 102px">
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -424,22 +402,11 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-bot15">
                                         <span>维修完成组图</span>
                                         <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
-                                            <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                                <img src="/images/watch-front.png" class="img-responsive">
-                                                <div class="color-ash">正面</div>
-                                            </div>
-                                            <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                                <img src="/images/watch-reverse.png" class="img-responsive">
-                                                <div class="color-ash">反面</div>
-                                            </div>
-                                            <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                                <img src="/images/watch-left.png" class="img-responsive">
-                                                <div class="color-ash">左侧</div>
-                                            </div>
-                                            <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                                <img src="/images/wacth-right.png" class="img-responsive">
-                                                <div class="color-ash">右侧</div>
-                                            </div>
+                                            @foreach ($order->images[2] as $k => $v)
+                                                <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
+                                                    <img src="{{$v->img_url}}" class="img-responsive" style="max-width: 102px">
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -449,17 +416,17 @@
                                         </div>
                                     </div>
                                 @endif
-                                    <div class="col-xs-12 col-sm-12 col-md-12 clearfix padding-top15">
-                                        <div class="WorkOrderDetails-first-left padding-top8">
-                                            <span class="color-red">费用合计：¥{{number_format($order->price /100 ,2)}}</span>
-                                        </div>
-
-
+                                <div class="col-xs-12 col-sm-12 col-md-12 clearfix padding-top15">
+                                    <div class="WorkOrderDetails-first-left padding-top8">
+                                        <span class="color-red">费用合计：¥{{number_format($order->price /100 ,2)}}</span>
                                     </div>
+
+
+                                </div>
                                 {{--@if($order->status == 7)--}}
-                                    {{--<div class="col-xs-12 col-sm-12 col-md-12 clearfix">--}}
-                                        {{--订单取消时间:{{$order->cancel_time}}--}}
-                                    {{--</div>--}}
+                                {{--<div class="col-xs-12 col-sm-12 col-md-12 clearfix">--}}
+                                {{--订单取消时间:{{$order->cancel_time}}--}}
+                                {{--</div>--}}
                                 {{--@endif--}}
                             </div>
                         </div>

@@ -14,11 +14,30 @@ class GoodsController extends Controller
 		return view('index.goods');
 	}
 
+	/**
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
 	public function error (Request $request)
 	{
-		dd($request->all());
-		$id = DB::table('t_watch')->insertGetId($request->all());
+		$data = $request->all();
+
+		$image = $data['img'];
+		unset($data['img']);
+
+		$id = DB::table('t_watch')->insertGetId($data);
 		session(['watch_id' => $id]);
+
+		$images = explode(',',$image);
+		foreach ($images as $v) {
+			DB::table('t_image')->insert([
+				'watch_id' => $id,
+				'uploader' => 1,
+				'img_url' => $v,
+				'created_at' => date('Y-m-d H:i:s')
+			]);
+		}
 
 		return $this->response();
 	}
@@ -115,10 +134,10 @@ class GoodsController extends Controller
 			unset($data['name']);
 			unset($data['phone']);
 
-			// 生成一笔订单
+			// 生成一笔订单  6位随机数
 			$chars = '0123456789';
 			$code  = date('YmdHis');
-			while (strlen($code) < 10) {
+			while (strlen($code) < 20) {
 				$code .= substr($chars, (mt_rand() % strlen($chars)), 1);
 			}
 			$order   = [

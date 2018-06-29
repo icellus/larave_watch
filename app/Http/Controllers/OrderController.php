@@ -138,16 +138,18 @@ class OrderController extends Controller {
 	 */
 	public function index ($status = 0) {
 		$userId = session('user_id', 3);
-		//		dump($userId);
 		$orders = DB::table('t_orders')->where('user_id', $userId)->where(function ($query) use ($status) {
 			if($status >= 5) $query->where('status', '>=', 5);
 			if($status < 5) $query->where('status', $status);
 		})->get();
 
-		//		dump($orders);
+
 		foreach ($orders as $order) {
-			$watch = DB::table('t_watch')->where('id', $order->watch_id)->first();
-			$user  = DB::table('t_user')->where('id', $userId)->first();
+			$watch  = DB::table('t_watch')->where('id', $order->watch_id)->first();
+			$user   = DB::table('t_user')->where('id', $userId)->first();
+			$images = [];
+			$images[1] = DB::table('t_image')->where('watch_id', $watch->id)->where('uploader',1)->get();
+			$images[2] = DB::table('t_image')->where('watch_id', $watch->id)->where('uploader',2)->get();
 
 			$courier = null;
 			if($watch) {
@@ -171,9 +173,9 @@ class OrderController extends Controller {
 			$order->watch   = $watch;
 			$order->user    = $user;
 			$order->courier = $courier;
+			$order->images = $images;
 		}
 
-		//		dump($orders);
 		return view('index.order', [
 			'status' => $status,
 			'orders' => $orders,
@@ -222,15 +224,19 @@ class OrderController extends Controller {
 	public function image (Request $request) {
 		$file = $request->file('image');
 
-		$filePath = $file->getPath();
-
 		// 先保存文件到本地磁盘
 		$date = date('Y-m-d');
 		$path = "images/{$date}/";
-		$name = date('Ymd_His') . random_int(1, 9999);
+
+		// 生成随机数名  22位，7位随机数
+		$chars = '0123456789';
+		$name = date('Ymd_His');
+		while (strlen($name) < 22) {
+			$name .= substr($chars, (mt_rand() % strlen($chars)), 1);
+		}
 		$ext  = '.' . $file->getClientOriginalExtension();
-		$url           = $path . $name . $ext;
-		Storage::put($url,file_get_contents($file->getRealPath()));
+		$url  = $path . $name . $ext;
+		Storage::put($url, file_get_contents($file->getRealPath()));
 
 		return $this->response(0, 'success', ['src' => '/uploads/' . $url]);
 	}

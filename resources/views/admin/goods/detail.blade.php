@@ -92,8 +92,22 @@
                                 </div>
                             </div><!-- col-sm-6 -->
                         </div><!-- row -->
-
                         <br/>
+
+                        <h5 class="subtitle subtitle-lined">腕表详情组图：</h5>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 padding-bot15">
+                                <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
+                                    @foreach ($images[1] as $k => $v)
+                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
+                                            <img src="{{$v->img_url}}" class="img-responsive" style="max-width: 150px;">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
                         <h5 class="subtitle subtitle-lined">买家发货方式：</h5>
                         <div class="row">
                             @foreach($courier as $k => $v)
@@ -147,6 +161,57 @@
                         </div><!-- row -->
                         <br/>
 
+                        @if($order->status >= 3)
+                            <h5 class="subtitle subtitle-lined">维修完成组图：</h5>
+                            @if(!$images[2])
+                                <div class="row">
+                                    <div style="text-align: center;width: 88%;height: 120px;margin-top: 15px;">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 image-box clear" style="width: 10%">
+                                            <section class="upload-section">
+                                                <div class="upload-btn"></div>
+                                            </section>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-3 col-md-3 image-box clear" style="width: 10%">
+                                            <section class="upload-section">
+                                                <div class="upload-btn"></div>
+
+                                            </section>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-3 col-md-3 image-box clear" style="width: 10%">
+                                            <section class="upload-section">
+                                                <div class="upload-btn"></div>
+
+                                            </section>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-3 col-md-3 image-box clear" style="width: 10%">
+                                            <section class="upload-section">
+                                                <div class="upload-btn"></div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-group mr10">
+                                    <button class="btn btn-primary order-image" type="button"><i
+                                                class="fa mr5"></i> 上传维修组图
+                                    </button>
+                                </div>
+                            @else
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-bot15">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
+                                            @foreach ($images[1] as $k => $v)
+                                                <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
+                                                    <img src="{{$v->img_url}}" class="img-responsive"
+                                                         style="max-width: 150px;">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                            <br/>
+                        @endif
+
                         @if($order->status >= 5 && $order->status != 7)
                             <h5 class="subtitle subtitle-lined">取货方式：</h5>
                             <div class="row">
@@ -168,7 +233,6 @@
                                 @endforeach
                             </div>
                         @endif
-                        <br/>
                         <br/>
                         @if($order->status == 5)
                             <div class="btn-group mr10">
@@ -235,6 +299,68 @@
                     id: $("input[name='id']").val(),
                 }
             });
+        });
+        $(".order-image").click(function () {
+            //所有图片是否上传完毕
+            var allUploaded = false;
+            //用户没选择图片直接设置为true
+            if ($('.upload-box .image-box .upload-section .image-section.waiting-upload').length === 0)
+                allUploaded = true;
+            //手表照片上传
+            $('.upload-box').find('.image-box .upload-section').each(function () {
+                var _this = this;
+                var image_section = $(_this).find('.image-section');
+                if (image_section.length === 0)//未选择图片
+                    return;
+
+                var img = image_section.find('img.image-show');
+                if (img.attr('src').substring(0, 10) !== 'data:image')//data:image开头表示还未上传
+                    return;//图片已上传跳出本次循环
+
+                //开始上传
+                var formData = new FormData();
+                var fileData = $(_this).closest('.upload-section').find('.upload-btn input[type="file"]').get(0).files[0];//取得该input框中文件对象
+                formData.append('image', fileData);
+                formData.append('id', $("input[name='id']").val());
+                img.hide();//隐藏图片
+                image_section.find('.image-delete').hide();//隐藏删除图标
+                $(_this).addClass('image-loading');//显示loading
+                $.ajax({
+                    url: '/image',
+                    type: "post",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    dataType: 'json',
+                    success: function (data) {
+                        $(_this).removeClass('image-loading');
+                        img.attr('src', data.data.src).show();
+                        image_section.removeClass('waiting-upload').find('.image-delete').show();//去掉图片还未上传标志，隐藏删除图标
+
+                        //检查是否所有图片上传完毕
+                        if ($('.upload-box .image-box .upload-section .image-section.waiting-upload').length === 0)
+                            allUploaded = true;
+                    },
+                    error: function (e) {
+                        imageSection.remove();
+                        imageBox.children('.image-section').show();
+                        // 执行失败回调函数
+                        var callback = config.error;
+                        callback(e);
+
+                    }
+                });
+
+            });
+
+            //等待图片上传完毕，才能执行页面跳转操作
+            var timer = setInterval(function () {
+                if (allUploaded) {
+                    clearInterval(timer);
+                    // 刷新页面
+                    // window.location.reload();
+                }
+            }, 200);
         });
 
 

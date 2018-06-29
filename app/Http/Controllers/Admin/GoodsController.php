@@ -198,10 +198,18 @@ class GoodsController extends BaseController {
 
 		$courier = DB::table('t_courier')->where('watch_id', $watch['id'])->get();
 
+		$images     = [
+			1 => [],
+			2 => [],
+		];
+		$images[1] = DB::table('t_image')->where('watch_id', $watch['id'])->where('uploader', 1)->get();
+		$images[2] = DB::table('t_image')->where('watch_id', $watch['id'])->where('uploader', 2)->get();
+
 		return view('admin.goods.detail', [
 			'order'   => $order,
 			'watch'   => $watch,
 			'courier' => $courier,
+			'images'   => $images,
 		]);
 	}
 
@@ -221,7 +229,7 @@ class GoodsController extends BaseController {
 		} else if($status == 0) {
 			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 1]);
 		} else if($status == 3) {
-			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 5,'finish_time' => date('Y-m-d H:i:s')]);
+			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 5, 'finish_time' => date('Y-m-d H:i:s')]);
 		}
 
 		if($update) {
@@ -238,7 +246,7 @@ class GoodsController extends BaseController {
 	 */
 	public function close (Request $request) {
 		$id     = $request->get('id');
-		$update = DB::table('t_orders')->where('id', $id)->update(['status' => 7,'cancel_time' => date('Y-m-d H:i:s')]);
+		$update = DB::table('t_orders')->where('id', $id)->update(['status' => 7, 'cancel_time' => date('Y-m-d H:i:s')]);
 
 		if($update) {
 			return $this->response();
@@ -325,8 +333,8 @@ class GoodsController extends BaseController {
 			$breadcrumbs->push('预约工单', route('admin.goods'));
 		});
 
-		$id     = $request->get('id');
-		$order  = DB::table('t_orders')->where('id', $id)->first();
+		$id      = $request->get('id');
+		$order   = DB::table('t_orders')->where('id', $id)->first();
 		$courier = DB::table('t_courier')->where('watch_id', $order->watch_id)->where('payment_type', 1)->first();
 
 		return view('admin.goods.courier', [
@@ -335,25 +343,25 @@ class GoodsController extends BaseController {
 		]);
 	}
 
-	public function courierUpdate(Request $request) {
-		$id = $request->get('id');
-		$type = $request->get('type');
-		$number = $request->get('number');
-		$order  = DB::table('t_orders')->where('id', $id)->first();
+	public function courierUpdate (Request $request) {
+		$id      = $request->get('id');
+		$type    = $request->get('type');
+		$number  = $request->get('number');
+		$order   = DB::table('t_orders')->where('id', $id)->first();
 		$courier = DB::table('t_courier')->where('watch_id', $order->watch_id)->where('payment_type', 1)->first();
 
 		if($courier) {
 			$update = DB::table('t_courier')->where('watch_id', $order->watch_id)->where('payment_type', 1)->update([
-				'type' => $type,
-				'number' => $number
+				'type'   => $type,
+				'number' => $number,
 			]);
-		}else {
+		} else {
 			$insert = DB::table('t_courier')->insert([
-				'watch_id' => $order->watch_id,
+				'watch_id'     => $order->watch_id,
 				'payment_type' => 1,
-				'type' => $type,
-				'number'=> $number,
-				'created_at' => date('Y-m-d H:i:s')
+				'type'         => $type,
+				'number'       => $number,
+				'created_at'   => date('Y-m-d H:i:s'),
 			]);
 		}
 

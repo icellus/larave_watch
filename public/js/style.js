@@ -180,6 +180,7 @@ $(function () {
                 imgs = imgs.join(',');//数组转字符串
                 
                 $.post('/error', {
+                    img:imgs,
                     movement: movement,
                     watch_case: watch_case,
                     watch_band: watch_band,
@@ -189,7 +190,7 @@ $(function () {
                     height: height,
                     watch_comment: comment,
                 }, function (data) {
-                    // window.location.href = '/errorpage';
+                    window.location.href = '/errorpage';
                 })
             }
         }, 200);

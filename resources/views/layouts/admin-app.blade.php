@@ -14,6 +14,7 @@
         <link href="{{ asset('css/style.default.css') }}" rel="stylesheet">
         <link href="{{ asset('css/jquery.datatables.css') }}" rel="stylesheet">
         <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/upload.css') }}" rel="stylesheet">
     @show
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -144,6 +145,7 @@
     {{--<script src="https://cdn.bootcss.com/limonte-sweetalert2/7.21.1/sweetalert2.min.js"></script>--}}
     <script src="{{ asset('js/custom.js') }}"></script>
 
+    <script src="/js/upload.js"></script>
     {!! Toastr::render() !!}
 @show
 
