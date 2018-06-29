@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-06-21 21:35:05.
+    * Generated on 2018-06-29 22:17:12.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -46,6 +46,7 @@ namespace PHPSTORM_META {
         'entrust' => \Zizaco\Entrust\Entrust::class,
         'command.entrust.migration' => \Zizaco\Entrust\MigrationCommand::class,
         'breadcrumbs' => \DaveJamesMiller\Breadcrumbs\Manager::class,
+        'image' => \Intervention\Image\ImageManager::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'validation.presence' => \Illuminate\Validation\DatabasePresenceVerifier::class,
         'translation.loader' => \Illuminate\Translation\FileLoader::class,
@@ -163,6 +164,7 @@ namespace PHPSTORM_META {
         'entrust' => \Zizaco\Entrust\Entrust::class,
         'command.entrust.migration' => \Zizaco\Entrust\MigrationCommand::class,
         'breadcrumbs' => \DaveJamesMiller\Breadcrumbs\Manager::class,
+        'image' => \Intervention\Image\ImageManager::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'validation.presence' => \Illuminate\Validation\DatabasePresenceVerifier::class,
         'translation.loader' => \Illuminate\Translation\FileLoader::class,
@@ -280,6 +282,7 @@ namespace PHPSTORM_META {
         'entrust' => \Zizaco\Entrust\Entrust::class,
         'command.entrust.migration' => \Zizaco\Entrust\MigrationCommand::class,
         'breadcrumbs' => \DaveJamesMiller\Breadcrumbs\Manager::class,
+        'image' => \Intervention\Image\ImageManager::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'validation.presence' => \Illuminate\Validation\DatabasePresenceVerifier::class,
         'translation.loader' => \Illuminate\Translation\FileLoader::class,
@@ -397,6 +400,7 @@ namespace PHPSTORM_META {
         'entrust' => \Zizaco\Entrust\Entrust::class,
         'command.entrust.migration' => \Zizaco\Entrust\MigrationCommand::class,
         'breadcrumbs' => \DaveJamesMiller\Breadcrumbs\Manager::class,
+        'image' => \Intervention\Image\ImageManager::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'validation.presence' => \Illuminate\Validation\DatabasePresenceVerifier::class,
         'translation.loader' => \Illuminate\Translation\FileLoader::class,
@@ -514,6 +518,7 @@ namespace PHPSTORM_META {
         'entrust' => \Zizaco\Entrust\Entrust::class,
         'command.entrust.migration' => \Zizaco\Entrust\MigrationCommand::class,
         'breadcrumbs' => \DaveJamesMiller\Breadcrumbs\Manager::class,
+        'image' => \Intervention\Image\ImageManager::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'validation.presence' => \Illuminate\Validation\DatabasePresenceVerifier::class,
         'translation.loader' => \Illuminate\Translation\FileLoader::class,
@@ -631,6 +636,7 @@ namespace PHPSTORM_META {
         'entrust' => \Zizaco\Entrust\Entrust::class,
         'command.entrust.migration' => \Zizaco\Entrust\MigrationCommand::class,
         'breadcrumbs' => \DaveJamesMiller\Breadcrumbs\Manager::class,
+        'image' => \Intervention\Image\ImageManager::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'validation.presence' => \Illuminate\Validation\DatabasePresenceVerifier::class,
         'translation.loader' => \Illuminate\Translation\FileLoader::class,
@@ -748,6 +754,7 @@ namespace PHPSTORM_META {
         'entrust' => \Zizaco\Entrust\Entrust::class,
         'command.entrust.migration' => \Zizaco\Entrust\MigrationCommand::class,
         'breadcrumbs' => \DaveJamesMiller\Breadcrumbs\Manager::class,
+        'image' => \Intervention\Image\ImageManager::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'validation.presence' => \Illuminate\Validation\DatabasePresenceVerifier::class,
         'translation.loader' => \Illuminate\Translation\FileLoader::class,

@@ -171,6 +171,12 @@ $(function () {
         var timer = setInterval(function () {
             if (allUploaded) {
                 clearInterval(timer);
+
+                $("#image-show").each(function(i,n) {
+                    var image+i = $(n).src();
+                })
+
+
                 $.post('/error', {
                     movement: movement,
                     watch_case: watch_case,
@@ -181,7 +187,7 @@ $(function () {
                     height: height,
                     watch_comment: comment,
                 }, function (data) {
-                    window.location.href = '/errorpage';
+                    // window.location.href = '/errorpage';
                 })
             }
         }, 200);

@@ -481,7 +481,7 @@
         $('.order-close').click(function () {
             var id = $(this).data('id');
             $.post('/order/close', {id: id}, function (data) {
-                window.location.href = '/order/3';
+                window.location.href = '/order/7';
             })
         })
         $('.order-submit').click(function () {

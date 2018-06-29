@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Image;
 use Illuminate\Http\Request;
+use Storage;
 
 class OrderController extends Controller {
 
@@ -178,6 +180,11 @@ class OrderController extends Controller {
 		]);
 	}
 
+	/**
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
 	public function close (Request $request) {
 		$id     = $request->get('id');
 		$update = DB::table('t_orders')->where('id', $id)->update(['status' => 7]);
@@ -189,6 +196,11 @@ class OrderController extends Controller {
 		return $this->response(-1, '更新订单失败');
 	}
 
+	/**
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
 	public function submit (Request $request) {
 		$id     = $request->get('id');
 		$update = DB::table('t_orders')->where('id', $id)->update(['status' => 3]);
@@ -210,12 +222,17 @@ class OrderController extends Controller {
 	public function image (Request $request) {
 		$file = $request->file('image');
 
-		$date = date('Y-m-d');
-		$path = public_path("/images/{$date}/");
-		$name = date('Ymd_His') . random_int(1, 9999) . '.' . $file->getClientOriginalExtension();
-		$file->move($path, $name);
+		$filePath = $file->getPath();
 
-		return $this->response(0, 'success', ['src' => "/images/{$date}/" . $name]);
+		// 先保存文件到本地磁盘
+		$date = date('Y-m-d');
+		$path = "images/{$date}/";
+		$name = date('Ymd_His') . random_int(1, 9999);
+		$ext  = '.' . $file->getClientOriginalExtension();
+		$url           = $path . $name . $ext;
+		Storage::put($url,file_get_contents($file->getRealPath()));
+
+		return $this->response(0, 'success', ['src' => '/uploads/' . $url]);
 	}
 
 }

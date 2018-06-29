@@ -16,6 +16,7 @@ class GoodsController extends Controller
 
 	public function error (Request $request)
 	{
+		dd($request->all());
 		$id = DB::table('t_watch')->insertGetId($request->all());
 		session(['watch_id' => $id]);
 
