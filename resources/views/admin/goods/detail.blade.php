@@ -165,26 +165,26 @@
                             <h5 class="subtitle subtitle-lined">维修完成组图：</h5>
                             @if(!$images[2])
                                 <div class="row">
-                                    <div style="text-align: center;width: 88%;height: 120px;margin-top: 15px;">
-                                        <div class="col-xs-3 col-sm-3 col-md-3 image-box clear" style="width: 10%">
-                                            <section class="upload-section">
+                                    <div class="order-image-box" style="text-align: center;width: 88%;height: 120px;margin: 15px 0 15px 0;">
+                                        <div class=" image-box " >
+                                            <section class="upload-section" style="margin:15px 10px 0 0">
                                                 <div class="upload-btn"></div>
                                             </section>
                                         </div>
-                                        <div class="col-xs-6 col-sm-3 col-md-3 image-box clear" style="width: 10%">
-                                            <section class="upload-section">
-                                                <div class="upload-btn"></div>
-
-                                            </section>
-                                        </div>
-                                        <div class="col-xs-6 col-sm-3 col-md-3 image-box clear" style="width: 10%">
-                                            <section class="upload-section">
+                                        <div class=" image-box ">
+                                            <section class="upload-section" style="margin:15px 10px 0 0">
                                                 <div class="upload-btn"></div>
 
                                             </section>
                                         </div>
-                                        <div class="col-xs-6 col-sm-3 col-md-3 image-box clear" style="width: 10%">
-                                            <section class="upload-section">
+                                        <div class=" image-box ">
+                                            <section class="upload-section" style="margin:15px 10px 0 0">
+                                                <div class="upload-btn"></div>
+
+                                            </section>
+                                        </div>
+                                        <div class=" image-box ">
+                                            <section class="upload-section" style="margin:15px 10px 0 0">
                                                 <div class="upload-btn"></div>
                                             </section>
                                         </div>
@@ -278,11 +278,29 @@
     <script src="{{ asset('js/ajax.js') }}"></script>
     <script type="text/javascript">
         $(".order-submit").click(function () {
+
+            if( $('.order-image-box .waiting-upload').length !== 0 )//还有图片未上传
+            {
+                swal({
+                    type: 'error',
+                    title: '',
+                    text: '请先完成图片上传'
+                })
+                return;
+            }
+            //获取图片地址
+            var imgs = [];
+            $('.order-image-box .image-section .image-show').each(function(){
+                imgs.push($(this).attr('src'));
+            });
+            imgs = imgs.join(',');
+            
             Rbac.ajax.request({
                 type: 'POST',
                 href: '/admin/goods/submit',
                 data: {
                     id: $("input[name='id']").val(),
+                    imgs:imgs
                 }
             });
         });
@@ -301,13 +319,10 @@
             });
         });
         $(".order-image").click(function () {
-            //所有图片是否上传完毕
-            var allUploaded = false;
-            //用户没选择图片直接设置为true
-            if ($('.upload-box .image-box .upload-section .image-section.waiting-upload').length === 0)
-                allUploaded = true;
             //手表照片上传
-            $('.upload-box').find('.image-box .upload-section').each(function () {
+            $('.order-image-box').find('.image-box .upload-section').each(function () {
+                if( $(this).find('.image-section').length === 0 )//该位置未选择图片退出本次循环
+                    return ;
                 var _this = this;
                 var image_section = $(_this).find('.image-section');
                 if (image_section.length === 0)//未选择图片
@@ -336,10 +351,6 @@
                         $(_this).removeClass('image-loading');
                         img.attr('src', data.data.src).show();
                         image_section.removeClass('waiting-upload').find('.image-delete').show();//去掉图片还未上传标志，隐藏删除图标
-
-                        //检查是否所有图片上传完毕
-                        if ($('.upload-box .image-box .upload-section .image-section.waiting-upload').length === 0)
-                            allUploaded = true;
                     },
                     error: function (e) {
                         imageSection.remove();
@@ -353,14 +364,6 @@
 
             });
 
-            //等待图片上传完毕，才能执行页面跳转操作
-            var timer = setInterval(function () {
-                if (allUploaded) {
-                    clearInterval(timer);
-                    // 刷新页面
-                    // window.location.reload();
-                }
-            }, 200);
         });
 
 

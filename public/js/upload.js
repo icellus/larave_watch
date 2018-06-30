@@ -28,7 +28,7 @@ var uploader = function () {
 
 
         // 触发上传操作
-        $('.upload-btn').click(function () {
+        imageInput.click(function () {
             var _this =  this;
             var $input = $('<input type="file" name="image" accept="image/*" style="display:none">');
             $input.get(0).click();//选择文件
