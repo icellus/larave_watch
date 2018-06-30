@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pageheader">
-        <h2><i class="fa fa-home"></i> Dashboard <span>维修工单</span></h2>
+        <h2><i class="fa fa-edit"></i> 维修工单 <span>发货信息</span></h2>
         {!! Breadcrumbs::render('admin-goods-courier') !!}
     </div>
 

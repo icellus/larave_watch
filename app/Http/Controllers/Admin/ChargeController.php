@@ -26,6 +26,7 @@ class ChargeController extends BaseController
 	{
 
 		Breadcrumbs::register('admin-reserve', function($breadcrumbs) {
+
 			$breadcrumbs->parent('dashboard');
 			$breadcrumbs->push('预约工单', route('admin.reserve'));
 		});

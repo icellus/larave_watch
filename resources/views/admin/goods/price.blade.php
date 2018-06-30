@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pageheader">
-        <h2><i class="fa fa-home"></i> Dashboard <span>维修工单</span></h2>
+        <h2><i class="fa fa-edit"></i> 维修工单 <span>修改价格</span></h2>
         {!! Breadcrumbs::render('admin-goods-price-page') !!}
     </div>
 

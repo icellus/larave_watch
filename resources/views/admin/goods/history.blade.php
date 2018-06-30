@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="pageheader">
-        <h2><i class="fa fa-home"></i> Dashboard <span>预约工单</span></h2>
+        <h2><i class="fa fa-th-list"></i> 维修工单 <span>价格修改记录</span></h2>
         {!! Breadcrumbs::render('admin-goods-price-history') !!}
     </div>
 

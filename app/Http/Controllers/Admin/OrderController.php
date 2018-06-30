@@ -24,6 +24,7 @@ class OrderController extends BaseController
 	public function index () {
 
 		Breadcrumbs::register('admin-order', function ($breadcrumbs) {
+
 			$breadcrumbs->parent('dashboard');
 			$breadcrumbs->push('财务统计', route('admin.order'));
 		});

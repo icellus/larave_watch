@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="pageheader">
-        <h2><i class="fa fa-home"></i> Dashboard <span>财务统计</span></h2>
+        <h2><i class="fa fa-th-list"></i> 财务账单 <span>财务统计</span></h2>
         {!! Breadcrumbs::render('admin-order') !!}
     </div>
 

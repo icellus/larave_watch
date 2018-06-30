@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pageheader">
-        <h2><i class="fa fa-home"></i> Dashboard <span>系统设置</span></h2>
+        <h2><i class="fa fa-plus"></i> 角色管理 <span>添加角色</span></h2>
         {!! Breadcrumbs::render('admin-role-create') !!}
     </div>
 
@@ -10,9 +10,7 @@
 
         <div class="row">
 
-            @include('admin._partials.rbac-left-menu')
-
-            <div class="col-sm-9 col-lg-10">
+            <div class="col-sm-12 col-lg-12">
 
                 <div class="panel panel-default">
                     <div class="panel-heading">

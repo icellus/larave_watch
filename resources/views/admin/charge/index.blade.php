@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="pageheader">
-        <h2><i class="fa fa-home"></i> Dashboard <span>预约工单</span></h2>
+        <h2><i class="fa fa-th-list"></i> 预约工单 <span>工单列表</span></h2>
         {!! Breadcrumbs::render('admin-reserve') !!}
     </div>
 

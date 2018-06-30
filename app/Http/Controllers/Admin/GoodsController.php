@@ -140,18 +140,17 @@ class GoodsController extends BaseController {
 
 		// 面包屑样式
 		Breadcrumbs::setView('admin._partials.breadcrumbs');
+
+		Breadcrumbs::register('admin-goods', function ($breadcrumbs) {
+			$breadcrumbs->parent('dashboard');
+			$breadcrumbs->push('维修工单', route('admin.goods'));
+		});
 	}
 
 	/**
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function index () {
-
-		Breadcrumbs::register('admin-goods', function ($breadcrumbs) {
-			$breadcrumbs->parent('dashboard');
-			$breadcrumbs->push('预约工单', route('admin.reserve'));
-		});
-
 		$data = DB::table('t_orders')->paginate(10);
 
 		foreach ($data as $v) {
@@ -160,7 +159,6 @@ class GoodsController extends BaseController {
 			$v->user = DB::table('t_user')->where('id', $v->user_id)->first();
 		}
 
-		//		$users = $this->adminUser->paginate(10);
 		return view('admin.goods.index', [
 			'data' => $data,
 		]);
@@ -173,8 +171,8 @@ class GoodsController extends BaseController {
 	 */
 	public function detail (Request $request) {
 		Breadcrumbs::register('admin-goods-detail', function ($breadcrumbs) {
-			$breadcrumbs->parent('dashboard');
-			$breadcrumbs->push('预约工单', route('admin.reserve'));
+			$breadcrumbs->parent('admin-goods');
+			$breadcrumbs->push('工单详情', route('admin.goods.detail'));
 		});
 
 		$id    = $request->get('id');
@@ -198,7 +196,7 @@ class GoodsController extends BaseController {
 
 		$courier = DB::table('t_courier')->where('watch_id', $watch['id'])->get();
 
-		$images     = [
+		$images    = [
 			1 => [],
 			2 => [],
 		];
@@ -209,7 +207,7 @@ class GoodsController extends BaseController {
 			'order'   => $order,
 			'watch'   => $watch,
 			'courier' => $courier,
-			'images'   => $images,
+			'images'  => $images,
 		]);
 	}
 
@@ -257,8 +255,8 @@ class GoodsController extends BaseController {
 
 	public function pricePage (Request $request) {
 		Breadcrumbs::register('admin-goods-price-page', function ($breadcrumbs) {
-			$breadcrumbs->parent('dashboard');
-			$breadcrumbs->push('预约工单', route('admin.goods'));
+			$breadcrumbs->parent('admin.goods');
+			$breadcrumbs->push('修改价格', route('admin.goods.price.page'));
 		});
 
 		$id    = $request->get('id');
@@ -296,13 +294,6 @@ class GoodsController extends BaseController {
 		$update = DB::table('t_orders')->where('id', $id)->update($data);
 
 		return redirect(route('admin.goods.detail', ['id' => $order->id]));
-
-		//		if($insert && $update) {
-		//			return $this->response();
-		//		}
-		//
-		//		return $this->response(-1, '提交失败');
-
 	}
 
 	/**
@@ -312,8 +303,8 @@ class GoodsController extends BaseController {
 	 */
 	public function priceHistory (Request $request) {
 		Breadcrumbs::register('admin-goods-price-history', function ($breadcrumbs) {
-			$breadcrumbs->parent('dashboard');
-			$breadcrumbs->push('预约工单', route('admin.goods'));
+			$breadcrumbs->parent('admin-goods');
+			$breadcrumbs->push('价格记录', route('admin.goods.price.history'));
 		});
 
 		$id    = $request->get('id');
@@ -329,8 +320,8 @@ class GoodsController extends BaseController {
 	public function courier (Request $request) {
 
 		Breadcrumbs::register('admin-goods-courier', function ($breadcrumbs) {
-			$breadcrumbs->parent('dashboard');
-			$breadcrumbs->push('预约工单', route('admin.goods'));
+			$breadcrumbs->parent('admin-goods');
+			$breadcrumbs->push('发货信息', route('admin.goods.courier'));
 		});
 
 		$id      = $request->get('id');
