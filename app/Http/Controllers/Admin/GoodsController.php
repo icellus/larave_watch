@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Breadcrumbs;
 use DB;
 use Illuminate\Http\Request;
+use Storage;
 
 class GoodsController extends BaseController {
 
@@ -334,6 +335,11 @@ class GoodsController extends BaseController {
 		]);
 	}
 
+	/**
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+	 */
 	public function courierUpdate (Request $request) {
 		$id      = $request->get('id');
 		$type    = $request->get('type');
@@ -357,6 +363,39 @@ class GoodsController extends BaseController {
 		}
 
 		return redirect(route('admin.goods.detail', ['id' => $order->id]));
+	}
+
+	/**
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function image (Request $request) {
+		$id = $request->get('id');
+
+		$file = $request->file('image');
+
+		// 先保存文件到本地磁盘
+		$date = date('Y-m-d');
+		$path = "images/{$date}/";
+		// 生成随机数名  22位，7位随机数
+		$chars = '0123456789';
+		$name  = date('Ymd_His');
+		while (strlen($name) < 22) {
+			$name .= substr($chars, (mt_rand() % strlen($chars)), 1);
+		}
+		$ext = '.' . $file->getClientOriginalExtension();
+		$url = $path . $name . $ext;
+		Storage::put($url, file_get_contents($file->getRealPath()));
+
+		DB::table('t_image')->insert([
+			'watch_id'   => $id,
+			'uploader'   => 2,
+			'img_url'    => '/uploads/' . $url,
+			'created_at' => date('Y-m-d H:i:s'),
+		]);
+
+		return $this->response();
 	}
 
 }

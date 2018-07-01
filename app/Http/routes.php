@@ -65,6 +65,8 @@ Route::group(['middleware' => ['admin']], function () {
 		Route::any('/goods/courier', ['as' => 'admin.goods.courier', 'uses' => 'GoodsController@courier']);
 		Route::any('/goods/courier/update', ['as' => 'admin.goods.courier.update', 'uses' => 'GoodsController@courierUpdate']);
 
+		Route::any('/image',['as' => 'admin.image','uses' => 'GoodsController@image']);
+
 		// 财务统计
 		Route::any('/order',['as' => 'admin.order','uses' => 'OrderController@index']);
 

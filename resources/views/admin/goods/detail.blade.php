@@ -161,7 +161,7 @@
                         </div><!-- row -->
                         <br/>
 
-                        @if($order->status >= 3)
+                        @if($order->status == 3)
                             <h5 class="subtitle subtitle-lined">维修完成组图：</h5>
                             @if(!$images[2])
                                 <div class="row">
@@ -199,7 +199,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-bot15">
                                         <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
-                                            @foreach ($images[1] as $k => $v)
+                                            @foreach ($images[2] as $k => $v)
                                                 <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
                                                     <img src="{{$v->img_url}}" class="img-responsive"
                                                          style="max-width: 150px;">
@@ -278,29 +278,11 @@
     <script src="{{ asset('js/ajax.js') }}"></script>
     <script type="text/javascript">
         $(".order-submit").click(function () {
-
-            if( $('.order-image-box .waiting-upload').length !== 0 )//还有图片未上传
-            {
-                swal({
-                    type: 'error',
-                    title: '',
-                    text: '请先完成图片上传'
-                })
-                return;
-            }
-            //获取图片地址
-            var imgs = [];
-            $('.order-image-box .image-section .image-show').each(function(){
-                imgs.push($(this).attr('src'));
-            });
-            imgs = imgs.join(',');
-            
             Rbac.ajax.request({
                 type: 'POST',
                 href: '/admin/goods/submit',
                 data: {
-                    id: $("input[name='id']").val(),
-                    imgs:imgs
+                    id: $("input[name='id']").val()
                 }
             });
         });
@@ -336,12 +318,12 @@
                 var formData = new FormData();
                 var fileData = $(_this).closest('.upload-section').find('.upload-btn input[type="file"]').get(0).files[0];//取得该input框中文件对象
                 formData.append('image', fileData);
-                formData.append('id', $("input[name='id']").val());
+                formData.append('id', {{$watch['id']}});
                 img.hide();//隐藏图片
                 image_section.find('.image-delete').hide();//隐藏删除图标
                 $(_this).addClass('image-loading');//显示loading
                 $.ajax({
-                    url: '/image',
+                    url: '/admin/image',
                     type: "post",
                     data: formData,
                     processData: false,
