@@ -459,7 +459,7 @@
         })
         $('.order-pay').click(function () {
             var id = $(this).data('id');
-            $.post('/order/pay', {id: id}, function (data) {
+            $.post('/pay', {id: id}, function (data) {
                 window.location.href = '/order/5';
             })
         })
