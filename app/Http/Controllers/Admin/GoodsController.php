@@ -228,7 +228,7 @@ class GoodsController extends BaseController {
 		} else if($status == 0) {
 			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 1]);
 		} else if($status == 3) {
-			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 5, 'finish_time' => date('Y-m-d H:i:s')]);
+			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 4]);
 		}
 
 		if($update) {
@@ -256,7 +256,7 @@ class GoodsController extends BaseController {
 
 	public function pricePage (Request $request) {
 		Breadcrumbs::register('admin-goods-price-page', function ($breadcrumbs) {
-			$breadcrumbs->parent('admin.goods');
+			$breadcrumbs->parent('admin-goods');
 			$breadcrumbs->push('修改价格', route('admin.goods.price.page'));
 		});
 

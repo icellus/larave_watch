@@ -37,6 +37,8 @@ Route::group(['middleware' => ['admin']], function () {
 	Route::post('/order/close', 'OrderController@close');
 	Route::post('/order/submit', 'OrderController@submit');
 
+	Route::any('pay','OrderController@pay');
+
 	//联系我们  客服帮助
 	Route::get('/contactUs', 'ContactController@contact');
 	Route::get('/help', 'ContactController@help');
