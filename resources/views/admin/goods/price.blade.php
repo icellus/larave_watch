@@ -38,7 +38,7 @@
                                 <label class="col-sm-3 control-label">修改价格：</label>
 
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="price"
+                                    <input type="text" class="form-control" name="price" id="price"
                                            value="">
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                         <div class="panel-footer">
                             <div class="row">
                                 <div class="col-sm-6 col-sm-offset-3">
-                                    <button class="btn btn-primary">保存</button>
+                                    <button class="btn btn-primary submitBtn">保存</button>
                                     &nbsp;
                                     <button class="btn btn-default">取消</button>
                                 </div>
@@ -72,4 +72,9 @@
         </div><!-- row -->
 
     </div>
+
 @endsection
+
+
+
+

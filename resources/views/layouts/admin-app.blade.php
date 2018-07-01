@@ -143,6 +143,8 @@
     <script src="{{ asset('js/custom.js') }}"></script>
 
     <script src="/js/upload.js"></script>
+
+    <script type="text/javascript" src="/js/changePrice.js"></script>
     {!! Toastr::render() !!}
 @show
 

@@ -303,9 +303,8 @@
         $(".order-image").click(function () {
             //手表照片上传
             $('.order-image-box').find('.image-box .upload-section').each(function () {
-                if( $(this).find('.image-section').length === 0 )//该位置未选择图片退出本次循环
-                    return ;
                 var _this = this;
+
                 var image_section = $(_this).find('.image-section');
                 if (image_section.length === 0)//未选择图片
                     return;
@@ -333,6 +332,11 @@
                         $(_this).removeClass('image-loading');
                         img.attr('src', data.data.src).show();
                         image_section.removeClass('waiting-upload').find('.image-delete').show();//去掉图片还未上传标志，隐藏删除图标
+                        if( $(_this).closest('.order-image-box').find('.image-section.waiting-upload').length === 0 )//图片上传完毕
+                        {
+                            window.location.reload();
+                            return false;
+                        }
                     },
                     error: function (e) {
                         imageSection.remove();
