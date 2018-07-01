@@ -221,7 +221,7 @@ class OrderController extends Controller {
 	 */
 	public function pay (Request $request) {
 		$id     = $request->get('id');
-		$update = DB::table('t_orders')->where('id', $id)->update(['status' => 5,'finish_time' => date('Y-m-d H:i:s')]);
+		$update = DB::table('t_orders')->where('id', $id)->update(['status' => 5]);
 
 		if($update) {
 			return $this->response();

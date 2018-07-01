@@ -229,6 +229,8 @@ class GoodsController extends BaseController {
 			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 1]);
 		} else if($status == 3) {
 			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 4]);
+		}else if($status == 5) {
+			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 6,'finish_time' => date('Y-m-d H:i:s')]);
 		}
 
 		if($update) {
@@ -254,6 +256,11 @@ class GoodsController extends BaseController {
 		return $this->response(-1, '更新订单失败');
 	}
 
+	/**
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
 	public function pricePage (Request $request) {
 		Breadcrumbs::register('admin-goods-price-page', function ($breadcrumbs) {
 			$breadcrumbs->parent('admin-goods');
@@ -318,6 +325,11 @@ class GoodsController extends BaseController {
 		]);
 	}
 
+	/**
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
 	public function courier (Request $request) {
 
 		Breadcrumbs::register('admin-goods-courier', function ($breadcrumbs) {
