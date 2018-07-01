@@ -75,13 +75,14 @@ class ChargeController extends Controller {
 		$code    = $checkCode = random_int(1000, 9999);//验证码
 		$message = "【博士豪】" . $code . '(手机验证码，请完成验证)，如非本人操作，请忽略本短信';
 		$result  = Phone::send($phone, $message);
+
 		if($result['code'] == 0) {
 			// 写入验证码表
 			$info = [
 				'phone'      => $phone,
 				'code'       => $code,
 				'data'       => $message,
-				'expire_at'  => date('Y-m-d H:i:s', time() + 5 * 60),
+				'expire_at'  => date('Y-m-d H:i:s', time() + 30 * 60),
 				'created_at' => date('Y-m-d H:i:s', time()),
 			];
 

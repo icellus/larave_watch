@@ -36,7 +36,7 @@ class OrderController extends BaseController
 			->where('finish_time','like','%'.date('Y-m').'%')
 			->sum('price');
 		$order = DB::table('t_orders')
-			->whereIn('status',[5,6])
+			->whereIn('status',[5,6])->orderBy('created_at','desc')
 			->paginate(10);
 
 

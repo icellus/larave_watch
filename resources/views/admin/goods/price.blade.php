@@ -39,7 +39,7 @@
 
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" name="price" id="price"
-                                           value="">
+                                           value="" placeholder="单位：元，请输入只包含数字和小数点的有效价格">
                                 </div>
                             </div>
 

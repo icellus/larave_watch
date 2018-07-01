@@ -28,12 +28,14 @@ class GoodsController extends Controller {
 
 		$images = explode(',', $image);
 		foreach ($images as $v) {
-			DB::table('t_image')->insert([
-				'watch_id'   => $id,
-				'uploader'   => 1,
-				'img_url'    => $v,
-				'created_at' => date('Y-m-d H:i:s'),
-			]);
+			if($v) {
+				DB::table('t_image')->insert([
+					'watch_id'   => $id,
+					'uploader'   => 1,
+					'img_url'    => $v,
+					'created_at' => date('Y-m-d H:i:s'),
+				]);
+			}
 		}
 
 		return $this->response();
@@ -126,6 +128,14 @@ class GoodsController extends Controller {
 			session(['user_id' => $user['id'], 'phone' => $user['phone'], 'username' => $user['username']]);
 			unset($data['name']);
 			unset($data['phone']);
+
+			// 更新用户地址信息
+			DB::table('t_watch')->where('id', $id)->update([
+				'province' => $data['province'],
+				'city'     => $data['city'],
+				'district' => $data['district'],
+				'area'     => $data['area'],
+			]);
 
 			// 生成一笔订单  6位随机数
 			$chars = '0123456789';

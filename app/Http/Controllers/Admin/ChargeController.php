@@ -31,7 +31,7 @@ class ChargeController extends BaseController
 			$breadcrumbs->push('预约工单', route('admin.reserve'));
 		});
 
-		$data = DB::table('t_reserve')->paginate(10);
+		$data = DB::table('t_reserve')->orderBy('created_at','desc')->paginate(10);
 
 		foreach ($data as $v) {
 			$v->info = DB::table('t_user')->where('id', $v->user_id)->first();

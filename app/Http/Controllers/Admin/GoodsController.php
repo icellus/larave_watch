@@ -152,7 +152,7 @@ class GoodsController extends BaseController {
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function index () {
-		$data = DB::table('t_orders')->paginate(10);
+		$data = DB::table('t_orders')->orderBy('created_at','desc')->paginate(10);
 
 		foreach ($data as $v) {
 			//			$v->info = DB::table('t_watch')->where('id', $v->watch_id)->first();
@@ -317,7 +317,7 @@ class GoodsController extends BaseController {
 
 		$id    = $request->get('id');
 		$order = DB::table('t_orders')->where('id', $id)->first();
-		$data  = DB::table('t_price_records')->where('order_id', $id)->paginate(10);
+		$data  = DB::table('t_price_records')->where('order_id', $id)->orderBy('created_at','desc')->paginate(10);
 
 		return view('admin.goods.history', [
 			'order' => $order,

@@ -345,7 +345,7 @@
                                     <div class="WorkOrderDetails-first-left padding-top8">
                                         <span class="color-red">费用合计：¥{{number_format($order->price / 100,2)}}</span>
                                     </div>
-                                    <div class="WorkOrderDetails-first-right order-Cancel-determine padding-top8  order-pay">
+                                    <div class="WorkOrderDetails-first-right order-Cancel-determine padding-top8  order-pay" data-id="{{$order->id}}">
                                         <span><a class="order-active" href="javascript:;">确认付款</a></span>
                                     </div>
                                 </div>
@@ -460,7 +460,9 @@
         $('.order-pay').click(function () {
             var id = $(this).data('id');
             $.post('/pay', {id: id}, function (data) {
-                window.location.href = '/order/5';
+                if (data.code == 0) {
+                    window.location.href = '/order/5';
+                }
             })
         })
     </script>
