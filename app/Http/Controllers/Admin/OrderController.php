@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use DB,Breadcrumbs;
 use App\Http\Requests;
 
@@ -24,21 +23,20 @@ class OrderController extends BaseController
 	public function index () {
 
 		Breadcrumbs::register('admin-order', function ($breadcrumbs) {
-
 			$breadcrumbs->parent('dashboard');
 			$breadcrumbs->push('财务统计', route('admin.order'));
 		});
 		// 月流水
 		$count = DB::table('t_orders')
-			->where('status',6)
+			->whereIn('status',[5,6])
 			->where('finish_time','like','%'.date('Y-m').'%')
 			->sum('price');
 		$month = DB::table('t_orders')
-			->where('status',6)
+			->whereIn('status',[5,6])
 			->where('finish_time','like','%'.date('Y-m').'%')
 			->sum('price');
 		$order = DB::table('t_orders')
-			->where('status',6)
+			->whereIn('status',[5,6])
 			->paginate(10);
 
 

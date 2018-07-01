@@ -143,13 +143,12 @@ class OrderController extends Controller {
 			if($status < 5) $query->where('status', $status);
 		})->get();
 
-
 		foreach ($orders as $order) {
-			$watch  = DB::table('t_watch')->where('id', $order->watch_id)->first();
-			$user   = DB::table('t_user')->where('id', $userId)->first();
-			$images = [];
-			$images[1] = DB::table('t_image')->where('watch_id', $watch->id)->where('uploader',1)->get();
-			$images[2] = DB::table('t_image')->where('watch_id', $watch->id)->where('uploader',2)->get();
+			$watch     = DB::table('t_watch')->where('id', $order->watch_id)->first();
+			$user      = DB::table('t_user')->where('id', $userId)->first();
+			$images    = [];
+			$images[1] = DB::table('t_image')->where('watch_id', $watch->id)->where('uploader', 1)->get();
+			$images[2] = DB::table('t_image')->where('watch_id', $watch->id)->where('uploader', 2)->get();
 
 			$courier = null;
 			if($watch) {
@@ -173,7 +172,7 @@ class OrderController extends Controller {
 			$order->watch   = $watch;
 			$order->user    = $user;
 			$order->courier = $courier;
-			$order->images = $images;
+			$order->images  = $images;
 		}
 
 		return view('index.order', [
@@ -221,7 +220,7 @@ class OrderController extends Controller {
 	 */
 	public function pay (Request $request) {
 		$id     = $request->get('id');
-		$update = DB::table('t_orders')->where('id', $id)->update(['status' => 5]);
+		$update = DB::table('t_orders')->where('id', $id)->update(['status' => 5, 'pay_time' => date('Y-m-d H:i:s')]);
 
 		if($update) {
 			return $this->response();
@@ -246,12 +245,12 @@ class OrderController extends Controller {
 
 		// 生成随机数名  22位，7位随机数
 		$chars = '0123456789';
-		$name = date('Ymd_His');
+		$name  = date('Ymd_His');
 		while (strlen($name) < 22) {
 			$name .= substr($chars, (mt_rand() % strlen($chars)), 1);
 		}
-		$ext  = '.' . $file->getClientOriginalExtension();
-		$url  = $path . $name . $ext;
+		$ext = '.' . $file->getClientOriginalExtension();
+		$url = $path . $name . $ext;
 		Storage::put($url, file_get_contents($file->getRealPath()));
 
 		return $this->response(0, 'success', ['src' => '/uploads/' . $url]);

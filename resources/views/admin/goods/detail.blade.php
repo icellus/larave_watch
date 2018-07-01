@@ -161,9 +161,9 @@
                         </div><!-- row -->
                         <br/>
 
-                        @if($order->status == 3)
+                        @if($order->status >= 3)
                             <h5 class="subtitle subtitle-lined">维修完成组图：</h5>
-                            @if(!$images[2])
+                            @if($order->status == 3 && !$images[2])
                                 <div class="row">
                                     <div class="order-image-box" style="text-align: center;width: 88%;height: 120px;margin: 15px 0 15px 0;">
                                         <div class=" image-box " >
@@ -260,7 +260,7 @@
                         </div>
 
                         <div class="btn-group mr10">
-                            @if($order->status < 6)
+                            @if($order->status < 5)
                                 <button class="btn btn-default close-order" type="button">取消订单</button>
                             @endif
                         </div>

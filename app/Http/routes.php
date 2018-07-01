@@ -54,7 +54,7 @@ Route::group(['middleware' => ['admin']], function () {
 
 		// 预约工单
 		Route::get('/reserve', ['as' => 'admin.reserve', 'uses' => 'ChargeController@index']);
-		Route::any('/reserve/handle',['as' => 'admin.reserve.handle','use' => 'ChargeController@handle']);
+		Route::any('/reserve/handle',['as' => 'admin.reserve.handle','uses' => 'ChargeController@handle']);
 
 		// 维修工单
 		Route::any('/goods', ['as' => 'admin.goods', 'uses' => 'GoodsController@index']);
