@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 
-class GoodsController extends Controller
-{
+class GoodsController extends Controller {
 
-	public function goods ()
-	{
+	public function goods () {
 
 		return view('index.goods');
 	}
@@ -19,8 +17,7 @@ class GoodsController extends Controller
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function error (Request $request)
-	{
+	public function error (Request $request) {
 		$data = $request->all();
 
 		$image = $data['img'];
@@ -29,25 +26,24 @@ class GoodsController extends Controller
 		$id = DB::table('t_watch')->insertGetId($data);
 		session(['watch_id' => $id]);
 
-		$images = explode(',',$image);
+		$images = explode(',', $image);
 		foreach ($images as $v) {
 			DB::table('t_image')->insert([
-				'watch_id' => $id,
-				'uploader' => 1,
-				'img_url' => $v,
-				'created_at' => date('Y-m-d H:i:s')
+				'watch_id'   => $id,
+				'uploader'   => 1,
+				'img_url'    => $v,
+				'created_at' => date('Y-m-d H:i:s'),
 			]);
 		}
 
 		return $this->response();
 	}
 
-	public function errorPage (Request $request)
-	{
+	public function errorPage (Request $request) {
 		$id      = session('watch_id');
 		$info    = null;
 		$courier = null;
-		if ($id) {
+		if($id) {
 			$info    = DB::table('t_watch')->where('id', $id)->first();
 			$courier = DB::table('t_courier')->where('watch_id', $id)->where('payment_type', 0)->first();
 		}
@@ -60,8 +56,7 @@ class GoodsController extends Controller
 		]);
 	}
 
-	public function contact (Request $request)
-	{
+	public function contact (Request $request) {
 		$data = $request->all();
 		$id   = $data['id'];
 		unset($data['id']);
@@ -80,25 +75,23 @@ class GoodsController extends Controller
 		return $this->response();
 	}
 
-	public function watch (Request $request)
-	{
-		if ($request->method() == 'POST') {
+	public function watch (Request $request) {
+		if($request->method() == 'POST') {
 			$data = $request->all();
 			$id   = $data['id'];
 			unset($data['id']);
 
 			$order = DB::table('t_orders')->where('id', $id)->value('id');
 
-			if ($order) {
+			if($order) {
 				return $this->response(0, '', [], '您已经提交过该腕表的维修工单啦！');
 			}
 
 			// 验证验证码
 			$this->validate($request, [
-//				'captcha' => 'required|captcha',
+				'captcha' => 'required|captcha',
 			]);
 			unset($data['captcha']);
-
 
 			// 验证手机验证码
 			$check = DB::table('t_verify_codes')
@@ -107,15 +100,15 @@ class GoodsController extends Controller
 				->where('used', 0)
 				->where('expire_at', '>', date('Y-m-d H:i:s'))
 				->first();
-			if ($check == null) {
-//				return $this->response(1, 'error code',[],'短信验证码错误');
+			if($check == null) {
+				return $this->response(1, 'error code', [], '短信验证码错误');
 			}
-//			DB::table('t_verify_codes')->where('code', $data['code'])->where('phone', $data['phone'])->update(['used' => 1]);
+			DB::table('t_verify_codes')->where('code', $data['code'])->where('phone', $data['phone'])->update(['used' => 1]);
 			unset($data['code']);
 
 			$phone = $data['phone'];
 			$user  = (array)$user = DB::table('t_user')->where('phone', $phone)->first();
-			if (!$user) {
+			if(!$user) {
 				$user = [
 					'phone'      => $phone,
 					'username'   => $data['name'],
@@ -125,7 +118,7 @@ class GoodsController extends Controller
 				$user['id'] = DB::table('t_user')->insertGetId($user);
 
 			}
-			if (!$user['username']) {
+			if(!$user['username']) {
 				DB::table('t_user')->where('phone', $phone)->update(['username' => $data['name']]);
 				$user['username'] = $data['name'];
 			}
@@ -140,7 +133,7 @@ class GoodsController extends Controller
 			while (strlen($code) < 20) {
 				$code .= substr($chars, (mt_rand() % strlen($chars)), 1);
 			}
-			$order   = [
+			$order = [
 				'uid'        => $code,
 				'user_id'    => $user['id'],
 				'watch_id'   => $id,

@@ -6,12 +6,10 @@ use App\Http\Controllers\Tools\Phone;
 use DB;
 use Illuminate\Http\Request;
 
-class ChargeController extends Controller
-{
+class ChargeController extends Controller {
 	//
 
-	public function index ()
-	{
+	public function index () {
 		return view('index.charge');
 	}
 
@@ -22,8 +20,7 @@ class ChargeController extends Controller
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function reserve (Request $request)
-	{
+	public function reserve (Request $request) {
 		// 图片验证码
 		$this->validate($request, [
 			'captcha' => 'required|captcha',
@@ -33,7 +30,7 @@ class ChargeController extends Controller
 
 		$userId = DB::table('t_user')->where('phone', $phone)->value('id');
 
-		if (!$userId) {
+		if(!$userId) {
 			// 写入用户表
 			$name   = '';
 			$userId = DB::table('t_user')->insertGetId([
@@ -41,7 +38,6 @@ class ChargeController extends Controller
 				'username'   => $name,
 				'created_at' => date('Y-m-d H:i:s'),
 			]);
-
 
 		}
 		// 存一下cookie
@@ -56,8 +52,7 @@ class ChargeController extends Controller
 		return $this->response();
 	}
 
-	public function verify (Request $request)
-	{
+	public function verify (Request $request) {
 		$phone = $request->input('phone', '');
 		$code  = $request->input('code', '');
 
@@ -67,23 +62,20 @@ class ChargeController extends Controller
 			->where('used', 0)
 			->where('expire_at', '>', date('Y-m-d H:i:s'))
 			->first();
-		if ($check != null) {
+		if($check != null) {
 			return $this->response();
 		}
 
 		return $this->response(1, 'error code');
 	}
 
-
-	public function sendSms (Request $request)
-	{
+	public function sendSms (Request $request) {
 		$phone = $request->get('phone');
 
 		$code    = $checkCode = random_int(1000, 9999);//验证码
-		$message = "【xxx】您的验证码是 " . $code;
+		$message = "【博士豪】" . $code . '(手机验证码，请完成验证)，如非本人操作，请忽略本短信';
 		$result  = Phone::send($phone, $message);
-
-		if ($result['code'] == 0) {
+		if($result['code'] == 0) {
 			// 写入验证码表
 			$info = [
 				'phone'      => $phone,
@@ -98,6 +90,6 @@ class ChargeController extends Controller
 			return $this->response();
 		}
 
-		return $this->response(-1,'request fail!',[],'发送短信失败');
+		return $this->response(-1, 'request fail!', [], '发送短信失败');
 	}
 }

@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Tools;
+
 use LogicException;
 
-class Phone
-{
+class Phone {
 
-	public static function send ($mobile, $text)
-	{
+	public static function send ($mobile, $text) {
 
 		$apikey = '7ce0483176e62329b772869a76b848ce'; //修改为您的apikey(https://www.yunpian.com)登录官网后获取
 		$ch     = curl_init();
@@ -32,7 +31,7 @@ class Phone
 		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 		$result = curl_exec($ch);
 		$error  = curl_error($ch);
-		if ($result === false) {
+		if($result === false) {
 			throw new LogicException('curl error!' . $error);
 		}
 

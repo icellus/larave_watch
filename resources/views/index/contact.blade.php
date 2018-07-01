@@ -67,7 +67,8 @@
                     <img class="media-object" src="/images/left.png" alt="...">
                 </a>
             </div>
-            <div class="media-body media-middle text-center font-s24" style="margin-top:16px;padding:8px 0 8px 0;background: white">
+            <div class="media-body media-middle text-center font-s24"
+                 style="margin-top:16px;padding:8px 0 8px 0;background: white">
                 <span class="color-three">1步手表情况 </span>
                 <span>-</span>
                 <span class="color-three">2步故障描述</span>
@@ -157,15 +158,17 @@
                         return false
                     }
                     $.get('/sendsms', {phone: phone}, function (data) {
-                        var getcode = setInterval(function () {
-                            $('.watch-btn-code a').text("发送成功（" + times + "）");
-                            times--;
-                            if (times == 0) {
-                                clearInterval(getcode);
-                                $('.watch-btn-code a').text("发送短信验证码");
-                                times = 60;
-                            }
-                        }, 1000)
+                        if (data.code == 0) {
+                            var getcode = setInterval(function () {
+                                $('.watch-btn-code a').text("发送成功（" + times + "）");
+                                times--;
+                                if (times == 0) {
+                                    clearInterval(getcode);
+                                    $('.watch-btn-code a').text("发送短信验证码");
+                                    times = 60;
+                                }
+                            }, 1000)
+                        }
                     })
                 }
             })
