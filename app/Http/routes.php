@@ -85,5 +85,8 @@ Route::group(['middleware' => ['admin']], function () {
 		// 权限管理
 		Route::resource('permission', 'PermissionController');
 		Route::post('permission/destroyall', ['as' => 'admin.permission.destroy.all', 'uses' => 'PermissionController@destroyAll']);
+
+		// 用户列表
+		Route::any('user',['as' => 'admin.user','uses'=> 'UserController@index']);
 	});
 });
