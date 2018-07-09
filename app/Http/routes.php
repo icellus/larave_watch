@@ -26,9 +26,9 @@ Route::group(['middleware' => ['admin']], function () {
 	Route::post('/image', 'OrderController@image');
 
 	// 支付流程页面
-	Route::get('/goods', 'GoodsController@goods');
+	Route::any('/goods', 'GoodsController@goods');
 	Route::any('/error', 'GoodsController@error');
-	Route::get('/errorpage', 'GoodsController@errorPage');
+	Route::any('/errorpage', 'GoodsController@errorPage');
 	Route::any('/contact', 'GoodsController@contact');
 	Route::any('/watch', 'GoodsController@watch');
 
@@ -37,7 +37,7 @@ Route::group(['middleware' => ['admin']], function () {
 	Route::post('/order/close', 'OrderController@close');
 	Route::post('/order/submit', 'OrderController@submit');
 
-	Route::any('pay','OrderController@pay');
+	Route::any('pay', 'OrderController@pay');
 
 	//联系我们  客服帮助
 	Route::get('/contactUs', 'ContactController@contact');
@@ -51,10 +51,9 @@ Route::group(['middleware' => ['admin']], function () {
 
 		Route::get('/home', ['as' => 'admin.home', 'uses' => 'HomeController@index']);
 
-
 		// 预约工单
 		Route::get('/reserve', ['as' => 'admin.reserve', 'uses' => 'ChargeController@index']);
-		Route::any('/reserve/handle',['as' => 'admin.reserve.handle','uses' => 'ChargeController@handle']);
+		Route::any('/reserve/handle', ['as' => 'admin.reserve.handle', 'uses' => 'ChargeController@handle']);
 
 		// 维修工单
 		Route::any('/goods', ['as' => 'admin.goods', 'uses' => 'GoodsController@index']);
@@ -67,10 +66,10 @@ Route::group(['middleware' => ['admin']], function () {
 		Route::any('/goods/courier', ['as' => 'admin.goods.courier', 'uses' => 'GoodsController@courier']);
 		Route::any('/goods/courier/update', ['as' => 'admin.goods.courier.update', 'uses' => 'GoodsController@courierUpdate']);
 
-		Route::any('/image',['as' => 'admin.image','uses' => 'GoodsController@image']);
+		Route::any('/image', ['as' => 'admin.image', 'uses' => 'GoodsController@image']);
 
 		// 财务统计
-		Route::any('/order',['as' => 'admin.order','uses' => 'OrderController@index']);
+		Route::any('/order', ['as' => 'admin.order', 'uses' => 'OrderController@index']);
 
 		// 用户管理
 		Route::resource('admin_user', 'AdminUserController');
@@ -87,8 +86,8 @@ Route::group(['middleware' => ['admin']], function () {
 		Route::post('permission/destroyall', ['as' => 'admin.permission.destroy.all', 'uses' => 'PermissionController@destroyAll']);
 
 		// 用户列表
-		Route::any('user',['as' => 'admin.user','uses'=> 'UserController@index']);
-		Route::any('/user/reserve',['as' => 'admin.user.reserve','uses'=> 'UserController@reserve']);
-		Route::any('/user/order',['as' => 'admin.user.order','uses'=> 'UserController@order']);
+		Route::any('user', ['as' => 'admin.user', 'uses' => 'UserController@index']);
+		Route::any('/user/reserve', ['as' => 'admin.user.reserve', 'uses' => 'UserController@reserve']);
+		Route::any('/user/order', ['as' => 'admin.user.order', 'uses' => 'UserController@order']);
 	});
 });

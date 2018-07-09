@@ -51,7 +51,7 @@
                     <div class="font-s18 color-six padding-top8
 @if(strpos(Request::getUri(),'/contactUs') !== false || strpos(Request::getUri(),'/help') !== false)
                             color-green
-                        @endif">客户中心</div>
+                        @endif">会员中心</div>
                 </a>
                 <div class="right-sub-menu" style="background: white">
                     <div class="media">

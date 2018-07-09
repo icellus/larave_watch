@@ -28,10 +28,11 @@
                     <img class="media-object" src="/images/left.png" alt="...">
                 </a>
             </div>
-            <div class="media-body media-middle text-center font-s24" style="margin-top:-34px;padding:8px 0 8px 0;background: white">
-                <span class="color-red">1步手表情况 </span>
+            <div class="media-body media-middle text-center font-s24"
+                 style="margin-top:-34px;padding:8px 0 8px 0;background: white">
+                <span class="color-three">1步故障描述 </span>
                 <span>-</span>
-                <span class="color-three">2步故障描述</span>
+                <span class="color-red">2步手表情况</span>
                 <span>-</span>
                 <span class="color-three">3步联系方式</span>
             </div>
@@ -40,7 +41,7 @@
     <!-- 线条 -->
     <div class="watch-border " style="position: fixed;top:50px;z-index:11"></div>
     <!-- 手表情况内容 -->
-    <div class="watch-case-cont" style="padding-top:80px;">
+    <div class="watch-case-cont" style="padding-top:50px;">
         <div class="text-center font-s16 color-six padding-top15" style="font-weight:bold">手表状况</div>
         <div class=" font-s16 color-ash padding-top15 padding-lr15">根据您的腕表当前基本情况选择，以便我们为您的腕表建立初步电子档案</div>
         <div class="container">
@@ -92,18 +93,20 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="padding-top30"><span class="color-six">重量</span><span class="color-ash">（总重）</span></div>
+                    <div class="padding-top30"><span class="color-six">重量</span><span class="color-ash">（总重）</span>
+                    </div>
                     <div class="padding-top15 wacth-weight"><input type="text" name="height">克</div>
                 </div>
 
-
-               @include('common.upload')
-
+                @include('common.upload')
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="padding-top30 color-six">备注</div>
-                    <div class="padding-top15 wacth-remarks"><input type="text" name="comment" style="width:100%" placeholder="您可以简单描述手表当前情况说明或注意事项"></div>
+                    <div class="padding-top15 wacth-remarks"><input type="text" name="comment" style="width:100%"
+                                                                    placeholder="您可以简单描述手表当前情况说明或注意事项"></div>
                 </div>
+
+                <input type="hidden" value="{{session('watch_id')}}" name="id">
                 <div class="col-xs-12 col-sm-12 col-md-12 watch-btn-next text-center padding-top30 padding-bot45">
                     <a href="javascript:;" id="goodsSubmit">下一步</a>
                 </div>

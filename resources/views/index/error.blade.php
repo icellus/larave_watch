@@ -19,46 +19,7 @@
 
 
 @section('content')
-    <!-- banner -->
-    <div class="watch-banner hidden-xs">
-        <img src="/images/banner.png">
-        <div class="watch-banner-spirit">工匠精神 极致服务</div>
-        <div class="watch-banner-repair">腕表维修 品质配件 直营保障 一年质保</div>
-    </div>
-    <!-- 专业团队 -->
-    <div class="watch-team padding-mdLR0 hidden-xs">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-                    <img src="/images/icon.png" alt="..." class="img-responsive">
-                    <div class="font-s16 color-three">专业团队</div>
-                    <div class="color-ash">原厂品质高级维修</div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-                    <img src="/images/qc.png" alt="..." class="img-responsive">
-                    <div class="font-s16 color-three">质检标准</div>
-                    <div class="color-ash">杜绝任何遗漏故障</div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-                    <img src="/images/character.png" alt="..." class="img-responsive">
-                    <div class="font-s16 color-three">品质配件</div>
-                    <div class="color-ash">高品质配件严格检验</div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-                    <img src="/images/quality.png" alt="..." class="img-responsive">
-                    <div class="font-s16 color-three">一年质保</div>
-                    <div class="color-ash">原故障免费360天</div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-                    <img src="/images/priceTransparency.png" alt="..." class="img-responsive">
-                    <div class="font-s16 color-three">价格透明</div>
-                    <div class="color-ash">维修费用公示</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- 线条 -->
-    <div class="watch-border hidden-xs"></div>
+
     <!-- 手表情况头部 -->
     <div class="watch-case" style="border-bottom: none">
         <div class="media">
@@ -67,10 +28,11 @@
                     <img class="media-object" src="/images/left.png" alt="...">
                 </a>
             </div>
-            <div class="media-body media-middle text-center font-s24" style="margin-top:16px;padding:8px 0 8px 0;background: white">
-                <span class="color-three">1步手表情况 </span>
+            <div class="media-body media-middle text-center font-s24"
+                 style="margin-top:-34px;padding:8px 0 8px 0;background: white">
+                <span class="color-red">1步故障描述 </span>
                 <span>-</span>
-                <span class="color-red">2步故障描述</span>
+                <span class="color-three">2步手表情况</span>
                 <span>-</span>
                 <span class="color-three">3步联系方式</span>
             </div>
@@ -79,7 +41,7 @@
     <!-- 线条 -->
     <div class="watch-border " style="position: fixed;top:50px;z-index:11"></div>
     <!-- 手表情况内容 -->
-    <div class="watch-case-cont" style="padding-top:80px;">
+    <div class="watch-case-cont" style="padding-top:50px;">
         <div class="text-center font-s16 color-six padding-top15">故障描述</div>
         <div class="text-center font-s16 color-ash padding-top15 padding-bot20">腕表当前故障选择，以便快速进入维修</div>
         <div class="container">
@@ -87,124 +49,123 @@
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-top15">
                     <div class="padding-top8 watch-case-list" id="error_movement">
                         <label class="color-six">机芯</label>
-                        <span class="@if($info && $info->error_movement == 1) wacth-active @endif" data-id="1"><a href="javascript:;">换电池</a></span>
-                        <span class="@if($info && $info->error_movement == 2) wacth-active @endif" data-id="2"><a href="javascript:;">停</a></span>
-                        <span class="@if($info && $info->error_movement == 3) wacth-active @endif" data-id="3"><a href="javascript:;">快</a></span>
-                        <span class="@if($info && $info->error_movement == 4) wacth-active @endif" data-id="4"><a href="javascript:;">慢</a></span>
-                        <span class="@if($info && $info->error_movement == 5) wacth-active @endif" data-id="5"><a href="javascript:;">走走停停</a></span>
+                        <span class="" data-id="1"><a href="javascript:;">换电池</a></span>
+                        <span class="" data-id="2"><a href="javascript:;">停</a></span>
+                        <span data-id="3"><a href="javascript:;">快</a></span>
+                        <span class="" data-id="4"><a href="javascript:;">慢</a></span>
+                        <span class="" data-id="5"><a href="javascript:;">走走停停</a></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-top15">
                     <div class="padding-top8 watch-case-list" id="error_case">
                         <label class="color-six">表壳</label>
-                        <span class="@if($info && $info->error_case == 1) wacth-active @endif" data-id="1"><a href="javascript:;">翻新</a></span>
-                        <span class="@if($info && $info->error_case == 2) wacth-active @endif" data-id="2"><a href="javascript:;">补钻</a></span>
-                        <span class="@if($info && $info->error_case == 3) wacth-active @endif" data-id="3"><a href="javascript:;">后加钻</a></span>
-                        <span class="@if($info && $info->error_case == 4) wacth-active @endif" data-id="4"><a href="javascript:;">更换</a></span>
-                        <span class="@if($info && $info->error_case == 5) wacth-active @endif" data-id="5"><a href="javascript:;">定制</a></span>
+                        <span class="" data-id="1"><a href="javascript:;">翻新</a></span>
+                        <span class="" data-id="2"><a href="javascript:;">补钻</a></span>
+                        <span class="" data-id="3"><a href="javascript:;">后加钻</a></span>
+                        <span class="" data-id="4"><a href="javascript:;">更换</a></span>
+                        <span class="" data-id="5"><a href="javascript:;">定制</a></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-top15">
                     <div class="padding-top8 watch-case-list" id="error_bezel">
                         <label class="color-six">表圈</label>
-                        <span class="@if($info && $info->error_bezel == 1) wacth-active @endif" data-id="1"><a href="javascript:;">翻新</a></span>
-                        <span class="@if($info && $info->error_bezel == 2) wacth-active @endif" data-id="2"><a href="javascript:;">补钻</a></span>
-                        <span class="@if($info && $info->error_bezel == 3) wacth-active @endif" data-id="3"><a href="javascript:;">后加钻</a></span>
-                        <span class="@if($info && $info->error_bezel == 4) wacth-active @endif" data-id="4"><a href="javascript:;">更换</a></span>
-                        <span class="@if($info && $info->error_bezel == 5) wacth-active @endif" data-id="5"><a href="javascript:;">定制</a></span>
+                        <span class="" data-id="1"><a href="javascript:;">翻新</a></span>
+                        <span class="" data-id="2"><a href="javascript:;">补钻</a></span>
+                        <span class="" data-id="3"><a href="javascript:;">后加钻</a></span>
+                        <span class="" data-id="4"><a href="javascript:;">更换</a></span>
+                        <span class="" data-id="5"><a href="javascript:;">定制</a></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-top15">
                     <div class="padding-top8 watch-case-list" id="error_cover">
                         <label class="color-six">底盖</label>
-                        <span class="@if($info && $info->error_cover == 1) wacth-active @endif" data-id="1"><a href="javascript:;">翻新</a></span>
-                        <span class="@if($info && $info->error_cover == 2) wacth-active @endif" data-id="2"><a href="javascript:;">更换</a></span>
-                        <span class="@if($info && $info->error_cover == 3) wacth-active @endif" data-id="3"><a href="javascript:;">定制</a></span>
+                        <span class="" data-id="1"><a href="javascript:;">翻新</a></span>
+                        <span class="" data-id="2"><a href="javascript:;">更换</a></span>
+                        <span class="" data-id="3"><a href="javascript:;">定制</a></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-top15">
                     <div class="padding-top8 watch-case-list" id="error_bade">
                         <label class="color-six">巴的</label>
-                        <span class="@if($info && $info->error_bade == 1) wacth-active @endif" data-id="1"><a href="javascript:;">翻新</a></span>
-                        <span class="@if($info && $info->error_bade == 2) wacth-active @endif" data-id="2"><a href="javascript:;">补钻</a></span>
-                        <span class="@if($info && $info->error_bade == 3) wacth-active @endif" data-id="3"><a href="javascript:;">更换</a></span>
-                        <span class="@if($info && $info->error_bade == 4) wacth-active @endif" data-id="4"><a href="javascript:;">定制</a></span>
+                        <span class="" data-id="1"><a href="javascript:;">翻新</a></span>
+                        <span class="" data-id="2"><a href="javascript:;">补钻</a></span>
+                        <span class="" data-id="3"><a href="javascript:;">更换</a></span>
+                        <span class="" data-id="4"><a href="javascript:;">定制</a></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-top15">
                     <div class="padding-top8 watch-case-list" id="error_screws">
                         <label class="color-six">螺丝</label>
-                        <span class="@if($info && $info->error_screws == 1) wacth-active @endif" data-id="1"><a href="javascript:;">翻新</a></span>
-                        <span class="@if($info && $info->error_screws == 2) wacth-active @endif" data-id="2"><a href="javascript:;">更换</a></span>
-                        <span class="@if($info && $info->error_screws == 3) wacth-active @endif" data-id="3"><a href="javascript:;">定制</a></span>
+                        <span data-id="1"><a href="javascript:;">翻新</a></span>
+                        <span class="" data-id="2"><a href="javascript:;">更换</a></span>
+                        <span class="" data-id="3"><a href="javascript:;">定制</a></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-top15">
                     <div class="padding-top8 watch-case-list" id="error_glass">
                         <label class="color-six">玻璃</label>
-                        <span class="@if($info && $info->error_glass == 1) wacth-active @endif" data-id="1"><a href="javascript:;">更换</a></span>
-                        <span class="@if($info && $info->error_glass == 2) wacth-active @endif" data-id="2"><a href="javascript:;">定制</a></span>
+                        <span class="" data-id="1"><a href="javascript:;">更换</a></span>
+                        <span class="" data-id="2"><a href="javascript:;">定制</a></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-top15">
                     <div class="padding-top8 watch-case-list" id="error_pin">
                         <label class="color-six">表针</label>
-                        <span class="@if($info && $info->error_pin == 1) wacth-active @endif" data-id="1"><a href="javascript:;">更换</a></span>
-                        <span class="@if($info && $info->error_pin == 2) wacth-active @endif" data-id="2"><a href="javascript:;">定制</a></span>
+                        <span class="" data-id="1"><a href="javascript:;">更换</a></span>
+                        <span class="" data-id="2"><a href="javascript:;">定制</a></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-top15">
                     <div class="padding-top8 watch-case-list" id="error_face">
                         <label class="color-six">字面</label>
-                        <span class="@if($info && $info->error_face == 1) wacth-active @endif" data-id="1"><a href="javascript:;">补钻</a></span>
-                        <span class="@if($info && $info->error_face == 2) wacth-active @endif" data-id="2"><a href="javascript:;">后加钻</a></span>
-                        <span class="@if($info && $info->error_face == 3) wacth-active @endif" data-id="3"><a href="javascript:;">更换</a></span>
-                        <span class="@if($info && $info->error_face == 4) wacth-active @endif" data-id="4"><a href="javascript:;">定制</a></span>
+                        <span class="" data-id="1"><a href="javascript:;">补钻</a></span>
+                        <span data-id="2"><a href="javascript:;">后加钻</a></span>
+                        <span class="" data-id="3"><a href="javascript:;">更换</a></span>
+                        <span class="" data-id="4"><a href="javascript:;">定制</a></span>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 padding-top15" >
+                <div class="col-xs-12 col-sm-6 col-md-4 padding-top15">
                     <div class="padding-top8 watch-case-list" id="error_band">
                         <label class="color-six">表带</label>
-                        <span class="@if($info && $info->error_band ==1 ) wacth-active @endif" data-id="1"><a href="javascript:;">翻新</a></span>
-                        <span class="@if($info && $info->error_band == 2) wacth-active @endif" data-id="2"><a href="javascript:;">补钻</a></span>
-                        <span class="@if($info && $info->error_band == 3) wacth-active @endif" data-id="3"><a href="javascript:;">后加钻</a></span>
-                        <span class="@if($info && $info->error_band == 4) wacth-active @endif" data-id="4"><a href="javascript:;">更换</a></span>
-                        <span class="@if($info && $info->error_band == 5) wacth-active @endif" data-id="5"><a href="javascript:;">定制</a></span>
+                        <span class="" data-id="1"><a href="javascript:;">翻新</a></span>
+                        <span class="" data-id="2"><a href="javascript:;">补钻</a></span>
+                        <span class="" data-id="3"><a href="javascript:;">后加钻</a></span>
+                        <span class="" data-id="4"><a href="javascript:;">更换</a></span>
+                        <span class="" data-id="5"><a href="javascript:;">定制</a></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-top15">
                     <div class="padding-top8 watch-case-list" id="error_clasp">
                         <label class="color-six">表扣</label>
-                        <span class="@if($info && $info->error_clasp == 1) wacth-active @endif" data-id="1"><a href="javascript:;">翻新</a></span>
-                        <span class="@if($info && $info->error_clasp == 2) wacth-active @endif" data-id="2"><a href="javascript:;">补钻</a></span>
-                        <span class="@if($info && $info->error_clasp == 3) wacth-active @endif" data-id="3"><a href="javascript:;">后加钻</a></span>
-                        <span class="@if($info && $info->error_clasp == 4) wacth-active @endif" data-id="4"><a href="javascript:;">更换</a></span>
-                        <span class="@if($info && $info->error_clasp == 5) wacth-active @endif" data-id="5"><a href="javascript:;">定制</a></span>
+                        <span class="" data-id="1"><a href="javascript:;">翻新</a></span>
+                        <span class="" data-id="2"><a href="javascript:;">补钻</a></span>
+                        <span class="" data-id="3"><a href="javascript:;">后加钻</a></span>
+                        <span class="" data-id="4"><a href="javascript:;">更换</a></span>
+                        <span class="" data-id="5"><a href="javascript:;">定制</a></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 padding-top15 ">
                     <div class="padding-top8 watch-case-list" id="error_function">
                         <label class="color-six">功能</label>
-                        <span class="@if($info && $info->error_function == 1) wacth-active @endif" data-id="1"><a href="javascript:;">不防水了</a></span>
+                        <span class="" data-id="1"><a href="javascript:;">不防水了</a></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 padding-top15">
                     <textarea class="ErrorDescription-res" placeholder="其他故障问题补充描述" rows="3" name="error_comment"
-                              value="{{ $info ? $info->error_comment : ''}}">
+                              value="">
 
                     </textarea>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 padding-top15 ">
                     <div class="padding-top8 watch-case-list">
                         <label class="color-six">取货方式</label>
-                        <div  id="courier">
-                            <span class="@if($courier && $courier->type == 0) wacth-active @endif" data-id="0"><a href="javascript:;">自取</a></span>
-                            <span class="@if($courier && $courier->type == 1) wacth-active @endif" data-id="1"><a href="javascript:;">顺丰快递</a></span>
+                        <div id="courier">
+                            <span class="" data-id="0"><a href="javascript:;">自取</a></span>
+                            <span class="" data-id="1"><a href="javascript:;">顺丰快递</a></span>
                         </div>
-                        <input type="text" name="number" placeholder="请填写快递单号" value="{{$courier ? $courier->number : ''}}">
+                        <input type="text" name="number" placeholder="请填写快递单号" value="">
                     </div>
                 </div>
-                <input type="hidden" value="{{$info ? $info->id : ''}}" name="id">
                 <div class="col-xs-12 col-sm-12 col-md-12 padding-top15 color-ash">注：维修费用不包含快递及保价....</div>
                 <div class="col-xs-12 col-sm-12 col-md-12 watch-btn-next text-center padding-top30 padding-bot45">
                     <a href="javascript:;" id="errorSubmit">下一步</a>

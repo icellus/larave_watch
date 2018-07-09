@@ -19,46 +19,6 @@
 
 
 @section('content')
-    <!-- banner -->
-    <div class="watch-banner hidden-xs">
-        <img src="/images/banner.png">
-        <div class="watch-banner-spirit">工匠精神 极致服务</div>
-        <div class="watch-banner-repair">腕表维修 品质配件 直营保障 一年质保</div>
-    </div>
-    <!-- 专业团队 -->
-    <div class="watch-team padding-mdLR0 hidden-xs">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-                    <img src="/images/icon.png" alt="..." class="img-responsive">
-                    <div class="font-s16 color-three">专业团队</div>
-                    <div class="color-ash">原厂品质高级维修</div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-                    <img src="/images/qc.png" alt="..." class="img-responsive">
-                    <div class="font-s16 color-three">质检标准</div>
-                    <div class="color-ash">杜绝任何遗漏故障</div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-                    <img src="/images/character.png" alt="..." class="img-responsive">
-                    <div class="font-s16 color-three">品质配件</div>
-                    <div class="color-ash">高品质配件严格检验</div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-                    <img src="/images/quality.png" alt="..." class="img-responsive">
-                    <div class="font-s16 color-three">一年质保</div>
-                    <div class="color-ash">原故障免费360天</div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-3 reset-width20 text-center">
-                    <img src="/images/priceTransparency.png" alt="..." class="img-responsive">
-                    <div class="font-s16 color-three">价格透明</div>
-                    <div class="color-ash">维修费用公示</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- 线条 -->
-    <div class="watch-border hidden-xs"></div>
     <!-- 手表情况头部 -->
     <div class="watch-case" style="border-bottom: none">
         <div class="media">
@@ -68,10 +28,10 @@
                 </a>
             </div>
             <div class="media-body media-middle text-center font-s24"
-                 style="margin-top:16px;padding:8px 0 8px 0;background: white">
-                <span class="color-three">1步手表情况 </span>
+                 style="margin-top:-34px;padding:8px 0 8px 0;background: white">
+                <span class="color-three">1步故障描述 </span>
                 <span>-</span>
-                <span class="color-three">2步故障描述</span>
+                <span class="color-three">2步手表情况</span>
                 <span>-</span>
                 <span class="color-red">3步联系方式</span>
             </div>
@@ -80,7 +40,7 @@
     <!-- 线条 -->
     <div class="watch-border " style="position: fixed;top:50px;z-index:11"></div>
     <!-- 联系方式内容 -->
-    <div class="watch-contact-information" style="padding-top:80px;">
+    <div class="watch-contact-information" style="padding-top:50px;">
         <div class="text-center font-s16 color-six padding-top15">联系方式</div>
         <div class="text-center color-ash padding-top15 padding-bot20">请详细填写联系地址及联系人快递收货使用</div>
         <div class="container">

@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 class GoodsController extends Controller {
 
 	public function goods () {
-
 		return view('index.goods');
 	}
 
@@ -20,23 +19,19 @@ class GoodsController extends Controller {
 	public function error (Request $request) {
 		$data = $request->all();
 
-		$image = $data['img'];
-		unset($data['img']);
+		$courier = [
+			'type'   => $data['courier'],
+			'number' => $data['number'],
+		];
+		unset($data['courier']);
+		unset($data['number']);
 
 		$id = DB::table('t_watch')->insertGetId($data);
-		session(['watch_id' => $id]);
 
-		$images = explode(',', $image);
-		foreach ($images as $v) {
-			if($v) {
-				DB::table('t_image')->insert([
-					'watch_id'   => $id,
-					'uploader'   => 1,
-					'img_url'    => $v,
-					'created_at' => date('Y-m-d H:i:s'),
-				]);
-			}
-		}
+		$courier['id'] = $id;
+		$insert        = DB::table('t_courier')->insert($courier);
+
+		session(['watch_id' => $id]);
 
 		return $this->response();
 	}
@@ -59,20 +54,27 @@ class GoodsController extends Controller {
 	}
 
 	public function contact (Request $request) {
+
 		$data = $request->all();
 		$id   = $data['id'];
 		unset($data['id']);
 
-		$courier = [
-			'watch_id' => $id,
-			'type'     => $data['courier'],
-			'number'   => $data['number'],
-		];
-		unset($data['courier']);
-		unset($data['number']);
+		$image = $data['img'];
+		unset($data['img']);
 
-		$update = DB::table('t_watch')->where('id', $id)->update($data);
-		$insert = DB::table('t_courier')->insert($courier);
+		$id = DB::table('t_watch')->where('id', $id)->update($data);
+
+		$images = explode(',', $image);
+		foreach ($images as $v) {
+			if($v) {
+				DB::table('t_image')->insert([
+					'watch_id'   => $id,
+					'uploader'   => 1,
+					'img_url'    => $v,
+					'created_at' => date('Y-m-d H:i:s'),
+				]);
+			}
+		}
 
 		return $this->response();
 	}
@@ -84,7 +86,6 @@ class GoodsController extends Controller {
 			unset($data['id']);
 
 			$order = DB::table('t_orders')->where('id', $id)->value('id');
-
 			if($order) {
 				return $this->response(0, '', [], '您已经提交过该腕表的维修工单啦！');
 			}
@@ -108,6 +109,7 @@ class GoodsController extends Controller {
 			DB::table('t_verify_codes')->where('code', $data['code'])->where('phone', $data['phone'])->update(['used' => 1]);
 			unset($data['code']);
 
+			// 查询用户信息 如果不在就更新用户信息
 			$phone = $data['phone'];
 			$user  = (array)$user = DB::table('t_user')->where('phone', $phone)->first();
 			if(!$user) {
@@ -131,6 +133,7 @@ class GoodsController extends Controller {
 
 			// 更新用户地址信息
 			DB::table('t_watch')->where('id', $id)->update([
+				'user_id'  => $user['id'],
 				'province' => $data['province'],
 				'city'     => $data['city'],
 				'district' => $data['district'],

@@ -178,9 +178,15 @@ $(function () {
                     imgs.push($(this).attr('src'));
                 });
                 imgs = imgs.join(',');//数组转字符串
-                
-                $.post('/error', {
-                    img:imgs,
+
+                var id = $("input[name='id']").val();
+
+                if (!id) {
+                    alert('请先填写腕表详细情况');
+                }
+                $.post('/contact', {
+                    id: id,
+                    img: imgs,
                     movement: movement,
                     watch_case: watch_case,
                     watch_band: watch_band,
@@ -190,7 +196,7 @@ $(function () {
                     height: height,
                     watch_comment: comment,
                 }, function (data) {
-                    window.location.href = '/errorpage';
+                    window.location.href = '/watch';
                 })
             }
         }, 200);
@@ -214,7 +220,6 @@ $(function () {
         var courier = '';
         var error_comment = $("input[name='error_comment']").val();
         var number = $("input[name='number']").val();
-        var id = $("input[name='id']").val();
         $('#error_movement span').each(function (index, element) {
             if ($(element).is('.wacth-active')) {
                 error_movement = $(this).data('id');
@@ -290,15 +295,15 @@ $(function () {
         $('#courier span').each(function (index, element) {
             if ($(element).is('.wacth-active')) {
                 courier = $(this).data('id');
+                if (!courier) {
+                    courier = ''
+                }
                 return;
             }
         })
 
 
-        if (!id) {
-            alert('请先填写腕表详细情况');
-        }
-        $.post('/contact', {
+        $.post('/error', {
             error_movement: error_movement,
             error_case: error_case,
             error_bezel: error_bezel,
@@ -313,10 +318,9 @@ $(function () {
             error_function: error_function,
             error_comment: error_comment,
             number: number,
-            courier: courier,
-            id: id
+            courier: courier
         }, function (data) {
-            window.location.href = '/watch';
+            window.location.href = '/goods';
         })
     })
 
