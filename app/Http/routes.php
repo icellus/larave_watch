@@ -88,5 +88,7 @@ Route::group(['middleware' => ['admin']], function () {
 
 		// 用户列表
 		Route::any('user',['as' => 'admin.user','uses'=> 'UserController@index']);
+		Route::any('/user/reserve',['as' => 'admin.user.reserve','uses'=> 'UserController@reserve']);
+		Route::any('/user/order',['as' => 'admin.user.order','uses'=> 'UserController@order']);
 	});
 });

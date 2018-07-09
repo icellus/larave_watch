@@ -3,8 +3,8 @@
 @section('content')
 
     <div class="pageheader">
-        <h2><i class="fa fa-user"></i> 会员中心 <span>会员列表</span></h2>
-        {!! Breadcrumbs::render('admin-users') !!}
+        <h2><i class="fa fa-user"></i> 会员中心 <span>预约记录</span></h2>
+        {!! Breadcrumbs::render('admin-users-reserve') !!}
     </div>
 
     <div class="contentpanel panel-email">
@@ -16,7 +16,7 @@
 
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h5 class="subtitle mb5">会员中心</h5>
+                        <h5 class="subtitle mb5">预约记录</h5>
 
                         @include('admin._partials.show-page-status',['result'=>$data])
 
@@ -27,26 +27,26 @@
                                 <tr>
                                     <th>用户名</th>
                                     <th>手机号</th>
-                                    <th>消费总金额</th>
-                                    <th>创建时间</th>
-                                    <th>操作</th>
+                                    <th>预约时间</th>
+                                    <th>处理时间</th>
+                                    <th>当前状态</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($data as $user)
+                                @foreach($data as $v)
                                     <tr>
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->phone }}</td>
                                         <td>
-                                            ￥{{number_format($user->pay / 100,2)}}
+                                            {{$v->created_at}}
                                         </td>
-                                        <td>{{ $user->created_at }}</td>
+                                        <td>{{ $v->handle_time }}</td>
                                         <td>
-                                            <a href="{{route('admin.user.reserve',['id' => $user->id])}}"
-                                                   class="btn btn-white btn-xs reserve-handle"><i class="fa"></i> 预约记录</a>
-                                            <a href="{{route('admin.user.order',['id' => $user->id])}}"
-                                                   class="btn btn-white btn-xs reserve-handle"><i class="fa"></i> 维修记录</a>
-
+                                            @if($v->status == 0)
+                                                <span class="badge">未处理</span>
+                                            @else
+                                                <span class="badge badge-info">已处理</span>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
