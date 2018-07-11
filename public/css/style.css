@@ -1,5 +1,4 @@
 /*-------------腕表维修---------------*/
-
 /*极速预约*/
 .watch-Rapid-booking input{
 	padding:5px;
@@ -316,20 +315,4 @@
 	.watch-Rapid-booking-s12{
 		font-size: 12px;
 	}
-}
-
-.orderListPart {
-	width: 100%;
-	height: 120px;
-	cursor: pointer;
-}
-
-
-.checkImg {
-	position: absolute;
-	display: none;
-	left: 292px;
-	top: 24px;
-	width: 25px;
-	height: 25px
 }

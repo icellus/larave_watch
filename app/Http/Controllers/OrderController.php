@@ -137,7 +137,7 @@ class OrderController extends Controller {
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function index ($status = 0) {
-		$userId = session('user_id', 3);
+		$userId = session('user_id');
 		$orders = DB::table('t_orders')->where('user_id', $userId)->where(function ($query) use ($status) {
 			if($status >= 5) $query->where('status', '>=', 5);
 			if($status < 5) $query->where('status', $status);

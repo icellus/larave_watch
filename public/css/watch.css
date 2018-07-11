@@ -1,0 +1,319 @@
+body {
+	padding: 8.0rem 0;
+	font-family:PingFangSC-Light,helvetica neue,hiragino sans gb,arial,microsoft yahei ui,microsoft yahei,simsun,sans-serif;
+	font-size: 14px;
+	-webkit-font-smoothing: antialiased;
+	font-weight: 300;
+	font-style:normal;
+	line-height:1.8em;
+	color: #493e38;
+	overflow-x: hidden;
+}
+/*框架*/
+.navbar-inverse {
+    background-color: #FFFFFF;
+    border-color: #EEEEEE;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #666666;
+}
+
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+    color: #333333;
+    background-color: transparent;
+}
+.nav-top{text-align: center; padding: 12px 0;}
+
+
+.top{
+	margin-top: 60px;
+}
+.down{
+	margin-bottom: 100px;
+}
+
+.footer-nav {
+    color: #000;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #FFF;
+    border-top: 1px solid #ccc;
+    padding:6px 0; 
+}
+
+.footer-nav img{
+	width: 28px;
+	height: 28px;
+	padding:2px; 
+}
+
+.footer-nav a,a:focus, a:hover{
+	color: #666666;
+	text-decoration: none;
+}
+/*故障描述*/
+
+
+.question .list-inline a {
+    color: #8a8a8a;
+}
+.question_but{
+	background: #ededed;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 2px 4px;
+}
+
+
+.wacth-up-photo{
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.standard{
+	margin-top: 20px;
+}
+/*维修状态*/
+.nav-tabs {
+    border-bottom: 0px solid #ddd;
+    padding-left: 10px;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    cursor: default;
+    background-color: #fff;
+    border: 0px solid #ddd;
+    border-bottom-color: transparent;
+}
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 8px;
+}
+
+
+.list-img li img{
+    width: 80px;
+    height: 80px;
+}
+
+.list-underline{
+    border-bottom: 1px solid #EEEEEE;
+    margin:5px 0; 
+}
+/*user_face*/
+.user_face{
+    background-color: #F03046;
+    height: 220px;
+    padding: 60px 0 0 0;
+    color: #ffffff;
+    margin-top: -40px;
+}
+.user_face img{
+    width: 80px;
+    height: 80px;
+}
+.user-state ul li{
+    padding: 10px 5px;
+}
+.user-state li img{
+    width: 40px;
+    height: 40px;
+}
+.user-state{
+    border-bottom: 1px solid #EEEEEE;
+}
+.user_server{
+    border-bottom: 1px solid #EEEEEE;
+    padding: 50px 0;
+}
+
+/**/
+.watch-btn-next a {
+    color: #FFF;
+    background: #1bb71f;
+    padding: 10px 40px;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+/*新增修改*/
+a{
+    color: #333;
+}
+.newhtader-active{
+    color: red !important;
+}
+body{
+    padding: 6em 0;
+}
+.question_but a{
+    display: block;
+}
+.question_but-active{
+    background: #1bb71f !important;
+}
+.question_but-active a{
+    color: #FFF !important;
+}
+.question textarea{
+    margin-bottom: 20px;
+}
+.new-pick{
+    padding-left: 0;
+    margin-left: -5px;
+    list-style: none;
+}
+.new-pick>li{
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.btn-success a{
+    color: #FFF;
+}
+.new-footer-item{
+    color: #1bb71f;
+}
+.new-service-order .container,.new-service-order .container .row{
+    padding: 0;
+}
+.new-service-order .container .list-inline{
+    margin-bottom: 0;
+}
+.new-service-order .container .list-inline li{
+    min-height:49px;
+    line-height: 49px; 
+}
+.new-service-order .container .list-inline li a{
+    display: block;
+}
+.new-service-order-active{
+    border-bottom: 1px solid red;
+}
+.new-service-order-active a{
+    color: red;
+}
+.new-login-bg{
+    position: fixed;
+    left: 0;
+    top: 50px;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    z-index: 99;
+    opacity: 0.3;
+}
+.new-login{
+    position: fixed;
+    width: 70%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 25%;
+    background: #FFF;
+    padding: 20px;
+    z-index: 999;
+}
+.new-login-header{
+    margin-bottom: 20px;
+}
+.new-login-header span{
+    position: absolute;
+    right: 20px;
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+}
+.new-login-cont input[name='phone']{
+    width: 100%;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    height: 35px;
+}
+.new-login-code{
+    margin-bottom: 20px;
+}
+.new-login-cont input[name='imgcode'],.new-login-cont input[name='code']{
+    width: 40%;
+    padding-left: 10px;
+    display: inline-block;
+    height: 35px;
+    margin-right: 10px;
+}
+.new-login-code img,.new-login-code>div{
+    display: inline-block;
+    height: 35px;
+}
+.new-login-code>div{
+    background: #ccc;
+    width: 50%;
+    text-align: center;
+}
+.new-login-code>div a{
+    display: block;
+    padding: 5px;
+}
+.new-login-cont button{
+    width: 100%;
+    background: #1bb71f;
+    border:none;
+    color: #FFF;
+    outline:none;
+    padding: 5px 0
+}
+.ContactInfoform>div{
+    margin-bottom: 20px;
+}
+.ContactInfoform input{
+    padding-left: 5px;
+}
+.ContactInfoform input[name='captcha']{
+    display: inline-block;
+    width: 100px;
+    margin-right: 20px;
+}
+#img-captcha{
+    display: inline-block;
+    height: 31px;
+}
+.ContactInfoform input[name='code']{
+    display: inline-block;
+    width: 100px;
+    margin-right: 20px;
+}
+.watch-btn-code a{
+    display: inline-block;
+    height: 31px;
+    line-height: 31px;
+    background: #ccc;
+    width: 120px;
+}
+#contactForm{
+    padding: 8px 30px;
+}
+.ContactInfoform{
+    margin-top: 20px;
+}
+.ContactInfoform select{
+    height: 31px;
+    line-height: 31px;
+    padding-left: 2px;
+    margin-bottom: 10px;
+}
+
+/*Validform*/
+.Validform_checktip{margin-left:8px;line-height:20px;height:20px;overflow:hidden;color:#999;font-size:12px}
+.Validform_right{color:#71b83d;padding-left:20px;background:url(../images/right.png) no-repeat left center}
+.Validform_wrong{color:red;padding-left:20px;white-space:nowrap;background:url(../images/error.png) no-repeat left center}
+.Validform_loading{padding-left:20px;background:url(../images/onLoad.gif) no-repeat left center}
+.Validform_error{background-color:#ffe7e7}
+#Validform_msg{color:#7d8289;font:12px/1.5 tahoma,arial,\5b8b\4f53,sans-serif;width:280px;-webkit-box-shadow:2px 2px 3px #aaa;-moz-box-shadow:2px 2px 3px #aaa;background:#fff;position:absolute;top:0;right:50px;z-index:99999;display:none;filter:progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#999999')}
+#Validform_msg .iframe{position:absolute;left:0;top:-1px;z-index:-1}
+#Validform_msg .Validform_title{line-height:25px;height:25px;text-align:left;font-weight:700;padding:0 8px;color:#fff;position:relative;background-color:#666}
+#Validform_msg a.Validform_close:link,#Validform_msg a.Validform_close:visited{line-height:22px;position:absolute;right:8px;top:0;color:#fff;text-decoration:none}
+#Validform_msg a.Validform_close:hover{color:#cc0}
+#Validform_msg .Validform_info{padding:8px;border:1px solid #666;border-top:none;text-align:left}

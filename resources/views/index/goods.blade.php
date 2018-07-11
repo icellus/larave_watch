@@ -6,121 +6,106 @@
 @section('page_css')
 
     <link rel="stylesheet" type="text/css" href="/css/upload.css">
-    {{--<style type="text/css">
-        @media (max-width: 768px){
-            body{
-                font-family:PingFangSC-Light,helvetica neue,hiragino sans gb,arial,microsoft yahei ui,microsoft yahei,simsun,sans-serif;
-                font-size: 14px;
-                padding-bottom: 80px;
-                padding-top: 50px;
-            }
-        }
-    </style>--}}
 @endsection
 
 
 @section('content')
-    <!-- 手表情况头部 -->
-    <div class="watch-case" style="border-bottom: none">
-        <div class="media">
-            <div class="media-left media-middle">
-                <a href="/">
-                    <img class="media-object" src="/images/left.png" alt="...">
-                </a>
-            </div>
-            <div class="media-body media-middle text-center font-s24"
-                 style="margin-top:-34px;padding:8px 0 8px 0;background: white">
-                <span class="color-three">1步故障描述 </span>
-                <span>-</span>
-                <span class="color-red">2步手表情况</span>
-                <span>-</span>
-                <span class="color-three">3步联系方式</span>
+    <!-- nav -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="row nav-top">
+                <ul class="list-inline">
+                    <li><a href="/index">1步故障描述</a></li>
+                    <li><a href="/goods" class="newhtader-active">2步手表情况</a></li>
+                    <li><a href="/contact">3步联系方式</a></li>
+                </ul>
             </div>
         </div>
+    </nav>
+    <!-- nav -->
+    <div class="container">
+        <div class="row  text-center">
+            <p>腕表基本情况</p>
+            <p>您的腕表当前基本情况选择，以便我们为您的腕表建立初步电子档案。</p>
+        </div>
     </div>
-    <!-- 线条 -->
-    <div class="watch-border " style="position: fixed;top:50px;z-index:11"></div>
-    <!-- 手表情况内容 -->
-    <div class="watch-case-cont" style="padding-top:50px;">
-        <div class="text-center font-s16 color-six padding-top15" style="font-weight:bold">手表状况</div>
-        <div class=" font-s16 color-ash padding-top15 padding-lr15">根据您的腕表当前基本情况选择，以便我们为您的腕表建立初步电子档案</div>
+
+
+    <div class="container">
+        <div class="row question">
+            <!--  -->
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <ul class="list-inline" id="movement">
+                    <li>机芯:</li>
+                    <li class="question_but" data-id="0"><a href="javascript:;">石英机芯</a></li>
+                    <li class="question_but" data-id="1"><a href="javascript:;">机械机芯</a></li>
+                    <li class="question_but" data-id="2"><a href="javascript:;">多功能机芯</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <ul class="list-inline" id="watch_case">
+                    <li>表壳:</li>
+                    <li class="question_but" data-id="0"><a href="javascript:;">不锈钢</a></li>
+                    <li class="question_but" data-id="1"><a href="javascript:;">18K金</a></li>
+                    <li class="question_but" data-id="2"><a href="javascript:;">千足金</a></li>
+                    <li class="question_but" data-id="3"><a href="javascript:;">钻石</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <ul class="list-inline" id="watch_face">
+                    <li>字面:</li>
+                    <li class="question_but" data-id="0"><a href="javascript:;">普通字面</a></li>
+                    <li class="question_but" data-id="1"><a href="javascript:;">时位钻字面</a></li>
+                    <li class="question_but" data-id="2"><a href="javascript:;">满天星字面</a></li>
+                    <li class="question_but" data-id="3"><a href="javascript:;">多功能字面</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <ul class="list-inline" id="watch_band">
+                    <li>表带:</li>
+                    <li class="question_but" data-id="0"><a href="javascript:;">牛皮</a></li>
+                    <li class="question_but" data-id="1"><a href="javascript:;">鳄鱼皮</a></li>
+                    <li class="question_but" data-id="2"><a href="javascript:;">不锈钢</a></li>
+                    <li class="question_but" data-id="3"><a href="javascript:;">18K金</a></li>
+                    <li class="question_but" data-id="4"><a href="javascript:;">千足金</a></li>
+                    <li class="question_but" data-id="5"><a href="javascript:;">钻石</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <ul class="list-inline" id="watch_clasp">
+                    <li>表扣:</li>
+                    <li class="question_but" data-id="0"><a href="javascript:;">不锈钢</a></li>
+                    <li class="question_but" data-id="1"><a href="javascript:;">18K金</a></li>
+                    <li class="question_but" data-id="2"><a href="javascript:;">钻石</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <ul class="list-inline">
+                    <li>重量:</li>
+                    <li><input type="text" class="form-control" placeholder="总重量多少克" name="height"></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <textarea name="comment" class="form-control" rows="3" placeholder="您可以简单描述手表当前情况说明或注意事项"></textarea>
+            </div>
+
+            @include('common.upload')
+
+            <input type="hidden" value="{{session('watch_id')}}" name="id">
+            <div class="row text-center">
+                <button type="button" class="btn btn-success" id="goodsSubmit"><a href="javascript:;">点击进入下一步</a>
+                </button>
+            </div>
+        </div>
+
         <div class="container">
-
-            <div class="row">
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                    <div class="padding-top30 color-six">机芯</div>
-                    <div class="padding-top8 watch-case-list" id="movement">
-                        <span data-id="0"><a href="javascript:;">石英机芯</a></span>
-                        <span data-id="1"><a href="javascript:;">机械机芯</a></span>
-                        <span data-id="2"><a href="javascript:;">多功能机芯</a></span>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                    <div class="padding-top30 color-six">表壳</div>
-                    <div class="padding-top8 watch-case-list" id="watch_case">
-                        <span data-id="0"><a href="javascript:;">不锈钢</a></span>
-                        <span data-id="1"><a href="javascript:;">18K金</a></span>
-                        <span data-id="2"><a href="javascript:;">千足金</a></span>
-                        <span data-id="3"><a href="javascript:;">钻石</a></span>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                    <div class="padding-top30 color-six">字面</div>
-                    <div class="padding-top8 watch-case-list" id="watch_face">
-                        <span data-id="0"><a href="javascript:;">普通字面</a></span>
-                        <span data-id="1"><a href="javascript:;">时位钻字面</a></span>
-                        <span data-id="2"><a href="javascript:;">满天星字面</a></span>
-                        <span data-id="3"><a href="javascript:;">多功能字面</a></span>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                    <div class="padding-top30">表带</div>
-                    <div class="padding-top8 watch-case-list" id="watch_band">
-                        <span data-id="0"><a href="javascript:;">牛皮</a></span>
-                        <span data-id="1"><a href="javascript:;">鳄鱼皮</a></span>
-                        <span data-id="2"><a href="javascript:;">不锈钢</a></span>
-                        <span data-id="3"><a href="javascript:;">18K金</a></span>
-                        <span data-id="4"><a href="javascript:;">千足金</a></span>
-                        <span data-id="5"><a href="javascript:;">钻石</a></span>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                    <div class="padding-top30 color-six">表扣</div>
-                    <div class="padding-top8 watch-case-list" id="watch_clasp">
-                        <span data-id="0"><a href="javascript:;">不锈钢</a></span>
-                        <span data-id="1"><a href="javascript:;">18K金</a></span>
-                        <span data-id="2"><a href="javascript:;">钻石</a></span>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="padding-top30"><span class="color-six">重量</span><span class="color-ash">（总重）</span>
-                    </div>
-                    <div class="padding-top15 wacth-weight"><input type="text" name="height">克</div>
-                </div>
-
-                @include('common.upload')
-
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="padding-top30 color-six">备注</div>
-                    <div class="padding-top15 wacth-remarks"><input type="text" name="comment" style="width:100%"
-                                                                    placeholder="您可以简单描述手表当前情况说明或注意事项"></div>
-                </div>
-
-                <input type="hidden" value="{{session('watch_id')}}" name="id">
-                <div class="col-xs-12 col-sm-12 col-md-12 watch-btn-next text-center padding-top30 padding-bot45">
-                    <a href="javascript:;" id="goodsSubmit">下一步</a>
-                </div>
+            <div class="row down">
             </div>
         </div>
     </div>
 @endsection
 
 
-
-
 @section('page_js')
-
     <script type="text/javascript" src="/js/upload.js"></script>
-
-
 @endsection

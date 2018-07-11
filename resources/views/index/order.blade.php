@@ -5,6 +5,11 @@
 
 @section('page_css')
 
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <!-- 通用 -->
+    <link rel="stylesheet" type="text/css" href="/css/global.css">
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
     {{--<style type="text/css">
         @media (max-width: 768px){
             body{
@@ -19,45 +24,46 @@
 
 
 @section('content')
-    <!-- 工单详情 -->
-    <div class="WorkOrderDetails">
-        <div class="container-fluid WorkOrderDetails-list">
-            <div class="row">
-                <div class="col-xs-2 col-sm-2 col-md-2 text-center">
-                    <div @if($status == 0)class="WorkOrderDetails-active" @endif><a href="/order/0">待维修
-                            <div></div>
-                        </a></div>
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2 text-center">
-                    <div @if($status == 1)class="WorkOrderDetails-active" @endif><a href="/order/1">已收货
-                            <div></div>
-                        </a></div>
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2 text-center">
-                    <div @if($status == 2)class="WorkOrderDetails-active" @endif><a href="/order/2">待确认
-                            <div></div>
-                        </a></div>
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2 text-center">
-                    <div @if($status == 3)class="WorkOrderDetails-active" @endif><a href="/order/3">维修中
-                            <div></div>
-                        </a></div>
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2 text-center">
-                    <div @if($status == 4)class="WorkOrderDetails-active" @endif><a href="/order/4">待付款
-                            <div></div>
-                        </a></div>
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2 text-center">
-                    <div @if($status == 5)class="WorkOrderDetails-active" @endif><a href="/order/5">已完成
-                            <div></div>
-                        </a></div>
-                </div>
+    <!-- nav -->
+    <nav class="navbar navbar-inverse navbar-fixed-top new-service-order">
+        <div class="container">
+            <div class="row nav-top">
+                <ul class="list-inline">
+                    <li @if($status == 0)class="new-service-order-active" @endif>
+                        <a href="/order/0">
+                            待维修
+                        </a>
+                    </li>
+                    <li @if($status == 1)class="new-service-order-active" @endif>
+                        <a href="/order/1">
+                            已收货
+                        </a>
+                    </li>
+                    <li @if($status == 2)class="new-service-order-active" @endif>
+                        <a href="/order/2">
+                            待确认
+                        </a>
+                    </li>
+                    <li @if($status == 3)class="new-service-order-active" @endif>
+                        <a href="/order/3">
+                            维修中
+                        </a>
+                    </li>
+                    <li @if($status == 4)class="new-service-order-active" @endif>
+                        <a href="/order/4">
+                            待付款
+                        </a>
+                    </li>
+                    <li @if($status == 5)class="new-service-order-active" @endif>
+                        <a href="/order/5">
+                            已完成
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </div>
-    <!-- 线条 -->
-    <div class="watch-border-black2"></div>
+    </nav>
+    <!-- nav -->
 
     <!-- 总体 -->
     <div class="watch-Totality">
@@ -139,7 +145,8 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
                                         @foreach ($order->images[1] as $k => $v)
                                             <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                                <img src="{{$v->img_url}}" class="img-responsive" style="max-width: 102px">
+                                                <img src="{{$v->img_url}}" class="img-responsive"
+                                                     style="max-width: 102px">
                                             </div>
                                         @endforeach
                                     </div>
@@ -330,7 +337,8 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
                                         @foreach ($order->images[2] as $k => $v)
                                             <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                                <img src="{{$v->img_url}}" class="img-responsive" style="max-width: 102px">
+                                                <img src="{{$v->img_url}}" class="img-responsive"
+                                                     style="max-width: 102px">
                                             </div>
                                         @endforeach
                                     </div>
@@ -345,7 +353,8 @@
                                     <div class="WorkOrderDetails-first-left padding-top8">
                                         <span class="color-red">费用合计：¥{{number_format($order->price / 100,2)}}</span>
                                     </div>
-                                    <div class="WorkOrderDetails-first-right order-Cancel-determine padding-top8  order-pay" data-id="{{$order->id}}">
+                                    <div class="WorkOrderDetails-first-right order-Cancel-determine padding-top8  order-pay"
+                                         data-id="{{$order->id}}">
                                         <span><a class="order-active" href="javascript:;">确认付款</a></span>
                                     </div>
                                 </div>
@@ -404,7 +413,8 @@
                                         <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
                                             @foreach ($order->images[2] as $k => $v)
                                                 <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                                    <img src="{{$v->img_url}}" class="img-responsive" style="max-width: 102px">
+                                                    <img src="{{$v->img_url}}" class="img-responsive"
+                                                         style="max-width: 102px">
                                                 </div>
                                             @endforeach
                                         </div>
@@ -420,14 +430,7 @@
                                     <div class="WorkOrderDetails-first-left padding-top8">
                                         <span class="color-red">费用合计：¥{{number_format($order->price /100 ,2)}}</span>
                                     </div>
-
-
                                 </div>
-                                {{--@if($order->status == 7)--}}
-                                {{--<div class="col-xs-12 col-sm-12 col-md-12 clearfix">--}}
-                                {{--订单取消时间:{{$order->cancel_time}}--}}
-                                {{--</div>--}}
-                                {{--@endif--}}
                             </div>
                         </div>
                     @endif
@@ -436,6 +439,34 @@
 
             </div>
         @endforeach
+    </div>
+
+
+    <!-- 登录框 -->
+    @if(session('user_id')  == null)
+        <div class="new-login-bg"></div>
+        <div class="new-login">
+            <div class="new-login-header">
+                验证码登录
+                <span>X</span>
+            </div>
+            <div class="new-login-cont">
+                <input type="text" name="phone" placeholder="手机号">
+                <div class="new-login-code">
+                    <input type="text" name="imgcode" placeholder="图形验证">
+                    <img src="http://cui.jinjifu.com/captcha/default?kNFUPhpD"  id = 'img-captcha'>
+                </div>
+                <div class="new-login-code">
+                    <input type="text" name="code" placeholder="短信验证">
+                    <div><a href="javascript:;" class="SendCode">发送验证码</a></div>
+                </div>
+                <button>登录</button>
+            </div>
+        </div>
+    @endif
+    <div class="container">
+        <div class="row">
+        </div>
     </div>
 
 @endsection

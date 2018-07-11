@@ -19,78 +19,86 @@
 
 
 @section('content')
-    <!-- 手表情况头部 -->
-    <div class="watch-case" style="border-bottom: none">
-        <div class="media">
-            <div class="media-left media-middle">
-                <a href="/errorpage">
-                    <img class="media-object" src="/images/left.png" alt="...">
-                </a>
-            </div>
-            <div class="media-body media-middle text-center font-s24"
-                 style="margin-top:-34px;padding:8px 0 8px 0;background: white">
-                <span class="color-three">1步故障描述 </span>
-                <span>-</span>
-                <span class="color-three">2步手表情况</span>
-                <span>-</span>
-                <span class="color-red">3步联系方式</span>
-            </div>
-        </div>
-    </div>
-    <!-- 线条 -->
-    <div class="watch-border " style="position: fixed;top:50px;z-index:11"></div>
-    <!-- 联系方式内容 -->
-    <div class="watch-contact-information" style="padding-top:50px;">
-        <div class="text-center font-s16 color-six padding-top15">联系方式</div>
-        <div class="text-center color-ash padding-top15 padding-bot20">请详细填写联系地址及联系人快递收货使用</div>
+    <!-- nav -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="row">
-                <form class="ContactInfoform" method="post" action="/watch">
-                    <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
-                        <label class="color-seven">姓名：</label>
-                        <input type="text" name="name" placeholder="请填写你的姓名" datatype="*" nullmsg="请填写姓名"
-                               errormsg="请填写正确的姓名" value="{{session('username')}}">
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
-                        <label class="color-seven">手机：</label>
-                        <input type="text" name="phone" placeholder="手机号码" datatype="m" nullmsg="请填写手机号码"
-                               errormsg="请填写正确的手机号码" value="{{session('phone')}}">
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
-                        <label class="color-seven">图形验证码：</label>
-                        <input type="text" name="captcha" placeholder="图形验证码" datatype="*" nullmsg="请填写验证码"
-                               errormsg="请填写正确的验证码">
-                        <img src="{{ captcha_src() }}" class="margin-left100" id="img-captcha">
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
-                        <label class="color-seven">短信验证：</label>
-                        <input type="text" name="code" placeholder="请填写短信验证码" datatype="*" nullmsg="请填写短信验证码"
-                               errormsg="请填写正确的短信验证码">
-                        <img src="/images/success.png" class="checkImg"/>
-                        <img src="/images/error.png" class="checkImg"/>
-                        <span class="watch-btn-code text-center">
-                <a class="margin-left100" href="javascript:;">发送短信验证码</a>
-              </span>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
-                        <label class="sanjiliandong color-seven">地址：</label>
-                        <select class="province" name="province"></select>
-                        <select class="city" name="city"></select>
-                        <select class="district" name="district"></select>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
-                        <label class="color-seven">详细地址：</label>
-                        <input class="contacinfo-last" type="text" name="area" placeholder="详细地址" datatype="*"
-                               nullmsg="请填写地址" errormsg="请填写正确的地址">
-                    </div>
-                    <input type="hidden" value="{{session('watch_id')}}" name="id">
-                    <div class="col-xs-12 col-sm-12 col-md-12 watch-btn-next text-center padding-top30 padding-bot45">
-                        <a href="javascript:;" class="ContactInfoSubmit" id="contactForm">提交维修工单</a>
-                    </div>
-                </form>
+            <div class="row nav-top">
+                <ul class="list-inline">
+                    <li><a href="/index">1步故障描述</a></li>
+                    <li><a href="/goods">2步手表情况</a></li>
+                    <li><a href="/contact" class="newhtader-active">3步联系方式</a></li>
+                </ul>
             </div>
         </div>
+    </nav>
+    <!-- nav -->
+    <div class="container">
+        <div class="row text-center">
+            <p>填写联系方式</p>
+            <p>请认真填写联系地址及联系人快递收取货核对使用。</p>
+        </div>
     </div>
+
+
+    <div class="container">
+        <div class="row">
+            <form class="ContactInfoform" method="post" action="/watch">
+
+                <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
+                    <label class="color-seven">您的姓名：</label>
+                    <input type="text" name="name" placeholder="请填姓名" datatype="*" nullmsg="请填写姓名" errormsg="请填写正确的姓名"
+                           value="{{session('username')}}">
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
+                    <label class="color-seven">手机号码：</label>
+                    <input type="text" name="phone" placeholder="手机号码" datatype="m" nullmsg="请填写手机号码"
+                           errormsg="请填写正确的手机号码" value="{{session('phone')}}">
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
+                    <label class="color-seven">图形验证：</label>
+                    <input type="text" name="captcha" placeholder="图形验证码" datatype="*" nullmsg="请填写验证码"
+                           errormsg="请填写正确的验证码">
+                    <img src="{{ captcha_src() }}" class="margin-left100" id="img-captcha">
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
+                    <label class="color-seven">短信验证：</label>
+                    <input type="text" name="code" placeholder="短信验证码" datatype="*" nullmsg="请填写短信验证码"
+                           errormsg="请填写正确的短信验证码">
+                    <span class="watch-btn-code text-center">
+                  <a class="margin-left100 SendCode" href="javascript:;">发送验证码</a>
+               </span>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
+                    <label class="sanjiliandong color-seven">收货地址：</label>
+                    <select class="province" name="province"></select>
+                    <select class="city" name="city"></select>
+                    <select class="district" name="district"></select>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
+                    <label class="color-seven">详细地址：</label>
+                    <input class="contacinfo-last" type="text" name="area" placeholder="详细地址" datatype="*"
+                           nullmsg="请填写地址" errormsg="请填写正确的地址">
+                </div>
+
+                <input type="hidden" value="{{session('watch_id')}}" name="id">
+                <div class="col-xs-12 col-sm-12 col-md-12 watch-btn-next text-center padding-top30 padding-bot45">
+                    <a href="javascript:;" class="ContactInfoSubmit" id="contactForm">提交维修工单</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row down">
+        </div>
+    </div>
+
 @endsection
 
 
@@ -104,57 +112,6 @@
     <script type="text/javascript">
         $(function () {
             addressInit('province', 'city', 'district', '', '', '');
-            // 验证码
-            var times = 60;
-            $('.watch-btn-code a').click(function () {
-                if ($(this).text() == "发送短信验证码") {
-                    var phone = $("input[name='phone']").val();
-                    if (phone.length == 0) {
-                        alert("请输入手机号码");
-                        return false
-                    }
-                    if (!/^1[345789]\d{9}$/.test(phone)) {
-                        alert("请输入正确的手机号码");
-                        return false
-                    }
-                    $.get('/sendsms', {phone: phone}, function (data) {
-                        if (data.code == 0) {
-                            var getcode = setInterval(function () {
-                                $('.watch-btn-code a').text("发送成功（" + times + "）");
-                                times--;
-                                if (times == 0) {
-                                    clearInterval(getcode);
-                                    $('.watch-btn-code a').text("发送短信验证码");
-                                    times = 60;
-                                }
-                            }, 1000)
-                        }
-                    })
-                }
-            })
-
-            $("input[name='code']").keyup(function () {
-                var e = $("input[name='code']").val();
-                if (e.length == 0) {
-                    return
-                }
-                $.get("/verify", {phone: $("input[name='phone']").val(), code: e}, function (e) {
-                    if (e.code == 0) {
-                        $(".checkImg").eq(0).css({display: "block"});
-                        $(".checkImg").eq(1).css({display: "none"});
-                        // $(".contactForm").addClass("ContactInfoSubmit");
-                        // $(".contactForm").attr("href","");
-                        // $(".contactForm").css("background", '#1bb71f');
-                    } else {
-                        $(".checkImg").eq(0).css({display: "none"});
-                        $(".checkImg").eq(1).css({display: "block"});
-                        // $(".contactForm").removeClass();
-                        // $(".contactForm").attr("href","javascript:;")  ;
-                        // $(".contactForm").css("background", '#A9A9A9');
-                    }
-                })
-            });
-
             $(".ContactInfoform").Validform({
                 btnSubmit: ".ContactInfoSubmit",
                 ajaxPost: true,
