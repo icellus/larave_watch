@@ -41,7 +41,7 @@
 <script src="/js/Validform_v5.3.2_min.js"></script>
 
 
-<script type="text/javascript" src="/js/new.js"></script>
+<script type="text/javascript" src="/js/new.js?{{time()}}"></script>
 
 @yield('page_js')
 

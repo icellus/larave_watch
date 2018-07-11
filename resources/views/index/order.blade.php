@@ -139,7 +139,10 @@
                                         @endif
                                     @endforeach
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>备注：</span><span>{{$order->watch['error_comment']}}</span>
+                                        <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
@@ -198,8 +201,12 @@
                                         @endif
                                     @endforeach
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>备注：</span><span>{{$order->watch['error_comment']}}</span>
+                                        <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
                                     </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
+                                    </div>
+
                                 </div>
                                 <!-- 故障描述 -->
                                 <div class="col-xs-12 col-sm-12 col-md-12 padding-top30">
@@ -247,7 +254,10 @@
                                         @endif
                                     @endforeach
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>备注：</span><span>{{$order->watch['error_comment']}}</span>
+                                        <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -287,7 +297,10 @@
                                         @endif
                                     @endforeach
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>备注：</span><span>{{$order->watch['error_comment']}}</span>
+                                        <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
                                     </div>
                                 </div>
 
@@ -322,8 +335,10 @@
                                         @endif
                                     @endforeach
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        {{--todo 添加卖家备注--}}
-                                        <span>备注：</span><span>{{$order->watch['error_comment']}}</span>
+                                        <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -375,8 +390,10 @@
                                         @endif
                                     @endforeach
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        {{--todo 添加卖家备注--}}
-                                        <span>备注：</span><span>{{$order->watch['error_comment']}}</span>
+                                        <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
                                     </div>
                                 </div>
 
@@ -460,7 +477,7 @@
                     <input type="text" name="code" placeholder="短信验证">
                     <div><a href="javascript:;" class="SendCode">发送验证码</a></div>
                 </div>
-                <button>登录</button>
+                <button id="register-button">登录</button>
             </div>
         </div>
     @endif

@@ -21,14 +21,12 @@ class GoodsController extends Controller {
 
 		$courier = [
 			'type'   => $data['courier'],
-			'number' => $data['number'],
 		];
 		unset($data['courier']);
-		unset($data['number']);
 
 		$id = DB::table('t_watch')->insertGetId($data);
 
-		$courier['id'] = $id;
+		$courier['watch_id'] = $id;
 		$insert        = DB::table('t_courier')->insert($courier);
 
 		session(['watch_id' => $id]);
@@ -62,7 +60,7 @@ class GoodsController extends Controller {
 		$image = $data['img'];
 		unset($data['img']);
 
-		$id = DB::table('t_watch')->where('id', $id)->update($data);
+		DB::table('t_watch')->where('id', $id)->update($data);
 
 		$images = explode(',', $image);
 		foreach ($images as $v) {
@@ -85,7 +83,8 @@ class GoodsController extends Controller {
 			$id   = $data['id'];
 			unset($data['id']);
 
-			$order = DB::table('t_orders')->where('id', $id)->value('id');
+			$order = DB::table('t_orders')->where('watch_id', $id)->value('id');
+
 			if($order) {
 				return $this->response(0, '', [], '您已经提交过该腕表的维修工单啦！');
 			}

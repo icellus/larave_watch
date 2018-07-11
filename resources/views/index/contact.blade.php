@@ -26,7 +26,7 @@
                 <ul class="list-inline">
                     <li><a href="/index">1步故障描述</a></li>
                     <li><a href="/goods">2步手表情况</a></li>
-                    <li><a href="/contact" class="newhtader-active">3步联系方式</a></li>
+                    <li><a href="/watch" class="newhtader-active">3步联系方式</a></li>
                 </ul>
             </div>
         </div>
@@ -110,6 +110,11 @@
     <!-- sanjiliandong -->
     <script src="js/jsAddress.js"></script>
     <script type="text/javascript">
+        function reloadPage() {
+            window.location.href = '/order'
+        }
+    </script>
+    <script type="text/javascript">
         $(function () {
             addressInit('province', 'city', 'district', '', '', '');
             $(".ContactInfoform").Validform({
@@ -118,6 +123,8 @@
                 postonce: true,
                 callback: function (data) {
                     $('#img-captcha').attr('src', "http://watch.com/captcha/default?OTF0v3P2" + Math.random())
+
+                    setTimeout('reloadPage()', 300);
                 }
             });
             $('html').click(function () {

@@ -57,7 +57,11 @@
 
                 @if(session('user_id') == null)
                     <li>
-                        <button type="button" class="btn btn-success"><a href="/logout">退出</a></button>
+                        <button type="button" class="btn btn-success"><a href="/user">点击登陆</a></button>
+                    </li>
+                @else
+                    <li>
+                        <button type="button" class="btn btn-success"><a href="/logout">退出系统</a></button>
                     </li>
                 @endif
             </ul>

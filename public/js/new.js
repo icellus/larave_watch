@@ -55,14 +55,6 @@ $(function () {
     $('.right-menu').click(function () {
         $('.right-sub-menu').fadeToggle(500)
     })
-    $('.watch-case-list span').click(function () {
-        // $(this).addClass("wacth-active").siblings().removeClass("wacth-active");
-        if ($(this).is('.wacth-active')) {
-            $(this).removeClass("wacth-active");
-        } else {
-            $(this).addClass("wacth-active").siblings().removeClass("wacth-active");
-        }
-    })
 
     var orderList = function () {
         var t = {};
@@ -111,33 +103,33 @@ $(function () {
         var watch_band = '';
         var watch_clasp = '';
         var height = $("input[name='height']").val();
-        var comment = $("input[name='comment']").val();
-        $('#movement span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        var comment = $("#comment").val();
+        $('#movement li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 movement = $(this).data('id');
                 return;
             }
         })
-        $('#watch_case span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#watch_case li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 watch_case = $(this).data('id');
                 return;
             }
         })
-        $('#watch_face span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#watch_face li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 watch_face = $(this).data('id');
                 return;
             }
         })
-        $('#watch_band span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#watch_band li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 watch_band = $(this).data('id');
                 return;
             }
         })
-        $('#watch_clasp span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#watch_clasp li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 watch_clasp = $(this).data('id');
                 return;
             }
@@ -245,82 +237,81 @@ $(function () {
         var error_clasp = '';
         var error_function = '';
         var courier = '';
-        var error_comment = $("input[name='error_comment']").val();
-        var number = $("input[name='number']").val();
-        $('#error_movement span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        var error_comment = $("#error_comment").val();
+        $('#error_movement li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 error_movement = $(this).data('id');
                 return;
             }
         })
-        $('#error_case span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#error_case li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 error_case = $(this).data('id');
                 return;
             }
         })
-        $('#error_bezel span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#error_bezel li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 error_bezel = $(this).data('id');
                 return;
             }
         })
-        $('#error_cover span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#error_cover li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 error_cover = $(this).data('id');
                 return;
             }
         })
-        $('#error_bade span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#error_bade li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 error_bade = $(this).data('id');
                 return;
             }
         })
-        $('#error_screws span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#error_screws li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 error_screws = $(this).data('id');
                 return;
             }
         })
-        $('#error_glass span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#error_glass li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 error_glass = $(this).data('id');
                 return;
             }
         })
-        $('#error_pin span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#error_pin li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 error_pin = $(this).data('id');
                 return;
             }
         })
-        $('#error_face span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#error_face li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 error_face = $(this).data('id');
                 return;
             }
         })
-        $('#error_band span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#error_band li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 error_band = $(this).data('id');
                 return;
             }
         })
-        $('#error_clasp span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#error_clasp li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 error_clasp = $(this).data('id');
                 return;
             }
         })
-        $('#error_function span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#error_function li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 error_function = $(this).data('id');
                 return;
             }
         })
-        $('#courier span').each(function (index, element) {
-            if ($(element).is('.wacth-active')) {
+        $('#courier li').each(function (index, element) {
+            if ($(element).is('.question_but-active')) {
                 courier = $(this).data('id');
                 if (!courier) {
                     courier = ''
@@ -344,7 +335,6 @@ $(function () {
             error_clasp: error_clasp,
             error_function: error_function,
             error_comment: error_comment,
-            number: number,
             courier: courier
         }, function (data) {
             window.location.href = '/goods';
@@ -366,10 +356,10 @@ $(function () {
             dataType:'json',
             success: function(data) {
                 $('#img-captcha').attr('src', "http://watch.com/captcha/default?OTF0v3P2" + Math.random())
-                if (data.code && data.code == 1) {
+                if (data.code == 1) {
                     alert('短信验证码错误')
                 }
-                if (data.code && data.code == 0) {
+                if (data.code == 0) {
                     window.location.href = '/user';
                 }
             },

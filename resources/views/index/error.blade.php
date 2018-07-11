@@ -26,7 +26,7 @@
                 <ul class="list-inline">
                     <li><a href="/index" class="newhtader-active">1步故障描述</a></li>
                     <li><a href="/goods">2步手表情况</a></li>
-                    <li><a href="/contact">3步联系方式</a></li>
+                    <li><a href="/watch">3步联系方式</a></li>
                 </ul>
             </div>
         </div>
@@ -148,9 +148,7 @@
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
-                    <textarea class="form-control" rows="3" placeholder="其他故障问题补充描述" name="error_comment">
-
-                    </textarea>
+                    <textarea class="form-control" rows="3" placeholder="其他故障问题补充描述" id="error_comment"></textarea>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
                 <ul class="new-pick" id="courier">
@@ -158,7 +156,6 @@
                     <li class="question_but" data-id="0"><a href="javascript:;">展厅自取</a></li>
                     <li class="question_but" data-id="1"><a href="javascript:;">顺风快递</a></li>
                 </ul>
-                <input type="text" name="number" placeholder="请填写快递单号" value="">
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
                 <ul class="list-inline">

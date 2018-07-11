@@ -39,13 +39,13 @@
                                         @elseif($order->status == 1)
                                             <span class="badge badge-info">已收货，待补充价格</span>
                                         @elseif($order->status == 2)
-                                            <span class="badge badge-info">已提交价格，待买家确认</span>
+                                            <span class="badge badge-info">已提交价格，待客户确认</span>
                                         @elseif($order->status == 3)
-                                            <span class="badge badge-info">买家已确认，维修中</span>
+                                            <span class="badge badge-info">客户已确认，维修中</span>
                                         @elseif($order->status == 4)
                                             <span class="badge badge-info">维修已完成，待付款</span>
                                         @elseif($order->status == 5)
-                                            <span class="badge badge-info">买家已付款，待发货</span>
+                                            <span class="badge badge-info">客户已付款，待发货</span>
                                         @elseif($order->status == 6)
                                             <span class="badge badge-info">已完成</span>
                                         @elseif($order->status == 7)
@@ -108,31 +108,6 @@
                         </div>
                         <br>
 
-                        <h5 class="subtitle subtitle-lined">买家发货方式：</h5>
-                        <div class="row">
-                            @foreach($courier as $k => $v)
-                                @if($v->payment_type == 0)
-                                    @if($v->type == 0)
-                                        <div class="col-xs-6">
-                                            快递方式：自取
-                                        </div>
-                                    @else
-                                        <div class="col-xs-6">
-                                            快递方式：顺丰快递
-                                        </div>
-                                        <div class="col-xs-6">
-                                            快递单号：{{$v->number}}
-                                        </div>
-                                    @endif
-                                @endif
-                            @endforeach
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">买家描述：{{$watch['watch_comment']}}</div>
-                        </div>
-
-                        <br/>
-
                         <h3 class="subtitle subtitle-lined">故障详情</h3>
                         <div class="row">
                             <div class="col-sm-6">
@@ -147,6 +122,9 @@
                         </div><!-- row -->
                         <div class="row">
                             <div class="col-sm-12">故障描述：{{$watch['error_comment']}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">客户备注：{{$watch['watch_comment']}}</div>
                         </div>
 
                         <br/>
@@ -211,6 +189,27 @@
                             @endif
                             <br/>
                         @endif
+
+                        <h5 class="subtitle subtitle-lined">客户发货方式：</h5>
+                        <div class="row">
+                            @foreach($courier as $k => $v)
+                                @if($v->payment_type == 0)
+                                    @if($v->type == 0)
+                                        <div class="col-xs-6">
+                                            快递方式：自取
+                                        </div>
+                                    @else
+                                        <div class="col-xs-6">
+                                            快递方式：顺丰快递
+                                        </div>
+                                        {{--<div class="col-xs-6">--}}
+                                        {{--快递单号：{{$v->number}}--}}
+                                        {{--</div>--}}
+                                    @endif
+                                @endif
+                            @endforeach
+                        </div>
+                        <br/>
 
                         @if($order->status >= 5 && $order->status != 7)
                             <h5 class="subtitle subtitle-lined">取货方式：</h5>

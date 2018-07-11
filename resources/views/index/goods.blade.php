@@ -17,7 +17,7 @@
                 <ul class="list-inline">
                     <li><a href="/index">1步故障描述</a></li>
                     <li><a href="/goods" class="newhtader-active">2步手表情况</a></li>
-                    <li><a href="/contact">3步联系方式</a></li>
+                    <li><a href="/watch">3步联系方式</a></li>
                 </ul>
             </div>
         </div>
@@ -86,13 +86,13 @@
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <textarea name="comment" class="form-control" rows="3" placeholder="您可以简单描述手表当前情况说明或注意事项"></textarea>
+                <textarea id="comment" class="form-control" rows="3" placeholder="您可以简单描述手表当前情况说明或注意事项"></textarea>
             </div>
 
             @include('common.upload')
 
             <input type="hidden" value="{{session('watch_id')}}" name="id">
-            <div class="row text-center">
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="button" class="btn btn-success" id="goodsSubmit"><a href="javascript:;">点击进入下一步</a>
                 </button>
             </div>
