@@ -140,10 +140,10 @@ class GoodsController extends Controller {
 				'area'     => $data['area'],
 			]);
 
-			// 生成一笔订单  6位随机数
+			// 生成一笔订单  2位随机数
 			$chars = '0123456789';
 			$code  = date('YmdHis');
-			while (strlen($code) < 20) {
+			while (strlen($code) < 16) {
 				$code .= substr($chars, (mt_rand() % strlen($chars)), 1);
 			}
 			$order = [

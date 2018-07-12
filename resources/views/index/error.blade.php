@@ -144,7 +144,7 @@
             <div class="col-xs-12 col-sm-6 col-md-6">
                 <ul class="list-inline" id="error_function">
                     <li>功能:</li>
-                    <li class="question_but"><a href="javascript:;">不防水了</a></li>
+                    <li class="question_but" data-id="1"><a href="javascript:;">不防水了</a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

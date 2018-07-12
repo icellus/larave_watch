@@ -101,6 +101,9 @@
                             </div><!-- col-sm-6 -->
                         </div><!-- row -->
                         <div class="row">
+                            <div class="col-sm-12">重量：{{$watch['height']}}克</div>
+                        </div>
+                        <div class="row">
                             <div class="col-sm-12">客户备注：{{$watch['watch_comment']}}</div>
                         </div>
 

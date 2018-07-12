@@ -93,8 +93,8 @@ class GoodsController extends BaseController {
 		],
 		'error_glass'  => [
 			0 => '玻璃',
-			1 => '更换',
-			2 => '定制',
+			1 => '翻新',
+			2 => '更换',
 		],
 		'error_pin'    => [
 			0 => '表针',
