@@ -69,6 +69,14 @@
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <div class="btn-group mr10">
+                                            @if($order->status == 2)
+                                                <a href="javascript:;">
+                                                    <button class="btn btn-primary price-button" type="button"
+                                                            style="line-height: 13px" id="submit-price">
+                                                        <i class="fa mr5"></i>确认价格
+                                                    </button>
+                                                </a>
+                                            @endif
                                             <a href="/admin/goods/price/page?id={{$order->id}}">
                                                 @if($order->price == 0 && $order->status == 1)
                                                     <button class="btn btn-primary price-button" type="button"
@@ -92,8 +100,32 @@
                                 </div>
                             </div><!-- col-sm-6 -->
                         </div><!-- row -->
-                        <br/>
+                        <div class="row">
+                            <div class="col-sm-12">客户备注：{{$watch['watch_comment']}}</div>
+                        </div>
 
+                        <br/>
+                        <h5 class="subtitle subtitle-lined">取货方式：</h5>
+                        <div class="row">
+                            @foreach($courier as $k => $v)
+                                @if($v->payment_type == 1)
+                                    @if($v->type == 0)
+                                        <div class="col-sm-6">
+                                            快递方式：展厅自取
+                                        </div>
+                                    @else
+                                        <div class="col-xs-6">
+                                            快递方式：顺丰快递
+                                        </div>
+                                        <div class="col-xs-6">
+                                            快递单号：{{$v->number}}
+                                        </div>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </div>
+
+                        <br/>
                         <h5 class="subtitle subtitle-lined">腕表详情组图：</h5>
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 padding-bot15">
@@ -123,18 +155,25 @@
                         <div class="row">
                             <div class="col-sm-12">故障描述：{{$watch['error_comment']}}</div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12">客户备注：{{$watch['watch_comment']}}</div>
-                        </div>
 
                         <br/>
-                        <h5 class="subtitle subtitle-lined">地址信息：</h5>
+
+
+                        <h5 class="subtitle subtitle-lined">客户信息：</h5>
                         <div class="row">
-                            <div class="col-xs-6">
-                                地址：{{$watch['province']}}{{$watch['city']}}{{$watch['district']}}
-                            </div><!-- col-sm-6 -->
-                            <div class="col-xs-6">
-                                详细地址：{{$watch['area']}}
+                            <div class="col-sm-6">
+                                <div class="col-xs-6">
+                                    姓名：{{$user->username}}
+                                </div><!-- col-sm-6 -->
+                                <div class="col-xs-6">
+                                    联系方式：{{$user->phone}}
+                                </div><!-- col-sm-6 -->
+                                <div class="col-xs-6">
+                                    地址：{{$watch['province']}}{{$watch['city']}}{{$watch['district']}}
+                                </div><!-- col-sm-6 -->
+                                <div class="col-xs-6">
+                                    详细地址：{{$watch['area']}}
+                                </div>
                             </div>
                         </div><!-- row -->
                         <br/>
@@ -143,8 +182,9 @@
                             <h5 class="subtitle subtitle-lined">维修完成组图：</h5>
                             @if($order->status == 3 && !$images[2])
                                 <div class="row">
-                                    <div class="order-image-box" style="text-align: center;width: 88%;height: 120px;margin: 15px 0 15px 0;">
-                                        <div class=" image-box " >
+                                    <div class="order-image-box"
+                                         style="text-align: center;width: 88%;height: 120px;margin: 15px 0 15px 0;">
+                                        <div class=" image-box ">
                                             <section class="upload-section" style="margin:15px 10px 0 0">
                                                 <div class="upload-btn"></div>
                                             </section>
@@ -190,49 +230,45 @@
                             <br/>
                         @endif
 
-                        <h5 class="subtitle subtitle-lined">客户发货方式：</h5>
-                        <div class="row">
-                            @foreach($courier as $k => $v)
-                                @if($v->payment_type == 0)
-                                    @if($v->type == 0)
-                                        <div class="col-xs-6">
-                                            快递方式：自取
-                                        </div>
-                                    @else
-                                        <div class="col-xs-6">
-                                            快递方式：顺丰快递
-                                        </div>
-                                        {{--<div class="col-xs-6">--}}
-                                        {{--快递单号：{{$v->number}}--}}
-                                        {{--</div>--}}
-                                    @endif
-                                @endif
-                            @endforeach
-                        </div>
-                        <br/>
-
-                        @if($order->status >= 5 && $order->status != 7)
-                            <h5 class="subtitle subtitle-lined">取货方式：</h5>
+                        @if($comment)
+                            <h5 class="subtitle subtitle-lined">工单备注：</h5>
                             <div class="row">
-                                @foreach($courier as $k => $v)
-                                    @if($v->payment_type == 1)
-                                        @if($v->type == 0)
-                                            <div class="col-xs-6">
-                                                快递方式：自取
-                                            </div>
-                                        @else
-                                            <div class="col-xs-6">
-                                                快递方式：顺丰快递
-                                            </div>
-                                            <div class="col-xs-6">
-                                                快递单号：{{$v->number}}
-                                            </div>
-                                        @endif
-                                    @endif
+                                @foreach($comment as $v)
+                                    <div class="col-sm-12">{{$v->created_at}}:
+                                        &nbsp;&nbsp;&nbsp;&nbsp;{{$v->value}}</div>
                                 @endforeach
                             </div>
                         @endif
+
+                        {{--@if($order->status >= 5 && $order->status != 7)--}}
+                        {{--<h5 class="subtitle subtitle-lined">取货方式：</h5>--}}
+                        {{--<div class="row">--}}
+                        {{--@foreach($courier as $k => $v)--}}
+                        {{--@if($v->payment_type == 1)--}}
+                        {{--@if($v->type == 0)--}}
+                        {{--<div class="col-xs-6">--}}
+                        {{--快递方式：自取--}}
+                        {{--</div>--}}
+                        {{--@else--}}
+                        {{--<div class="col-xs-6">--}}
+                        {{--快递方式：顺丰快递--}}
+                        {{--</div>--}}
+                        {{--<div class="col-xs-6">--}}
+                        {{--快递单号：{{$v->number}}--}}
+                        {{--</div>--}}
+                        {{--@endif--}}
+                        {{--@endif--}}
+                        {{--@endforeach--}}
+                        {{--</div>--}}
+                        {{--@endif--}}
                         <br/>
+                        <div class="btn-group mr10">
+                            <a href="javascript:;">
+                                <button class="btn btn-primary comment-order" type="button">
+                                    <i class="fa fa-pencil mr5"></i>添加备注
+                                </button>
+                            </a>
+                        </div>
                         @if($order->status == 5)
                             <div class="btn-group mr10">
                                 <a href="{{ route('admin.goods.courier',['id' => $order->id]) }}">
@@ -244,23 +280,37 @@
                         @endif
                         <div class="btn-group mr10">
                             @if($order->status == 0)
-                                <button class="btn btn-primary order-submit" type="button"><i
-                                            class="fa fa-pencil mr5"></i> 确认收货
-                                </button>
+                                <a href="javascript:;">
+                                    <button class="btn btn-primary order-submit" type="button"><i
+                                                class="fa fa-pencil mr5"></i> 确认收货
+                                    </button>
+                                </a>
                             @elseif($order->status == 3)
-                                <button class="btn btn-primary order-submit" type="button"><i
-                                            class="fa fa-pencil mr5"></i> 维修完成
-                                </button>
+                                <a href="javascript:;">
+                                    <button class="btn btn-primary order-submit" type="button"><i
+                                                class="fa fa-pencil mr5"></i> 维修完成
+                                    </button>
+                                </a>
+                            @elseif($order->status == 4)
+                                <a href="javascript:;">
+                                    <button class="btn btn-primary order-pay-submit" type="button"><i
+                                                class="fa fa-pencil mr5"></i> 确认付款
+                                    </button>
+                                </a>
                             @elseif($order->status == 5)
-                                <button class="btn btn-primary order-submit" type="button"><i
-                                            class="fa fa-pencil mr5"></i> 完成订单
-                                </button>
+                                <a href="javascript:;">
+                                    <button class="btn btn-primary order-submit" type="button"><i
+                                                class="fa fa-pencil mr5"></i> 完成订单
+                                    </button>
+                                </a>
                             @endif
                         </div>
 
                         <div class="btn-group mr10">
                             @if($order->status < 5)
-                                <button class="btn btn-default close-order" type="button">取消订单</button>
+                                <a href="javascript:;">
+                                    <button class="btn btn-default close-order" type="button">取消订单</button>
+                                </a>
                             @endif
                         </div>
                     </div>
@@ -285,6 +335,24 @@
                 }
             });
         });
+        $(".order-pay-submit").click(function () {
+            Rbac.ajax.request({
+                type: 'POST',
+                href: '/pay',
+                data: {
+                    id: $("input[name='id']").val()
+                }
+            });
+        });
+        $("#submit-price").click(function () {
+            Rbac.ajax.request({
+                type: 'POST',
+                href: '/order/submit',
+                data: {
+                    id: $("input[name='id']").val()
+                }
+            });
+        });
         $(".close-order").click(function () {
             Rbac.ajax.delete({
                 confirmTitle: '确认取消订单吗？',
@@ -299,6 +367,37 @@
                 }
             });
         });
+        $(".comment-order").click(function () {
+            swal({
+                    title: "添加备注",
+                    text: "添加工单备注",
+                    type: "input",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    animation: "slide-from-top",
+                    inputPlaceholder: "请输入备注"
+                },
+                function (inputValue) {
+                    if (inputValue === false) return false;
+                    if (inputValue === "") {
+                        swal.showInputError("你需要输入一些话！");
+                        return false
+                    }
+
+                    var id = $("input[name='id']").val();
+                    var value = inputValue;
+                    Rbac.ajax.request({
+                        type: 'POST',
+                        href: '/admin/goods/comment',
+                        data: {
+                            id: id,
+                            value: value,
+                        }
+                    });
+                });
+        });
+
+
         $(".order-image").click(function () {
             //手表照片上传
             $('.order-image-box').find('.image-box .upload-section').each(function () {
@@ -331,7 +430,7 @@
                         $(_this).removeClass('image-loading');
                         img.attr('src', data.data.src).show();
                         image_section.removeClass('waiting-upload').find('.image-delete').show();//去掉图片还未上传标志，隐藏删除图标
-                        if( $(_this).closest('.order-image-box').find('.image-section.waiting-upload').length === 0 )//图片上传完毕
+                        if ($(_this).closest('.order-image-box').find('.image-section.waiting-upload').length === 0)//图片上传完毕
                         {
                             window.location.reload();
                             return false;

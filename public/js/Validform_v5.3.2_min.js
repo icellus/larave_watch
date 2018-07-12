@@ -722,7 +722,7 @@
                             o.callback && o.callback(y);
                             w[0].validform_ajax = null
                         }, error: function (y) {
-                            var z = "验证码错误";
+                            var z = "服务器错误";
                             a.util.showmsg.call(w, z, o.tiptype, {obj: w, type: 3, sweep: o.tipSweep}, "byajax");
                             o.callback && o.callback(y);
                             w[0].validform_status = "normal";

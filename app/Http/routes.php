@@ -67,6 +67,7 @@ Route::group(['middleware' => ['admin']], function () {
 		Route::any('/goods/close', ['as' => 'admin.goods.close', 'uses' => 'GoodsController@close']);
 		Route::any('/goods/courier', ['as' => 'admin.goods.courier', 'uses' => 'GoodsController@courier']);
 		Route::any('/goods/courier/update', ['as' => 'admin.goods.courier.update', 'uses' => 'GoodsController@courierUpdate']);
+		Route::any('/goods/comment', ['as' => 'admin.goods.comment', 'uses' => 'GoodsController@comment']);
 
 		Route::any('/image', ['as' => 'admin.image', 'uses' => 'GoodsController@image']);
 

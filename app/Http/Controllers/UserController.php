@@ -24,12 +24,12 @@ class UserController extends Controller {
 
 	public function register (Request $request) {
 		$data = $request->all();
-
-		// 验证验证码
-		$this->validate($request, [
-			'captcha' => 'required|captcha',
-		]);
-		unset($data['captcha']);
+//
+//		// 验证验证码
+//		$this->validate($request, [
+//			'captcha' => 'required|captcha',
+//		]);
+//		unset($data['captcha']);
 
 		// 验证手机验证码
 		$check = DB::table('t_verify_codes')

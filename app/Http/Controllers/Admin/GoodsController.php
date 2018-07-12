@@ -152,7 +152,7 @@ class GoodsController extends BaseController {
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function index () {
-		$data = DB::table('t_orders')->orderBy('created_at','desc')->paginate(10);
+		$data = DB::table('t_orders')->orderBy('created_at', 'desc')->paginate(10);
 
 		foreach ($data as $v) {
 			//			$v->info = DB::table('t_watch')->where('id', $v->watch_id)->first();
@@ -195,6 +195,7 @@ class GoodsController extends BaseController {
 			}
 		}
 
+		$user    = DB::table('t_user')->where('id', $order->user_id)->first();
 		$courier = DB::table('t_courier')->where('watch_id', $watch['id'])->get();
 
 		$images    = [
@@ -204,11 +205,15 @@ class GoodsController extends BaseController {
 		$images[1] = DB::table('t_image')->where('watch_id', $watch['id'])->where('uploader', 1)->get();
 		$images[2] = DB::table('t_image')->where('watch_id', $watch['id'])->where('uploader', 2)->get();
 
+		$comment = DB::table('t_comment')->where('order_id',$id)->orderBy('created_at','desc')->get();
+
 		return view('admin.goods.detail', [
 			'order'   => $order,
 			'watch'   => $watch,
 			'courier' => $courier,
 			'images'  => $images,
+			'user'    => $user,
+			'comment' => $comment,
 		]);
 	}
 
@@ -229,8 +234,8 @@ class GoodsController extends BaseController {
 			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 1]);
 		} else if($status == 3) {
 			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 4]);
-		}else if($status == 5) {
-			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 6,'finish_time' => date('Y-m-d H:i:s')]);
+		} else if($status == 5) {
+			$update = DB::table('t_orders')->where('id', $id)->update(['status' => 6, 'finish_time' => date('Y-m-d H:i:s')]);
 		}
 
 		if($update) {
@@ -317,7 +322,7 @@ class GoodsController extends BaseController {
 
 		$id    = $request->get('id');
 		$order = DB::table('t_orders')->where('id', $id)->first();
-		$data  = DB::table('t_price_records')->where('order_id', $id)->orderBy('created_at','desc')->paginate(10);
+		$data  = DB::table('t_price_records')->where('order_id', $id)->orderBy('created_at', 'desc')->paginate(10);
 
 		return view('admin.goods.history', [
 			'order' => $order,
@@ -375,6 +380,28 @@ class GoodsController extends BaseController {
 		}
 
 		return redirect(route('admin.goods.detail', ['id' => $order->id]));
+	}
+
+	/**
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function comment (Request $request) {
+		$id    = $request->get('id');
+		$value = $request->get('value');
+
+		$insert = DB::table('t_comment')->insert([
+			'order_id'   => $id,
+			'value'      => $value,
+			'created_at' => date('Y-m-d H:i:s'),
+		]);
+
+		if($insert) {
+			return $this->response();
+		}
+
+		return $this->response(-1, '操作失败');
 	}
 
 	/**

@@ -46,7 +46,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group courier-number" @if(!$courier || $courier->type ==0) style="display: none;" @endif>
                                 <label class="col-sm-3 control-label">快递单号 <span class="asterisk">*</span></label>
                                 <div class="col-sm-6">
                                     <input type="text" data-toggle="tooltip" name="number"
@@ -78,4 +78,18 @@
         </div><!-- row -->
 
     </div>
+@endsection
+
+@section("javascript")
+    @parent
+    <script type="text/javascript">
+        $('input[type=radio][name=type]').change(function() {
+            if (this.value == '0') {
+                $('.courier-number').hide();
+            }
+            else if (this.value == '1') {
+                $('.courier-number').show();
+            }
+        });
+    </script>
 @endsection

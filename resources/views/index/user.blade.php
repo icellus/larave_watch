@@ -88,10 +88,10 @@
             </div>
             <div class="new-login-cont">
                 <input type="text" name="phone" placeholder="手机号">
-                <div class="new-login-code">
-                    <input type="text" name="imgcode" placeholder="图形验证">
-                    <img src="{{ captcha_src()  }}" id="img-captcha">
-                </div>
+                {{--<div class="new-login-code">--}}
+                    {{--<input type="text" name="imgcode" placeholder="图形验证">--}}
+                    {{--<img src="{{ captcha_src()  }}" id="img-captcha">--}}
+                {{--</div>--}}
                 <div class="new-login-code">
                     <input type="text" name="code" placeholder="短信验证">
                     <div><a href="javascript:;" class="SendCode">发送验证码</a></div>

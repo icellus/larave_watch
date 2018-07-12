@@ -56,12 +56,12 @@
                            errormsg="请填写正确的手机号码" value="{{session('phone')}}">
                 </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
-                    <label class="color-seven">图形验证：</label>
-                    <input type="text" name="captcha" placeholder="图形验证码" datatype="*" nullmsg="请填写验证码"
-                           errormsg="请填写正确的验证码">
-                    <img src="{{ captcha_src() }}" class="margin-left100" id="img-captcha">
-                </div>
+                {{--<div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">--}}
+                    {{--<label class="color-seven">图形验证：</label>--}}
+                    {{--<input type="text" name="captcha" placeholder="图形验证码" datatype="*" nullmsg="请填写验证码"--}}
+                           {{--errormsg="请填写正确的验证码">--}}
+                    {{--<img src="{{ captcha_src() }}" class="margin-left100" id="img-captcha">--}}
+                {{--</div>--}}
 
                 <div class="col-xs-12 col-sm-12 col-md-9 padding-top15 col-md-offset-3">
                     <label class="color-seven">短信验证：</label>

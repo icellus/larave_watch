@@ -127,53 +127,70 @@
                     <!-- 具体内容 -->
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">基本情况
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">故障描述
                                 </div>
                                 <!-- 基本情况 -->
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    @foreach ($order->watch as $k => $v)
-                                        @if(!in_array($k,['id','user_id','order_id','height','province','city','district','area','created_at','updated_at','watch_comment','error_comment']))
-                                            <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                                <span>{{$k}}：</span><span>{{$v}}</span>
-                                            </div>
-                                        @endif
+                                    @foreach ($order->watch['error'] as $k => $v)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>{{$k}}：</span><span>{{$v}}</span>
+                                        </div>
                                     @endforeach
-                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
-                                    </div>
+                                    @if($order->watch['error_comment'])
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
+                                        </div>
+                                    @endif
 
-                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
-                                        @foreach ($order->images[1] as $k => $v)
-                                            <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
-                                                <img src="{{$v->img_url}}" class="img-responsive"
-                                                     style="max-width: 102px">
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
                                 <!-- 故障描述 -->
-                                <div class="col-xs-12 col-sm-12 col-md-12 padding-top30">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>取货方式：</span><span>
-                                                    @foreach ($order->courier as $courier)
-                                                @if($courier->payment_type == 0)
+                                    @foreach ($order->courier as $courier)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>取货方式：</span>
+                                            <span>
+                                                @if($courier->payment_type == 1)
                                                     @if($courier->type == 0)
-                                                        自取
+                                                        展厅自取
                                                     @else
                                                         顺丰快递
                                                     @endif
                                                 @endif
-                                            @endforeach
-                                                    </span>
+                                            </span>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">腕表详情
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    @foreach ($order->watch['watch'] as $k => $v)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>{{$k}}：</span><span>{{$v}}</span>
+                                        </div>
+                                    @endforeach
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>重量：</span><span>{{$order->watch['height']}}克</span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
                                     </div>
                                 </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
+                                    @foreach ($order->images[1] as $k => $v)
+                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
+                                            <img src="{{$v->img_url}}" class="img-responsive"
+                                                 style="max-width: 102px">
+                                        </div>
+                                    @endforeach
+                                </div>
+
                                 <!-- 联系方式 -->
-                                <div class="col-xs-12 col-sm-12 col-md-12 padding-top30">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 font-s16 color-six">联系方式
-                                    </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">联系方式
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
                                         <span>姓名：</span><span>{{$order->user->username}}</span></div>
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
@@ -184,49 +201,76 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                 @elseif($order->status == 1)
                     <!-- 具体内容 -->
                         <div class="container-fluid">
                             <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">故障描述
+                                </div>
                                 <!-- 基本情况 -->
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">基本情况
-                                    </div>
-                                    @foreach ($order->watch as $k => $v)
-                                        @if(!in_array($k,['id','user_id','order_id','height','province','city','district','area','created_at','updated_at','watch_comment','error_comment']))
-                                            <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                                <span>{{$k}}：</span><span>{{$v}}</span>
-                                            </div>
-                                        @endif
+                                    @foreach ($order->watch['error'] as $k => $v)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>{{$k}}：</span><span>{{$v}}</span>
+                                        </div>
                                     @endforeach
-                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
-                                    </div>
+                                    @if($order->watch['error_comment'])
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
+                                        </div>
+                                    @endif
 
-                                </div>
                                 <!-- 故障描述 -->
-                                <div class="col-xs-12 col-sm-12 col-md-12 padding-top30">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>取货方式：</span><span>
-                                                    @foreach ($order->courier as $courier)
-                                                @if($courier->payment_type == 0)
+                                    @foreach ($order->courier as $courier)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>取货方式：</span>
+                                            <span>
+                                                @if($courier->payment_type == 1)
                                                     @if($courier->type == 0)
-                                                        自取
+                                                        展厅自取
                                                     @else
                                                         顺丰快递
                                                     @endif
                                                 @endif
-                                            @endforeach
-                                                    </span></div>
+                                            </span>
+                                        </div>
+                                    @endforeach
                                 </div>
-                                <!-- 联系方式 -->
-                                <div class="col-xs-12 col-sm-12 col-md-12 padding-top30">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 font-s16 color-six">联系方式
+
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">腕表详情
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    @foreach ($order->watch['watch'] as $k => $v)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>{{$k}}：</span><span>{{$v}}</span>
+                                        </div>
+                                    @endforeach
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>重量：</span><span>{{$order->watch['height']}}克</span>
                                     </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
+                                    @foreach ($order->images[1] as $k => $v)
+                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
+                                            <img src="{{$v->img_url}}" class="img-responsive"
+                                                 style="max-width: 102px">
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <!-- 联系方式 -->
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">联系方式
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
                                         <span>姓名：</span><span>{{$order->user->username}}</span></div>
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
@@ -237,77 +281,76 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                 @elseif($order->status == 2)
-                    <!-- 待确认 -->
+                    <!-- 具体内容 -->
                         <div class="container-fluid">
                             <div class="row">
-                                <!-- 基本情况 -->
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">基本情况
-                                    </div>
-                                    @foreach ($order->watch as $k => $v)
-                                        @if(!in_array($k,['id','user_id','order_id','height','province','city','district','area','created_at','updated_at','watch_comment','error_comment']))
-                                            <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                                <span>{{$k}}：</span><span>{{$v}}</span>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="row">
-                                        <!-- 线条 -->
-                                        <div class="watch-border-black2"></div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12 clearfix padding-top30 padding-bot15">
-                                    <div class="WorkOrderDetails-first-left padding-top8">
-                                                <span class="color-red"
-                                                      style="">费用合计：¥{{number_format($order->price / 100,2)}}</span>
-                                        <span class="color-six">（注：该笔维修费用将在维修完成后收取）</span>
-                                    </div>
-                                    <div class="WorkOrderDetails-first-right order-Cancel-determine padding-top8">
-                                                <span><a class="order-active order-close" data-id="{{$order->id}}"
-                                                         href="javascript:;">取消订单</a></span>
-                                        <span><a class="order-submit" data-id="{{$order->id}}" href="javascript:;"
-                                                 style="color: darkgreen;border: 1px solid darkgreen;">确认价格</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                @elseif($order->status == 3)
-                    <!-- 维修中 -->
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">基本情况
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">故障描述
                                 </div>
                                 <!-- 基本情况 -->
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    @foreach ($order->watch as $k => $v)
-                                        @if(!in_array($k,['id','user_id','order_id','height','province','city','district','area','created_at','updated_at','watch_comment','error_comment']))
-                                            <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                                <span>{{$k}}：</span><span>{{$v}}</span>
-                                            </div>
-                                        @endif
+                                    @foreach ($order->watch['error'] as $k => $v)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>{{$k}}：</span><span>{{$v}}</span>
+                                        </div>
+                                    @endforeach
+                                    @if($order->watch['error_comment'])
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
+                                        </div>
+                                    @endif
+
+                                <!-- 故障描述 -->
+                                    @foreach ($order->courier as $courier)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>取货方式：</span>
+                                            <span>
+                                                @if($courier->payment_type == 1)
+                                                    @if($courier->type == 0)
+                                                        展厅自取
+                                                    @else
+                                                        顺丰快递
+                                                    @endif
+                                                @endif
+                                            </span>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">腕表详情
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    @foreach ($order->watch['watch'] as $k => $v)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>{{$k}}：</span><span>{{$v}}</span>
+                                        </div>
                                     @endforeach
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
+                                        <span>重量：</span><span>{{$order->watch['height']}}克</span>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
                                         <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
                                     </div>
                                 </div>
 
+                                <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
+                                    @foreach ($order->images[1] as $k => $v)
+                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
+                                            <img src="{{$v->img_url}}" class="img-responsive"
+                                                 style="max-width: 102px">
+                                        </div>
+                                    @endforeach
+                                </div>
+
                                 <!-- 联系方式 -->
-                                <div class="col-xs-12 col-sm-12 col-md-12 padding-top30">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 font-s16 color-six">联系方式
-                                    </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">联系方式
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
                                         <span>姓名：</span><span>{{$order->user->username}}</span></div>
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
@@ -318,29 +361,186 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                @elseif($order->status == 4)
-                    <!-- 待付款 -->
-                        <div class="container-fluid">
-                            <div class="row"> <!-- 基本情况 -->
-                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">基本情况
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="row">
+                                    <!-- 线条 -->
+                                    <div class="watch-border-black2"></div>
                                 </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 clearfix padding-top30 padding-bot15">
+                                <div class="WorkOrderDetails-first-left padding-top8">
+                                                <span class="color-red"
+                                                      style="">费用合计：¥{{number_format($order->price / 100,2)}}</span>
+                                    <span class="color-six">（注：该笔维修费用将在维修完成后收取）</span>
+                                </div>
+                                <div class="WorkOrderDetails-first-right order-Cancel-determine padding-top8">
+                                                <span><a class="order-active order-close" data-id="{{$order->id}}"
+                                                         href="javascript:;">取消订单</a></span>
+                                    <span><a class="order-submit" data-id="{{$order->id}}" href="javascript:;"
+                                             style="color: darkgreen;border: 1px solid darkgreen;">确认价格</a></span>
+                                </div>
+                            </div>
+
+                        </div>
+                @elseif($order->status == 3)
+                    <!-- 具体内容 -->
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">故障描述
+                                </div>
+                                <!-- 基本情况 -->
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    @foreach ($order->watch as $k => $v)
-                                        @if(!in_array($k,['id','user_id','order_id','height','province','city','district','area','created_at','updated_at','watch_comment','error_comment']))
-                                            <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                                <span>{{$k}}：</span><span>{{$v}}</span>
-                                            </div>
-                                        @endif
+                                    @foreach ($order->watch['error'] as $k => $v)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>{{$k}}：</span><span>{{$v}}</span>
+                                        </div>
+                                    @endforeach
+                                    @if($order->watch['error_comment'])
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
+                                        </div>
+                                    @endif
+
+                                <!-- 故障描述 -->
+                                    @foreach ($order->courier as $courier)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>取货方式：</span>
+                                            <span>
+                                                @if($courier->payment_type == 1)
+                                                    @if($courier->type == 0)
+                                                        展厅自取
+                                                    @else
+                                                        顺丰快递
+                                                    @endif
+                                                @endif
+                                            </span>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">腕表详情
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    @foreach ($order->watch['watch'] as $k => $v)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>{{$k}}：</span><span>{{$v}}</span>
+                                        </div>
                                     @endforeach
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
+                                        <span>重量：</span><span>{{$order->watch['height']}}克</span>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
                                         <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
                                     </div>
                                 </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
+                                    @foreach ($order->images[1] as $k => $v)
+                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
+                                            <img src="{{$v->img_url}}" class="img-responsive"
+                                                 style="max-width: 102px">
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <!-- 联系方式 -->
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">联系方式
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>姓名：</span><span>{{$order->user->username}}</span></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>手机：</span><span>{{$order->user->phone}}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 padding-bot30 color-ash">
+                                        <span>地址：</span><span>{{$order->watch['province']}} {{$order->watch['city']}} {{$order->watch['district']}} {{$order->watch['area']}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                @elseif($order->status == 4)
+                    <!-- 具体内容 -->
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">故障描述
+                                </div>
+                                <!-- 基本情况 -->
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    @foreach ($order->watch['error'] as $k => $v)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>{{$k}}：</span><span>{{$v}}</span>
+                                        </div>
+                                    @endforeach
+                                    @if($order->watch['error_comment'])
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
+                                        </div>
+                                    @endif
+
+                                <!-- 故障描述 -->
+                                    @foreach ($order->courier as $courier)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>取货方式：</span>
+                                            <span>
+                                                @if($courier->payment_type == 1)
+                                                    @if($courier->type == 0)
+                                                        展厅自取
+                                                    @else
+                                                        顺丰快递
+                                                    @endif
+                                                @endif
+                                            </span>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">腕表详情
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    @foreach ($order->watch['watch'] as $k => $v)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>{{$k}}：</span><span>{{$v}}</span>
+                                        </div>
+                                    @endforeach
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>重量：</span><span>{{$order->watch['height']}}克</span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
+                                    @foreach ($order->images[1] as $k => $v)
+                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
+                                            <img src="{{$v->img_url}}" class="img-responsive"
+                                                 style="max-width: 102px">
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <!-- 联系方式 -->
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">联系方式
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>姓名：</span><span>{{$order->user->username}}</span></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>手机：</span><span>{{$order->user->phone}}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 padding-bot30 color-ash">
+                                        <span>地址：</span><span>{{$order->watch['province']}} {{$order->watch['city']}} {{$order->watch['district']}} {{$order->watch['area']}}</span>
+                                    </div>
+                                </div>
+
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="row">
                                         <!-- 线条 -->
@@ -368,56 +568,92 @@
                                     <div class="WorkOrderDetails-first-left padding-top8">
                                         <span class="color-red">费用合计：¥{{number_format($order->price / 100,2)}}</span>
                                     </div>
-                                    <div class="WorkOrderDetails-first-right order-Cancel-determine padding-top8  order-pay"
+                                   {{-- <div class="WorkOrderDetails-first-right order-Cancel-determine padding-top8  order-pay"
                                          data-id="{{$order->id}}">
                                         <span><a class="order-active" href="javascript:;">确认付款</a></span>
-                                    </div>
+                                    </div>--}}
                                 </div>
                             </div>
+
                         </div>
                 @elseif($order->status >= 5)
                     <!-- 已完成 -->
+                        <!-- 具体内容 -->
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">基本情况
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">故障描述
                                 </div>
+                                <!-- 基本情况 -->
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    @foreach ($order->watch as $k => $v)
-                                        @if(!in_array($k,['id','user_id','order_id','height','province','city','district','area','created_at','updated_at','watch_comment','error_comment']))
-                                            <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                                <span>{{$k}}：</span><span>{{$v}}</span>
-                                            </div>
-                                        @endif
+                                    @foreach ($order->watch['error'] as $k => $v)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>{{$k}}：</span><span>{{$v}}</span>
+                                        </div>
+                                    @endforeach
+                                    @if($order->watch['error_comment'])
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
+                                        </div>
+                                    @endif
+
+                                <!-- 故障描述 -->
+                                    @foreach ($order->courier as $courier)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>取货方式：</span>
+                                            <span>
+                                                @if($courier->payment_type == 1)
+                                                    @if($courier->type == 0)
+                                                        展厅自取
+                                                    @else
+                                                        顺丰快递
+                                                    @endif
+                                                @endif
+                                            </span>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">腕表详情
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    @foreach ($order->watch['watch'] as $k => $v)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>{{$k}}：</span><span>{{$v}}</span>
+                                        </div>
                                     @endforeach
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                        <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
+                                        <span>重量：</span><span>{{$order->watch['height']}}克</span>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
                                         <span>备注：</span><span>{{$order->watch['watch_comment']}}</span>
                                     </div>
                                 </div>
 
-                                <br/>
-                                @if($order->status == 5)
-                                    <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">快递信息
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                            <span>取货方式：</span><span>
-                                                    @foreach ($order->courier as $courier)
-                                                    @if($courier->payment_type == 0)
-                                                        @if($courier->type == 0)
-                                                            自取
-                                                        @else
-                                                            顺丰快递
-                                                        @endif
-                                                    @endif
-                                                @endforeach
-                                                    </span>
+                                <div class="col-xs-12 col-sm-12 col-md-12 padding-mdLR0 watch-frot-text padding-top15">
+                                    @foreach ($order->images[1] as $k => $v)
+                                        <div class="col-xs-6 col-sm-2 col-md-2 padding-top8">
+                                            <img src="{{$v->img_url}}" class="img-responsive"
+                                                 style="max-width: 102px">
                                         </div>
+                                    @endforeach
+                                </div>
+
+                                <!-- 联系方式 -->
+                                <div class="col-xs-12 col-sm-12 col-md-12 font-s16 padding-top15 color-six">联系方式
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>姓名：</span><span>{{$order->user->username}}</span></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>手机：</span><span>{{$order->user->phone}}</span>
                                     </div>
-                                    <br/>
-                                @endif
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 padding-bot30 color-ash">
+                                        <span>地址：</span><span>{{$order->watch['province']}} {{$order->watch['city']}} {{$order->watch['district']}} {{$order->watch['area']}}</span>
+                                    </div>
+                                </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="row">
                                         <!-- 线条 -->
@@ -449,8 +685,10 @@
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
-                    @endif
+                @endif
 
                 </div>
 
@@ -469,10 +707,10 @@
             </div>
             <div class="new-login-cont">
                 <input type="text" name="phone" placeholder="手机号">
-                <div class="new-login-code">
-                    <input type="text" name="imgcode" placeholder="图形验证">
-                    <img src="http://cui.jinjifu.com/captcha/default?kNFUPhpD"  id = 'img-captcha'>
-                </div>
+                {{--<div class="new-login-code">--}}
+                    {{--<input type="text" name="imgcode" placeholder="图形验证">--}}
+                    {{--<img src="http://cui.jinjifu.com/captcha/default?kNFUPhpD" id='img-captcha'>--}}
+                {{--</div>--}}
                 <div class="new-login-code">
                     <input type="text" name="code" placeholder="短信验证">
                     <div><a href="javascript:;" class="SendCode">发送验证码</a></div>

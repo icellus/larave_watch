@@ -27,6 +27,7 @@ class GoodsController extends Controller {
 		$id = DB::table('t_watch')->insertGetId($data);
 
 		$courier['watch_id'] = $id;
+		$courier['payment_type'] = 1;
 		$insert        = DB::table('t_courier')->insert($courier);
 
 		session(['watch_id' => $id]);
@@ -89,11 +90,11 @@ class GoodsController extends Controller {
 				return $this->response(0, '', [], '您已经提交过该腕表的维修工单啦！');
 			}
 
-			// 验证验证码
-			$this->validate($request, [
-				'captcha' => 'required|captcha',
-			]);
-			unset($data['captcha']);
+//			// 验证验证码
+//			$this->validate($request, [
+//				'captcha' => 'required|captcha',
+//			]);
+//			unset($data['captcha']);
 
 			// 验证手机验证码
 			$check = DB::table('t_verify_codes')

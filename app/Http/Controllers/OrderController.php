@@ -138,10 +138,13 @@ class OrderController extends Controller {
 	 */
 	public function index ($status = 0) {
 		$userId = session('user_id');
-		$orders = DB::table('t_orders')->where('user_id', $userId)->where(function ($query) use ($status) {
-			if($status >= 5) $query->where('status', '>=', 5);
-			if($status < 5) $query->where('status', $status);
-		})->get();
+		$orders = DB::table('t_orders')->where('user_id', $userId)
+			->where(function ($query) use ($status) {
+				if($status >= 5) $query->where('status', '>=', 5);
+				if($status < 5) $query->where('status', $status);
+			})
+			->orderBy('created_at', 'desc')
+			->get();
 
 		foreach ($orders as $order) {
 			$watch     = DB::table('t_watch')->where('id', $order->watch_id)->first();
@@ -158,12 +161,14 @@ class OrderController extends Controller {
 
 			$watch = json_decode(json_encode($watch), true);
 
+			$watch['watch'] = [];
+			$watch['error'] = [];
 			foreach ($watch as $k => $v) {
 				if(array_key_exists($k, $this->watch)) {
 					if(array_key_exists('name', $this->watch[ $k ])) {
-						$watch[ $this->watch[ $k ]['name'] ] = $this->watch[ $k ][ $v ];
+						$watch['watch'][ $this->watch[ $k ]['name'] ] = $this->watch[ $k ][ $v ];
 					} else if($v > 0) {
-						$watch[ $this->watch[ $k ][0] ] = $this->watch[ $k ][ $v ];
+						$watch['error'][ $this->watch[ $k ][0] ] = $this->watch[ $k ][ $v ];
 					}
 					unset($watch[ $k ]);
 				}

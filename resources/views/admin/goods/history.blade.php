@@ -36,8 +36,8 @@
                                 @foreach($data as $v)
                                     <tr>
                                         <td>{{ $order->uid }}</td>
-                                        <td>￥{{ number_format($v->present_price / 10 ,2) }}</td>
-                                        <td>￥{{ number_format(($v->present_price + $v->change_price)/10,2) }}</td>
+                                        <td>￥{{ number_format($v->present_price / 100 ,2) }}</td>
+                                        <td>￥{{ number_format(($v->present_price + $v->change_price)/100,2) }}</td>
                                         <td>{{ $v->comment }}</td>
 
                                         <td>{{ $v->created_at }}</td>

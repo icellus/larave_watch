@@ -81,7 +81,7 @@ $(function () {
 
     $('#img-captcha').click(function () {
         // $('.right-sub-menu').fadeToggle(500)
-        $('#img-captcha').attr('src', "http://watch.com/captcha/default?OTF0v3P2" + Math.random())
+        $('#img-captcha').attr('src', "/captcha/default?OTF0v3P2" + Math.random())
     })
 
 
