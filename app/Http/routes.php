@@ -73,6 +73,7 @@ Route::group(['middleware' => ['admin']], function () {
 
 		// 财务统计
 		Route::any('/order', ['as' => 'admin.order', 'uses' => 'OrderController@index']);
+		Route::any('/order/month', ['as' => 'admin.order.month', 'uses' => 'OrderController@month']);
 
 		// 用户管理
 		Route::resource('admin_user', 'AdminUserController');

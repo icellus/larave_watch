@@ -19,23 +19,30 @@ class GoodsController extends Controller {
 	public function error (Request $request) {
 		$data = $request->all();
 
+		foreach ($data as &$v) {
+			if($v && $v[0] == ',') {
+				$v = substr($v, 1);
+				unset($v);
+			}
+		}
+
 		$courier = [
-			'type'   => $data['courier'],
+			'type' => $data['courier'],
 		];
 		unset($data['courier']);
 
 		$id = DB::table('t_watch')->insertGetId($data);
 
-		$courier['watch_id'] = $id;
+		$courier['watch_id']     = $id;
 		$courier['payment_type'] = 1;
-		$insert        = DB::table('t_courier')->insert($courier);
+		DB::table('t_courier')->insert($courier);
 
 		session(['watch_id' => $id]);
 
 		return $this->response();
 	}
 
-	public function errorPage (Request $request) {
+	public function errorPage () {
 		$id      = session('watch_id');
 		$info    = null;
 		$courier = null;
@@ -55,7 +62,15 @@ class GoodsController extends Controller {
 	public function contact (Request $request) {
 
 		$data = $request->all();
-		$id   = $data['id'];
+
+		foreach ($data as &$v) {
+			if($v && $v[0] == ',') {
+				$v = substr($v, 1);
+				unset($v);
+			}
+		}
+
+		$id = $data['id'];
 		unset($data['id']);
 
 		$image = $data['img'];
@@ -90,11 +105,11 @@ class GoodsController extends Controller {
 				return $this->response(0, '', [], '您已经提交过该腕表的维修工单啦！');
 			}
 
-//			// 验证验证码
-//			$this->validate($request, [
-//				'captcha' => 'required|captcha',
-//			]);
-//			unset($data['captcha']);
+			//			// 验证验证码
+			//			$this->validate($request, [
+			//				'captcha' => 'required|captcha',
+			//			]);
+			//			unset($data['captcha']);
 
 			// 验证手机验证码
 			$check = DB::table('t_verify_codes')

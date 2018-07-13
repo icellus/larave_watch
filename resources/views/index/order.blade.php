@@ -121,6 +121,7 @@
                     </div>
                 </div>
 
+                {{--{{ dump($order) }}--}}
                 <div class="watch-detail col-xs-12 col-sm-12 col-md-12 clearfix padding-top15 display-no margin-bot60"
                      style="margin-bottom: 80px">
                 @if($order->status == 0)
@@ -371,7 +372,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12 clearfix padding-top30 padding-bot15">
                                 <div class="WorkOrderDetails-first-left padding-top8">
                                                 <span class="color-red"
-                                                      style="">费用合计：¥{{number_format($order->price / 100,2)}}</span>
+                                                      style="">预期费用：¥{{number_format($order->price / 100,2)}}</span>
                                     <span class="color-six">（注：该笔维修费用将在维修完成后收取）</span>
                                 </div>
                                 <div class="WorkOrderDetails-first-right order-Cancel-determine padding-top8">
@@ -459,6 +460,22 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 padding-bot30 color-ash">
                                         <span>地址：</span><span>{{$order->watch['province']}} {{$order->watch['city']}} {{$order->watch['district']}} {{$order->watch['area']}}</span>
                                     </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="row">
+                                        <!-- 线条 -->
+                                        <div class="watch-border-black2"></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 clearfix padding-top30 padding-bot15">
+                                    <div class="WorkOrderDetails-first-left padding-top8">
+                                        <span class="color-red">预期费用：¥{{number_format($order->price / 100,2)}}</span>
+                                    </div>
+                                    {{-- <div class="WorkOrderDetails-first-right order-Cancel-determine padding-top8  order-pay"
+                                          data-id="{{$order->id}}">
+                                         <span><a class="order-active" href="javascript:;">确认付款</a></span>
+                                     </div>--}}
                                 </div>
                             </div>
 

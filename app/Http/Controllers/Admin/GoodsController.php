@@ -185,11 +185,20 @@ class GoodsController extends BaseController {
 		$watch['watch'] = [];
 		$watch['error'] = [];
 		foreach ($watch as $k => $v) {
-			if(array_key_exists($k, $this->watch)) {
+			if(array_key_exists($k, $this->watch) && $v != '') {
+				$value = explode(',',$v); // [1,2]
+				$watchValue = '';
 				if(array_key_exists('name', $this->watch[ $k ])) {
-					$watch['watch'][ $this->watch[ $k ]['name'] ] = $this->watch[ $k ][ $v ];
-				} else if($v > 0) {
-					$watch['error'][ $this->watch[ $k ][0] ] = $this->watch[ $k ][ $v ];
+					foreach ($value as $v1) {
+						$watchValue .= $this->watch[ $k ][ $v1 ] . ',';
+					}
+					$watch['watch'][ $this->watch[ $k ]['name'] ] = mb_substr($watchValue,0,mb_strlen($watchValue) - 1);
+
+				} else if($v) {
+					foreach ($value as $v1) {
+						$watchValue .= $this->watch[ $k ][ $v1 ] . ',';
+					}
+					$watch['error'][ $this->watch[ $k ][0] ] = mb_substr($watchValue,0,mb_strlen($watchValue) - 1);
 				}
 				unset($watch[ $k ]);
 			}

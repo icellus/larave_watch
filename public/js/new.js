@@ -4,7 +4,7 @@ $(function () {
             if ($(this).is('.question_but-active')) {
                 $(this).removeClass("question_but-active");
             } else {
-                $(this).addClass("question_but-active").siblings().removeClass("question_but-active")
+                $(this).addClass("question_but-active")
             }
         }
     })
@@ -106,31 +106,31 @@ $(function () {
         var comment = $("#comment").val();
         $('#movement li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                movement = $(this).data('id');
+                movement += ',' + $(this).data('id');
                 return;
             }
         })
         $('#watch_case li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                watch_case = $(this).data('id');
+                watch_case += ',' + $(this).data('id');
                 return;
             }
         })
         $('#watch_face li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                watch_face = $(this).data('id');
+                watch_face += ',' + $(this).data('id');
                 return;
             }
         })
         $('#watch_band li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                watch_band = $(this).data('id');
+                watch_band += ',' + $(this).data('id');
                 return;
             }
         })
         $('#watch_clasp li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                watch_clasp = $(this).data('id');
+                watch_clasp += ',' + $(this).data('id');
                 return;
             }
         })
@@ -240,73 +240,73 @@ $(function () {
         var error_comment = $("#error_comment").val();
         $('#error_movement li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                error_movement = $(this).data('id');
+                error_movement += ',' + $(this).data('id');
                 return;
             }
         })
         $('#error_case li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                error_case = $(this).data('id');
+                error_case += ',' + $(this).data('id');
                 return;
             }
         })
         $('#error_bezel li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                error_bezel = $(this).data('id');
+                error_bezel += ',' + $(this).data('id');
                 return;
             }
         })
         $('#error_cover li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                error_cover = $(this).data('id');
+                error_cover += ',' + $(this).data('id');
                 return;
             }
         })
         $('#error_bade li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                error_bade = $(this).data('id');
+                error_bade += ',' + $(this).data('id');
                 return;
             }
         })
         $('#error_screws li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                error_screws = $(this).data('id');
+                error_screws += ',' + $(this).data('id');
                 return;
             }
         })
         $('#error_glass li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                error_glass = $(this).data('id');
+                error_glass += ',' + $(this).data('id');
                 return;
             }
         })
         $('#error_pin li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                error_pin = $(this).data('id');
+                error_pin += ',' + $(this).data('id');
                 return;
             }
         })
         $('#error_face li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                error_face = $(this).data('id');
+                error_face += ',' + $(this).data('id');
                 return;
             }
         })
         $('#error_band li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                error_band = $(this).data('id');
+                error_band += ',' + $(this).data('id');
                 return;
             }
         })
         $('#error_clasp li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                error_clasp = $(this).data('id');
+                error_clasp += ',' + $(this).data('id');
                 return;
             }
         })
         $('#error_function li').each(function (index, element) {
             if ($(element).is('.question_but-active')) {
-                error_function = $(this).data('id');
+                error_function += ',' + $(this).data('id');
                 return;
             }
         })
