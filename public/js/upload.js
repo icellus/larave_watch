@@ -8,7 +8,7 @@ var uploader = function () {
             data: {},
             zoom: false, //允许放大
             allowType: ["gif", "jpeg", "jpg", "bmp",'png'], //允许上传图片的类型
-            maxSize :2, //允许上传图片的最大尺寸，单位M
+            maxSize :5, //允许上传图片的最大尺寸，单位M
             before: function () {
                 // alert('上传前回调函数');
             },

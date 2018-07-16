@@ -15,6 +15,7 @@ class OrderController extends Controller {
 			0      => '石英机芯',
 			1      => '机械机芯',
 			2      => '多功能机芯',
+			3      => '陀飞轮机芯',
 		],
 		"watch_case"  => [
 			'name' => '表壳',
@@ -22,6 +23,7 @@ class OrderController extends Controller {
 			1      => '18K金',
 			2      => '千足金',
 			3      => '钻石',
+			4      => '其他',
 		],
 		"watch_face"  => [
 			'name' => '字面',
@@ -29,6 +31,7 @@ class OrderController extends Controller {
 			1      => '时位钻字面',
 			2      => '满天星字面',
 			3      => '多功能字面',
+			4      => '其他',
 		],
 		"watch_band"  => [
 			'name' => '表带',
@@ -38,12 +41,15 @@ class OrderController extends Controller {
 			3      => '18K金',
 			4      => '千足金',
 			5      => '钻石',
+			6      => '塑胶',
+			7      => '陶瓷',
 		],
 		"watch_clasp" => [
 			'name' => '表扣',
 			0      => '不锈钢',
 			1      => '18K金',
 			2      => '钻石',
+			3      => '其他',
 		],
 
 		'error_movement' => [

@@ -29,7 +29,6 @@ class GoodsController extends Controller {
 		$courier = [
 			'type' => $data['courier'],
 		];
-		unset($data['courier']);
 
 		$id = DB::table('t_watch')->insertGetId($data);
 

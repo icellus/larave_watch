@@ -144,20 +144,16 @@
                                     @endif
 
                                 <!-- 故障描述 -->
-                                    @foreach ($order->courier as $courier)
                                         <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
                                             <span>取货方式：</span>
                                             <span>
-                                                @if($courier->payment_type == 1)
-                                                    @if($courier->type == 0)
-                                                        展厅自取
-                                                    @else
-                                                        顺丰快递
-                                                    @endif
+                                            @if($order->watch['courier'] == 0)
+                                                    展厅自取
+                                                @else
+                                                    顺丰快递
                                                 @endif
-                                            </span>
+                                        </span>
                                         </div>
-                                    @endforeach
                                 </div>
 
 
@@ -224,20 +220,16 @@
                                     @endif
 
                                 <!-- 故障描述 -->
-                                    @foreach ($order->courier as $courier)
                                         <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
                                             <span>取货方式：</span>
                                             <span>
-                                                @if($courier->payment_type == 1)
-                                                    @if($courier->type == 0)
-                                                        展厅自取
-                                                    @else
-                                                        顺丰快递
-                                                    @endif
+                                            @if($order->watch['courier'] == 0)
+                                                    展厅自取
+                                                @else
+                                                    顺丰快递
                                                 @endif
-                                            </span>
+                                        </span>
                                         </div>
-                                    @endforeach
                                 </div>
 
 
@@ -303,21 +295,16 @@
                                         </div>
                                     @endif
 
-                                <!-- 故障描述 -->
-                                    @foreach ($order->courier as $courier)
                                         <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
                                             <span>取货方式：</span>
                                             <span>
-                                                @if($courier->payment_type == 1)
-                                                    @if($courier->type == 0)
-                                                        展厅自取
-                                                    @else
-                                                        顺丰快递
-                                                    @endif
+                                            @if($order->watch['courier'] == 0)
+                                                    展厅自取
+                                                @else
+                                                    顺丰快递
                                                 @endif
-                                            </span>
+                                        </span>
                                         </div>
-                                    @endforeach
                                 </div>
 
 
@@ -404,20 +391,16 @@
                                     @endif
 
                                 <!-- 故障描述 -->
-                                    @foreach ($order->courier as $courier)
                                         <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
                                             <span>取货方式：</span>
                                             <span>
-                                                @if($courier->payment_type == 1)
-                                                    @if($courier->type == 0)
-                                                        展厅自取
-                                                    @else
-                                                        顺丰快递
-                                                    @endif
+                                            @if($order->watch['courier'] == 0)
+                                                    展厅自取
+                                                @else
+                                                    顺丰快递
                                                 @endif
-                                            </span>
+                                        </span>
                                         </div>
-                                    @endforeach
                                 </div>
 
 
@@ -471,6 +454,9 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12 clearfix padding-top30 padding-bot15">
                                     <div class="WorkOrderDetails-first-left padding-top8">
                                         <span class="color-red">预期费用：¥{{number_format($order->price / 100,2)}}</span>
+
+                                        <br>
+                                        <span class="color-six">（注：该笔维修费用将在维修完成后收取）</span>
                                     </div>
                                     {{-- <div class="WorkOrderDetails-first-right order-Cancel-determine padding-top8  order-pay"
                                           data-id="{{$order->id}}">
@@ -500,20 +486,16 @@
                                     @endif
 
                                 <!-- 故障描述 -->
-                                    @foreach ($order->courier as $courier)
                                         <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
                                             <span>取货方式：</span>
                                             <span>
-                                                @if($courier->payment_type == 1)
-                                                    @if($courier->type == 0)
-                                                        展厅自取
-                                                    @else
-                                                        顺丰快递
-                                                    @endif
+                                            @if($order->watch['courier'] == 0)
+                                                    展厅自取
+                                                @else
+                                                    顺丰快递
                                                 @endif
-                                            </span>
+                                        </span>
                                         </div>
-                                    @endforeach
                                 </div>
 
 
@@ -584,11 +566,15 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12 clearfix padding-top30 padding-bot15">
                                     <div class="WorkOrderDetails-first-left padding-top8">
                                         <span class="color-red">费用合计：¥{{number_format($order->price / 100,2)}}</span>
+                                        <br>
+                                        <span class="color-six">（注：该笔订单维修工作完成，请联系客服支付此笔维修费用）</span>
+                                        <br>
+                                        <span class="color-six">客户微信：17727982233</span>
                                     </div>
-                                   {{-- <div class="WorkOrderDetails-first-right order-Cancel-determine padding-top8  order-pay"
-                                         data-id="{{$order->id}}">
-                                        <span><a class="order-active" href="javascript:;">确认付款</a></span>
-                                    </div>--}}
+                                    {{-- <div class="WorkOrderDetails-first-right order-Cancel-determine padding-top8  order-pay"
+                                          data-id="{{$order->id}}">
+                                         <span><a class="order-active" href="javascript:;">确认付款</a></span>
+                                     </div>--}}
                                 </div>
                             </div>
 
@@ -611,23 +597,19 @@
                                         <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
                                             <span>故障描述：</span><span>{{$order->watch['error_comment']}}</span>
                                         </div>
-                                    @endif
+                                @endif
 
                                 <!-- 故障描述 -->
-                                    @foreach ($order->courier as $courier)
-                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
-                                            <span>取货方式：</span>
-                                            <span>
-                                                @if($courier->payment_type == 1)
-                                                    @if($courier->type == 0)
-                                                        展厅自取
-                                                    @else
-                                                        顺丰快递
-                                                    @endif
-                                                @endif
-                                            </span>
-                                        </div>
-                                    @endforeach
+                                    <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                        <span>取货方式：</span>
+                                        <span>
+                                            @if($order->watch['courier'] == 0)
+                                                展厅自取
+                                            @else
+                                                顺丰快递
+                                            @endif
+                                        </span>
+                                    </div>
                                 </div>
 
 
@@ -695,17 +677,44 @@
                                             <div class="watch-border-black2"></div>
                                         </div>
                                     </div>
-                                @endif
-                                <div class="col-xs-12 col-sm-12 col-md-12 clearfix padding-top15">
-                                    <div class="WorkOrderDetails-first-left padding-top8">
-                                        <span class="color-red">费用合计：¥{{number_format($order->price /100 ,2)}}</span>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 clearfix padding-top15">
+                                        <div class="WorkOrderDetails-first-left padding-top8">
+                                            <span class="color-red">实付费用：¥{{number_format($order->price /100 ,2)}}</span>
+                                            @if($order->status != 7)
+                                                <br>
+                                                <span class="color-six">（注：该笔订单维修费用已结清）</span>
+                                            @endif
+                                        </div>
                                     </div>
-                                </div>
+
+                                    @foreach ($order->courier as $courier)
+                                        <div class="col-xs-12 col-sm-12 col-md-12 padding-top8 color-ash">
+                                            <span>取货方式：</span>
+                                            <span>
+                                                @if($courier->payment_type == 1)
+                                                    @if($courier->type == 0)
+                                                        展厅自取
+                                                    @else
+                                                        顺丰快递
+                                                    @endif
+                                                @endif
+                                            </span>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="col-xs-12 col-sm-12 col-md-12 clearfix padding-top15">
+                                        <div class="WorkOrderDetails-first-left padding-top8">
+                                            <span class="color-red">费用合计：¥{{number_format($order->price /100 ,2)}}</span>
+                                        </div>
+                                    </div>
+                                @endif
+
+
                             </div>
 
 
                         </div>
-                @endif
+                    @endif
 
                 </div>
 
@@ -725,8 +734,8 @@
             <div class="new-login-cont">
                 <input type="text" name="phone" placeholder="手机号">
                 {{--<div class="new-login-code">--}}
-                    {{--<input type="text" name="imgcode" placeholder="图形验证">--}}
-                    {{--<img src="http://cui.jinjifu.com/captcha/default?kNFUPhpD" id='img-captcha'>--}}
+                {{--<input type="text" name="imgcode" placeholder="图形验证">--}}
+                {{--<img src="http://cui.jinjifu.com/captcha/default?kNFUPhpD" id='img-captcha'>--}}
                 {{--</div>--}}
                 <div class="new-login-code">
                     <input type="text" name="code" placeholder="短信验证">

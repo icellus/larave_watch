@@ -40,6 +40,7 @@
                     <li class="question_but" data-id="0"><a href="javascript:;">石英机芯</a></li>
                     <li class="question_but" data-id="1"><a href="javascript:;">机械机芯</a></li>
                     <li class="question_but" data-id="2"><a href="javascript:;">多功能机芯</a></li>
+                    <li class="question_but" data-id="3"><a href="javascript:;">陀飞轮机芯</a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
@@ -49,6 +50,7 @@
                     <li class="question_but" data-id="1"><a href="javascript:;">18K金</a></li>
                     <li class="question_but" data-id="2"><a href="javascript:;">千足金</a></li>
                     <li class="question_but" data-id="3"><a href="javascript:;">钻石</a></li>
+                    <li class="question_but" data-id="4"><a href="javascript:;">其他</a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
@@ -58,6 +60,7 @@
                     <li class="question_but" data-id="1"><a href="javascript:;">时位钻字面</a></li>
                     <li class="question_but" data-id="2"><a href="javascript:;">满天星字面</a></li>
                     <li class="question_but" data-id="3"><a href="javascript:;">多功能字面</a></li>
+                    <li class="question_but" data-id="4"><a href="javascript:;">其他</a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
@@ -69,6 +72,8 @@
                     <li class="question_but" data-id="3"><a href="javascript:;">18K金</a></li>
                     <li class="question_but" data-id="4"><a href="javascript:;">千足金</a></li>
                     <li class="question_but" data-id="5"><a href="javascript:;">钻石</a></li>
+                    <li class="question_but" data-id="6"><a href="javascript:;">塑胶</a></li>
+                    <li class="question_but" data-id="7"><a href="javascript:;">陶瓷</a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
@@ -77,6 +82,7 @@
                     <li class="question_but" data-id="0"><a href="javascript:;">不锈钢</a></li>
                     <li class="question_but" data-id="1"><a href="javascript:;">18K金</a></li>
                     <li class="question_but" data-id="2"><a href="javascript:;">钻石</a></li>
+                    <li class="question_but" data-id="3"><a href="javascript:;">其他</a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
@@ -107,5 +113,5 @@
 
 
 @section('page_js')
-    <script type="text/javascript" src="/js/upload.js"></script>
+    <script type="text/javascript" src="/js/upload.js?{{time()}}"></script>
 @endsection

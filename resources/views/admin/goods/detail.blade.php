@@ -142,22 +142,15 @@
 
                         <h5 class="subtitle subtitle-lined">取货方式：</h5>
                         <div class="row">
-                            @foreach($courier as $k => $v)
-                                @if($v->payment_type == 1)
-                                    @if($v->type == 0)
-                                        <div class="col-sm-6">
-                                            快递方式：展厅自取
-                                        </div>
-                                    @else
-                                        <div class="col-xs-6">
-                                            快递方式：顺丰快递
-                                        </div>
-                                        <div class="col-xs-6">
-                                            快递单号：{{$v->number}}
-                                        </div>
-                                    @endif
-                                @endif
-                            @endforeach
+                            @if($watch['courier'] == 0)
+                                <div class="col-sm-6">
+                                    快递方式：展厅自取
+                                </div>
+                            @else
+                                <div class="col-xs-6">
+                                    快递方式：顺丰快递
+                                </div>
+                            @endif
                         </div>
                         <br/>
 
@@ -230,6 +223,29 @@
                                     </div>
                                 </div>
                             @endif
+                            <br/>
+                        @endif
+
+                        @if($courier)
+                            <h5 class="subtitle subtitle-lined">取货方式：</h5>
+                            <div class="row">
+                                @foreach($courier as $k => $v)
+                                    @if($v->payment_type == 1)
+                                        @if($v->type == 0)
+                                            <div class="col-sm-6">
+                                                快递方式：展厅自取
+                                            </div>
+                                        @else
+                                            <div class="col-xs-6">
+                                                快递方式：顺丰快递
+                                            </div>
+                                            <div class="col-xs-6">
+                                                快递单号：{{$v->number}}
+                                            </div>
+                                        @endif
+                                    @endif
+                                @endforeach
+                            </div>
                             <br/>
                         @endif
 

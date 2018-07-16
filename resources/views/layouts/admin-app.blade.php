@@ -142,7 +142,7 @@
     {{--<script src="https://cdn.bootcss.com/limonte-sweetalert2/7.21.1/sweetalert2.min.js"></script>--}}
     <script src="{{ asset('js/custom.js') }}"></script>
 
-    <script src="/js/upload.js"></script>
+    <script src="/js/upload.js?{{time()}}"></script>
 
     <script type="text/javascript" src="/js/changePrice.js"></script>
     {!! Toastr::render() !!}
